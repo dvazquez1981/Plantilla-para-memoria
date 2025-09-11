@@ -53,28 +53,28 @@ Si se desea indicar alguna página web utilizar el siguiente formato de referenc
 
 Al insertar figuras en la memoria se deben considerar determinadas pautas. Para empezar, usar siempre tipografía claramente legible. Luego, tener claro que \textbf{es incorrecto} escribir por ejemplo esto: ``El diseño elegido es un cuadrado, como se ve en la siguiente figura:''
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[scale=.45]{./Figures/%cuadradoAzul.png}
+%\end{figure}
 
 La forma correcta de utilizar una figura es con referencias cruzadas, por ejemplo: ``Se eligió utilizar un cuadrado azul para el logo, como puede observarse en la figura \ref{fig:cuadradoAzul}''.
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
-	\caption{Ilustración del cuadrado azul que se eligió para el diseño del logo.}
-	\label{fig:cuadradoAzul}
-\end{figure}
+%\begin{figure}[ht]
+%	\centering
+%	\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
+%	\caption{Ilustración del cuadrado azul que se eligió para el diseño del logo.}
+%	\label{fig:cuadradoAzul}
+%\end{figure}
 
 El texto de las figuras debe estar siempre en español, excepto que se decida reproducir una figura original tomada de alguna referencia. En ese caso la referencia de la cual se tomó la figura debe ser indicada en el epígrafe de la figura e incluida como una nota al pie, como se ilustra en la figura \ref{fig:palabraIngles}.
 
-\begin{figure}[htpb]
-	\centering
-	\includegraphics[scale=.3]{./Figures/word.jpeg}
-	\caption{Imagen tomada de la página oficial del procesador\protect\footnotemark.}
-	\label{fig:palabraIngles}
-\end{figure}
+%\begin{figure}[htpb]
+%	\centering
+%	\includegraphics[scale=.3]{./Figures/word.jpeg}
+%	\caption{Imagen tomada de la página oficial del procesador\protect\footnotemark.}
+%	\label{fig:palabraIngles}
+%\end{figure}
 
 \footnotetext{Imagen tomada de \url{https://goo.gl/images/i7C70w}}
 
@@ -82,42 +82,42 @@ La figura y el epígrafe deben conformar una unidad cuyo significado principal p
 
 
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=.37]{./Figures/questionMark.png}
-	\caption{¿Por qué de pronto aparece esta figura?}
-	\label{fig:questionMark}
-\end{figure}
+%\begin{figure}[ht]
+%	\centering
+%	\includegraphics[scale=.37]{./Figures/questionMark.png}
+%	\caption{¿Por qué de pronto aparece esta figura?}
+%	\label{fig:questionMark}
+%\end{figure}
 
 Nunca colocar una figura en el documento antes de hacer la primera referencia a ella, como se ilustra con la figura \ref{fig:questionMark}, porque sino el lector no comprenderá por qué de pronto aparece la figura en el documento, lo que distraerá su atención.
 
 Otra posibilidad es utilizar el entorno \textit{subfigure} para incluir más de una figura, como se puede ver en la figura \ref{fig:three graphs}. Notar que se pueden referenciar también las figuras internas individualmente de esta manera: \ref{fig:1de3}, \ref{fig:2de3} y \ref{fig:3de3}.
  
-\begin{figure}[!htpb]
-     \centering
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Un caption.}
+%\begin{figure}[!htpb]
+%     \centering
+%     \begin{subfigure}[b]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
+%%         \caption{Un caption.}
          \label{fig:1de3}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Otro.}
-         \label{fig:2de3}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Y otro más.}
-         \label{fig:3de3}
-     \end{subfigure}
-        \caption{Tres gráficos simples.}
-        \label{fig:three graphs}
-\end{figure}
+%     \end{subfigure}
+ %    \hfill
+%%     \begin{subfigure}[b]{0.3\textwidth}
+ %        \centering
+ %        \includegraphics[width=.65\textwidth]{./Figures/questionMark}
+%%         \caption{Otro.}
+%         \label{fig:2de3}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
+%%         \caption{Y otro más.}
+%         \label{fig:3de3}
+%     \end{subfigure}
+%        \caption{Tres gráficos simples.}
+%        \label{fig:three graphs}
+%\end{figure}
 
 El código para generar las imágenes se encuentra disponible para su reutilización en el archivo \file{Chapter2.tex}.
 
