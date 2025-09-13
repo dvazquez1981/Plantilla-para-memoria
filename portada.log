@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  9 SEP 2025 13:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2025.5.10)  13 SEP 2025 00:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **portada.tex
 (./portada.tex
-LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-01-16>
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-01-09> xparse <2020-03-03>
 
 ! LaTeX Error: Environment titlepage undefined.
 
@@ -143,22 +143,82 @@ LaTeX Font Info:    Trying to load font information for OT1+phv on input line 1
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
-Overfull \hbox (32.91962pt too wide) in paragraph at lines 15--15
- \OT1/phv/b/n/33 T^^S^^Ptulo 
+Overfull \hbox (174.1256pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 Modernizaci[]on 
  []
 
 
-Overfull \hbox (10.9419pt too wide) in paragraph at lines 15--15
- \OT1/phv/b/n/33 bajo 
+Overfull \hbox (12.7571pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 con- 
  []
 
 
-Overfull \hbox (14.21391pt too wide) in paragraph at lines 19--19
- []\OT1/phv/m/n/20 Nombre 
+Overfull \hbox (32.95268pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 dores 
  []
 
+
+Overfull \hbox (64.10411pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 tr[]ansito 
+ []
+
+
+Overfull \hbox (1.76822pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 con 
+ []
+
+
+Overfull \hbox (2.92317pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 mu- 
+ []
+
+
+Overfull \hbox (47.63748pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 caci[]on 
+ []
+
+
+Overfull \hbox (12.75665pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 bidi- 
+ []
+
+
+Overfull \hbox (3.61563pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 rec- 
+ []
+
+
+Overfull \hbox (38.46336pt too wide) in paragraph at lines 15--15
+ \OT1/phv/b/n/33 cional 
+ []
+
+
+Overfull \hbox (20.91383pt too wide) in paragraph at lines 19--19
+ \OT1/phv/m/n/20 V[]azquez 
+ []
+
+
+Underfull \vbox (badness 6094) has occurred while \output is active []
+
+
+
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.45         Jurado 3 (pertenencia)} \\
+                                       [2cm]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 48.
+
 
 ! LaTeX Error: \begin{document} ended by \end{titlepage}.
 
@@ -180,11 +240,11 @@ or  <return>  to continue without it.
 
  
 Here is how much of TeX's memory you used:
- 86 strings out of 477875
- 1340 string characters out of 5836408
- 1850330 words of memory out of 5000000
- 20331 multiletter control sequences out of 15000+600000
- 516918 words of font info for 40 fonts, out of 8000000 for 9000
+ 92 strings out of 481076
+ 1369 string characters out of 5911353
+ 269851 words of memory out of 5000000
+ 17140 multiletter control sequences out of 15000+600000
+ 413660 words of font info for 40 fonts, out of 8000000 for 9000
  107 hyphenation exceptions out of 8191
- 20i,1n,23p,157b,169s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 24i,4n,30p,157b,161s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

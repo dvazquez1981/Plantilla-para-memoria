@@ -1,7 +1,8 @@
-\babel@toc {spanish}{}\relax 
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {spanish}{}
 \contentsline {chapter}{Resumen}{\es@scroman {i}}{section*.1}%
 \contentsline {chapter}{\numberline {1}Introducción general}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Introducción y motivación}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Problemas identificados}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Estado del arte y propuesta de valor}{5}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Alcance}{6}{section.1.4}%
+\contentsline {section}{\numberline {1.1}Motivación}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Limitaciones sistema actual}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Estado del arte y propuesta de valor}{3}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Alcance}{4}{section.1.4}%
