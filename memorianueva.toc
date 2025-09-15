@@ -1,8 +1,14 @@
-\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\babel@toc {spanish}{}
+\babel@toc {spanish}{}\relax 
 \contentsline {chapter}{Resumen}{\es@scroman {i}}{section*.1}%
 \contentsline {chapter}{\numberline {1}Introducción general}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivación}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Limitaciones sistema actual}{3}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Estado del arte y propuesta de valor}{3}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Alcance}{4}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Introducción específica}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Estilo y convenciones}{5}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Uso de mayúscula inicial para los título de secciones}{5}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Este es el título de una subsección}{5}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Figuras}{6}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Tablas}{7}{subsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.1.5}Ecuaciones}{7}{subsection.2.1.5}%
