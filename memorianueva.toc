@@ -9,8 +9,4 @@
 \contentsline {section}{\numberline {2.1}Protocolos de comunicación}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Componentes de hardware utilizados}{6}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Tecnologías de software aplicadas}{6}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Uso de mayúscula inicial para los título de secciones}{6}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Este es el título de una subsección}{7}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Figuras}{7}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Tablas}{8}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Ecuaciones}{9}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Software de control de versiones}{7}{section.2.4}%
