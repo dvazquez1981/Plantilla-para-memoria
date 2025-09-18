@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------
 % Preambulo y Configuración
 %----------------------------------------------------------------------------------------
-
+\PassOptionsToPackage{backend=biber,style=ieee}{biblatex}
 \documentclass[
     11pt,
     spanish,
@@ -17,7 +17,7 @@
     linkcolor=blue,
     citecolor=blue,
     urlcolor=blue,
-    biblatexoptions={backend=biber,style=ieee} 
+    biblatexoptions={backend=biber,style=ieee}
 ]{MastersDoctoralThesis}
 
 \usepackage[utf8]{inputenc} % Codificación de entrada UTF-8
@@ -28,7 +28,7 @@
 
 
 
-
+%\usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{bibliografia.bib}
 
 
@@ -140,8 +140,8 @@ Quiero expresar mi más profundo agradecimiento a mi familia, quienes han sido u
 
 \renewcommand{\bibname}{Bibliografía} % Para asegurarte de que el título sea correcto
 \phantomsection % Necesario para que el enlace del marcador sea correcto
-
-\printbibliography[heading=bibintoc]
+\nocite{*}
+\printbibliography[heading=bibintoc, title={Bibliografía}]
 
 
 \end{document}

@@ -1,0 +1,214 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global}
+  \entry{asiain2021lora}{article}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{1}{}{%
+      {{hash=AJ}{%
+         family={Asiain},
+         familyi={A\bibinitperiod},
+         given={Juan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AJ+1}
+    \strng{fullhash}{AJ+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.3390/s21020338
+    \endverb
+    \field{number}{2}
+    \field{pages}{338}
+    \field{title}{LoRa-Based Traffic Flow Detection for Smart-Road}
+    \verb{url}
+    \verb https://www.mdpi.com/1424-8220/21/2/338
+    \endverb
+    \field{volume}{21}
+    \field{journaltitle}{Sensors}
+    \field{year}{2021}
+  \endentry
+
+  \entry{micko2023iot}{article}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{1}{}{%
+      {{hash=MJ}{%
+         family={Micko},
+         familyi={M\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MJ+1}
+    \strng{fullhash}{MJ+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.3390/s23094469
+    \endverb
+    \field{number}{9}
+    \field{pages}{4469}
+    \field{title}{Review of IoT Sensor Systems Used for Monitoring the Road
+  Infrastructure}
+    \verb{url}
+    \verb https://www.mdpi.com/1424-8220/23/9/4469
+    \endverb
+    \field{volume}{23}
+    \field{journaltitle}{Sensors}
+    \field{year}{2023}
+  \endentry
+
+  \entry{peruzzi2022lorawan}{article}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{1}{}{%
+      {{hash=PG}{%
+         family={Peruzzi},
+         familyi={P\bibinitperiod},
+         given={Gianluca},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PG+1}
+    \strng{fullhash}{PG+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.3390/app12031497
+    \endverb
+    \field{number}{3}
+    \field{pages}{1497}
+    \field{title}{Combining LoRaWAN and NB-IoT for Edge-to-Cloud Low-Power
+  Connectivity}
+    \verb{url}
+    \verb https://www.mdpi.com/2076-3417/12/3/1497
+    \endverb
+    \field{volume}{12}
+    \field{journaltitle}{Applied Sciences}
+    \field{year}{2022}
+  \endentry
+
+  \entry{fhwa2022tmg}{report}{}
+    \name{author}{1}{}{%
+      {{hash=F}{%
+         family={{FHWA}},
+         familyi={F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{F1}
+    \strng{fullhash}{F1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Traffic Monitoring Guide}
+    \verb{url}
+    \verb https://www.fhwa.dot.gov/policyinformation/tmguide/2022_TMG_Final_Rep
+    \verb ort.pdf
+    \endverb
+    \list{institution}{1}{%
+      {Federal Highway Administration}%
+    }
+    \field{type}{techreport}
+    \field{year}{2022}
+  \endentry
+
+  \entry{fhwa2006detector}{report}{}
+    \name{author}{1}{}{%
+      {{hash=F}{%
+         family={{FHWA}},
+         familyi={F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{F1}
+    \strng{fullhash}{F1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Traffic Detector Handbook, 3rd Edition}
+    \verb{url}
+    \verb https://www.fhwa.dot.gov/publications/research/operations/its/06108/0
+    \verb 6108.pdf
+    \endverb
+    \list{institution}{1}{%
+      {Federal Highway Administration}%
+    }
+    \field{type}{techreport}
+    \field{year}{2006}
+  \endentry
+
+  \entry{miovision}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{Miovision}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M2}
+    \strng{fullhash}{M2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://miovision.com/trafficlink/}}
+    \field{note}{Soluciones comerciales}
+    \field{title}{TrafficLink / Managed Connectivity}
+    \field{year}{2023}
+  \endentry
+
+  \entry{sensys}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=S}{%
+         family={{Sensys Networks}},
+         familyi={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{S1}
+    \strng{fullhash}{S1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://sensysnetworks.com/}}
+    \field{title}{Documentación técnica y productos}
+    \field{year}{2023}
+  \endentry
+
+  \entry{metrocount}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{MetroCount}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M1}
+    \strng{fullhash}{M1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.metrocount.com/}}
+    \field{title}{Contadores y guías técnicas}
+    \field{year}{2023}
+  \endentry
+
+  \entry{exemys}{online}{}
+    \field{labeltitlesource}{title}
+    \field{note}{Accedido: 16-Sep-2025}
+    \field{title}{Exemys Managed Connectivity}
+    \verb{url}
+    \verb https://www.exemys.com/site/index.shtml
+    \endverb
+    \field{year}{2025}
+  \endentry
+\enddatalist
+\endinput
