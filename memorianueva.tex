@@ -16,7 +16,8 @@
     colorlinks=true,
     linkcolor=blue,
     citecolor=blue,
-    urlcolor=blue
+    urlcolor=blue,
+    biblatexoptions={backend=biber,style=ieee} 
 ]{MastersDoctoralThesis}
 
 \usepackage[utf8]{inputenc} % Codificación de entrada UTF-8
@@ -24,6 +25,13 @@
 \usepackage{graphicx}       % Manejo de gráficos
 \usepackage{eso-pic}        % Permite agregar fondos
 \usepackage{hyperref}       % Manejo de hipervínculos y marcadores
+
+
+
+
+\addbibresource{bibliografia.bib}
+
+
 
 % Redefinición de caracteres problemáticos en marcadores
 \hypersetup{
@@ -134,6 +142,7 @@ Quiero expresar mi más profundo agradecimiento a mi familia, quienes han sido u
 \phantomsection % Necesario para que el enlace del marcador sea correcto
 
 \printbibliography[heading=bibintoc]
+
 
 \end{document}
 

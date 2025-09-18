@@ -26,11 +26,11 @@ En este capítulo se presenta el marco de referencia y la justificación del tra
 
 \section{Motivación}
 
-Este trabajo propone la modernización de los contadores de tránsito instalados en rutas nacionales mediante la renovación de su arquitectura de comunicaciones. Actualmente los equipos registran el paso de vehículos y transmiten eventos al servidor central a través de enlaces GPRS tercerizados. No obstante, no admiten la recepción de comandos ni la obtención de diagnósticos remotos. Esta limitación reduce la capacidad operativa, incrementa los costos de mantenimiento y demora la resolución de fallas, debido que todo ajuste o reparación requiere una intervención presencial.
+Este trabajo propone la modernización de los contadores de tránsito instalados en rutas nacionales mediante la renovación de su arquitectura de comunicaciones. Actualmente, los equipos registran el paso de vehículos y transmiten eventos al servidor central a través de enlaces GPRS tercerizados. No obstante, no admiten la recepción de comandos ni la obtención de diagnósticos remotos. Esta limitación reduce la capacidad operativa, incrementa los costos de mantenimiento y demora la resolución de fallas, debido que todo ajuste o reparación requiere una intervención presencial.
 
-La propuesta se origina a partir del desarrollo de un contador de tránsito destinado a registrar y transmitir información en campo. Sin embargo, la conexión remota de este dispositivo presenta limitaciones en cuanto a su capacidad de transmisión de datos y carece de mecanismos de control remoto, lo que dificulta tanto la supervisión del funcionamiento como la actualización de sus parámetros. Frente a estas restricciones, surge la necesidad de modernizar el sistema mediante la incorporación de una comunicación bidireccional confiable. Para ese propósito se plantearon tres metas principales: en primer lugar, garantizar la entrega de eventos, incluso en condiciones de conectividad intermitente. En segundo lugar, implementar mecanismos de encolamiento y reintento en el dispositivo que eviten duplicaciones y pérdidas de información y, por último, habilitar la ejecución remota de comandos y la actualización de parámetros desde un servidor central, con una confirmación explícita del estado del equipo.
+La propuesta se origina a partir del desarrollo de un contador de tránsito destinado a registrar y transmitir información en campo. Sin embargo, la conexión remota de este dispositivo presenta limitaciones en cuanto a su capacidad de transmisión de datos y carece de mecanismos de control remoto, lo que dificulta tanto la supervisión del funcionamiento como la actualización de sus parámetros. Frente a estas restricciones, surge la necesidad de modernizar el sistema mediante la incorporación de una comunicación bidireccional confiable. Para este propósito se plantearon tres metas principales: en primer lugar, garantizar la entrega de eventos, incluso en condiciones de conectividad intermitente. En segundo lugar, implementar mecanismos de encolamiento y reintento en el dispositivo que eviten duplicaciones y pérdidas de información y, por último, habilitar la ejecución remota de comandos y la actualización de parámetros desde un servidor central, con una confirmación explícita del estado del equipo.
 
-Los objetivos específicos buscan fortalecer la autonomía operativa de la institución y a reducir costos recurrentes asociados a la dependencia de proveedores externos de conectividad. En particular, el trabajo aspira a: 
+Los objetivos específicos buscan fortalecer la autonomía operativa de la institución y a reducir costos recurrentes asociados a la dependencia de proveedores externos de conectividad. En particular, el trabajo tiene por objetivos:
 \begin{itemize}
 \item Disminuir la dependencia de enlaces tercerizados mediante una arquitectura configurable.
 
@@ -68,7 +68,7 @@ Referencias bibliográficas que respaldaron las decisiones técnicas:
 El análisis del sistema vigente permitió identificar las siguientes limitaciones que motivan el rediseño:
 
 \begin{itemize}
-\item  Comunicación unidireccional. Los contadores envían datos al servidor pero no existe un canal para enviar configuraciones, consultas y comandos desde el servidor hacia los equipos. Esta limitación impide realizar diagnósticos remotos y ejecutar acciones correctivas sin presencia física.
+\item  Comunicación unidireccional. Los contadores envían datos al servidor, pero no existe un canal para enviar configuraciones, consultas y comandos desde el servidor hacia los equipos. Esta limitación impide realizar diagnósticos remotos y ejecutar acciones correctivas sin presencia física.
 
 \item  Dependencia de proveedores GPRS tercerizados. La dependencia de servicios contratados genera costos recurrentes y limita el control sobre la calidad y disponibilidad de la conectividad.
 
@@ -85,7 +85,7 @@ Estas deficiencias afectan la calidad del servicio de monitoreo, reducen la efic
 
 \section{Estado del arte y propuesta de valor}
 
-En el mercado existen soluciones comerciales que ofrecen gestión remota y comunicación bidireccional para dispositivos de campo. Dichas soluciones suelen incluir plataformas propietarias con soporte, servicio administrado y herramientas de análisis. No obstante, su adopción conlleva costos elevados y, en muchos casos, dependencias tecnológicas que dificultan la adaptación a especificidades locales.
+En el mercado existen soluciones comerciales \cite{exemys} que ofrecen gestión remota y comunicación bidireccional para dispositivos de campo. Dichas soluciones suelen incluir plataformas propietarias con soporte, servicio administrado y herramientas de análisis. No obstante, su adopción conlleva costos elevados y, en muchos casos, dependencias tecnológicas que dificultan la adaptación a especificidades locales.
 
 La propuesta de este trabajo adopta un enfoque alternativo: emplear tecnologías de código abierto y protocolos estandarizados, especialmente MQTT, para construir una arquitectura flexible, escalable y de bajo costo. La separación entre el transporte de mensajes (broker MQTT) y los servicios de aplicación (API REST, base de datos y frontend) facilita la interoperabilidad y permite operar con brokers locales o externos según requieran las políticas institucionales.
 
@@ -112,7 +112,7 @@ El trabajo desarrolla un prototipo funcional destinado a validar las hipótesis 
 \end{itemize}
 
 La figura \ref{fig:diag_bloques} muestra el diagrama en bloques del sistema. 
-El dispositivo de conteo envía datos por GPRS a un broker MQTT; el servidor central 
+El dispositivo de conteo envía datos por GPRS a un broker MQTT, el servidor central 
 los procesa y almacena en una base de datos, mientras que una API REST permite su 
 consulta y la ejecución de comandos desde una interfaz web.
 

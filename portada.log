@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2025.5.10)  13 SEP 2025 00:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  16 SEP 2025 19:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **portada.tex
 (./portada.tex
-LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-01-09> xparse <2020-03-03>
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-01-16>
 
 ! LaTeX Error: Environment titlepage undefined.
 
@@ -198,7 +198,7 @@ Overfull \hbox (20.91383pt too wide) in paragraph at lines 19--19
  []
 
 
-Underfull \vbox (badness 6094) has occurred while \output is active []
+Underfull \vbox (badness 5939) has occurred while \output is active []
 
 
 
@@ -209,8 +209,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.45         Jurado 3 (pertenencia)} \\
-                                       [2cm]
+l.45         J
+              urado 3 (pertenencia)} \\[2cm]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -240,11 +240,11 @@ or  <return>  to continue without it.
 
  
 Here is how much of TeX's memory you used:
- 92 strings out of 481076
- 1369 string characters out of 5911353
- 269851 words of memory out of 5000000
- 17140 multiletter control sequences out of 15000+600000
- 413660 words of font info for 40 fonts, out of 8000000 for 9000
+ 95 strings out of 477875
+ 1422 string characters out of 5836408
+ 1852330 words of memory out of 5000000
+ 20333 multiletter control sequences out of 15000+600000
+ 522817 words of font info for 46 fonts, out of 8000000 for 9000
  107 hyphenation exceptions out of 8191
- 24i,4n,30p,157b,161s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 24i,6n,23p,157b,200s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!
