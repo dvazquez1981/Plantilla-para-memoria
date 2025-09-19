@@ -210,5 +210,274 @@
     \endverb
     \field{year}{2025}
   \endentry
+
+  \entry{analogRS232}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=DA}{%
+         family={Devices},
+         familyi={D\bibinitperiod},
+         given={Analog},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DA1}
+    \strng{fullhash}{DA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://www.analog.com/en/resources/technical-articles/fundamentals-of-rs232-serial-communications.html}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{Fundamentals of RS-232 Serial Communications}
+    \field{year}{2020}
+  \endentry
+
+  \entry{tiRS232}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=IT}{%
+         family={Instruments},
+         familyi={I\bibinitperiod},
+         given={Texas},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{IT1}
+    \strng{fullhash}{IT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.ti.com/lit/SLLA607}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{RS-232 Glossary and Selection Guide}
+    \field{year}{2016}
+  \endentry
+
+  \entry{mqttSpec}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=O}{%
+         family={OASIS},
+         familyi={O\bibinitperiod},
+      }}%
+      {{hash=M}{%
+         family={MQTT.org},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OM1}
+    \strng{fullhash}{OM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://mqtt.org/mqtt-specification/}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{MQTT Version 5.0 Specification}
+    \field{year}{2019}
+  \endentry
+
+  \entry{ibmRest}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=I}{%
+         family={IBM},
+         familyi={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{I1}
+    \strng{fullhash}{I1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.ibm.com/think/topics/rest-apis}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{What Is a REST API (RESTful API)?}
+    \field{year}{2021}
+  \endentry
+
+  \entry{microsoftApiDesign}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=CMAA}{%
+         family={Center},
+         familyi={C\bibinitperiod},
+         given={Microsoft Azure\bibnamedelima Architecture},
+         giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim
+  A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CMAA1}
+    \strng{fullhash}{CMAA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{Web API Design Best Practices}
+    \field{year}{2022}
+  \endentry
+
+  \entry{esp32c3IDF}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=SE}{%
+         family={Systems},
+         familyi={S\bibinitperiod},
+         given={Espressif},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SE1}
+    \strng{fullhash}{SE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://docs.espressif.com/projects/esp-idf/en/stable/esp32c3/index.html}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{ESP-IDF Programming Guide for ESP32-C3}
+    \field{year}{2024}
+  \endentry
+
+  \entry{mosquitto}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FE}{%
+         family={Foundation},
+         familyi={F\bibinitperiod},
+         given={Eclipse},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FE1}
+    \strng{fullhash}{FE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://mosquitto.org/}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{Eclipse Mosquitto: An Open Source MQTT Broker}
+    \field{year}{2025}
+  \endentry
+
+  \entry{nodejs}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FO}{%
+         family={Foundation},
+         familyi={F\bibinitperiod},
+         given={OpenJS},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FO1}
+    \strng{fullhash}{FO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://nodejs.org/}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{Node.js JavaScript Runtime}
+    \field{year}{2025}
+  \endentry
+
+  \entry{expressjs}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FE}{%
+         family={Foundation},
+         familyi={F\bibinitperiod},
+         given={Express.js},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FE2}
+    \strng{fullhash}{FE2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://expressjs.com/}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{Express: Fast, unopinionated, minimalist web framework for
+  Node.js}
+    \field{year}{2025}
+  \endentry
+
+  \entry{mysql}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=CO}{%
+         family={Corporation},
+         familyi={C\bibinitperiod},
+         given={Oracle},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CO1}
+    \strng{fullhash}{CO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.mysql.com/}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{MySQL: The World's Most Popular Open Source Database}
+    \field{year}{2025}
+  \endentry
+
+  \entry{ionic}{online}{}
+    \name{author}{1}{}{%
+      {{hash=I}{%
+         family={{Ionic Team}},
+         familyi={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{I2}
+    \strng{fullhash}{I2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Último acceso: 19 de septiembre de 2025}
+    \field{title}{Ionic Framework - Cross-platform mobile apps with web
+  technologies}
+    \verb{url}
+    \verb https://ionicframework.com/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{angular}{online}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={{Angular Team}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Último acceso: 19 de septiembre de 2025}
+    \field{title}{Angular - One framework. Mobile & desktop}
+    \verb{url}
+    \verb https://angular.io/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{espidf}{online}{}
+    \name{author}{1}{}{%
+      {{hash=E}{%
+         family={{Espressif Systems}},
+         familyi={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{E1}
+    \strng{fullhash}{E1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Último acceso: 19 de septiembre de 2025}
+    \field{title}{ESP-IDF Programming Guide}
+    \verb{url}
+    \verb https://docs.espressif.com/projects/esp-idf/en/latest/esp32/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{github}{online}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={{GitHub, Inc.}},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G1}
+    \strng{fullhash}{G1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Último acceso: 19 de septiembre de 2025}
+    \field{title}{GitHub: Where the world builds software}
+    \verb{url}
+    \verb https://github.com/
+    \endverb
+    \field{year}{2025}
+  \endentry
 \enddatalist
 \endinput

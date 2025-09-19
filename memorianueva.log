@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  18 SEP 2025 18:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  19 SEP 2025 11:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1116,8 +1116,8 @@ Cap\'{\i }tulo 2.
 
 
 ]
-LaTeX Info: Redefining \. on input line 63.
-LaTeX Info: Redefining \% on input line 63.
+LaTeX Info: Redefining \. on input line 64.
+LaTeX Info: Redefining \% on input line 64.
  [6])
 LaTeX Info: Redefining \. on input line 123.
 LaTeX Info: Redefining \% on input line 123.
@@ -1126,33 +1126,40 @@ LaTeX Info: Redefining \% on input line 123.
 
 
 ]
-Overfull \hbox (14.16847pt too wide) in paragraph at lines 144--144
+Overfull \hbox (19.64346pt too wide) in paragraph at lines 144--144
 \T1/ppl/m/n/10.95 Road In-fras-truc-tu-re^^T. En: \T1/ppl/m/it/10.95 Sen-sors \
 T1/ppl/m/n/10.95 23.9 (2023), pág. 4469. \T1/ppl/m/sc/10.95 doi\T1/ppl/m/n/10.9
 5 : [][]$10 . 3390 / s23094469$[][].
  []
 
 
-Overfull \hbox (3.62462pt too wide) in paragraph at lines 144--144
-\T1/ppl/m/n/10.95 mi-nis-tra-tion, 2006. \T1/ppl/m/sc/10.95 url\T1/ppl/m/n/10.9
-5 : [][]$https : / / www . fhwa . dot . gov / publications / research /
- []
-
-
-Overfull \hbox (24.35074pt too wide) in paragraph at lines 144--144
-[]\T1/ppl/m/n/10.95 Miovision. \T1/ppl/m/it/10.95 Traf-fi-cLink / Ma-na-ged Con
--nec-ti-vity\T1/ppl/m/n/10.95 . [][]$https : / / miovision . com / tra^^^clink/
-$[][].
- []
-
-
-Overfull \hbox (2.39658pt too wide) in paragraph at lines 144--144
+Overfull \hbox (7.87157pt too wide) in paragraph at lines 144--144
 []\T1/ppl/m/n/10.95 Sensys Net-works. \T1/ppl/m/it/10.95 Do-cu-men-ta-ción téc-
 ni-ca y pro-duc-tos\T1/ppl/m/n/10.95 . [][]$https : / / sensysnetworks .
  []
 
 1: section
-[9] (./memorianueva.aux (./portada.aux)
+[9]
+Overfull \hbox (7.0357pt too wide) in paragraph at lines 144--144
+\T1/ppl/m/n/10.95 Úl-ti-mo ac-ce-so: 19 de sep-tiem-bre de 2025. 2025. \T1/ppl/
+m/sc/10.95 url\T1/ppl/m/n/10.95 : [][]$https : / / ionicframework .
+ []
+
+! Misplaced alignment tab character &.
+<argument> Angular - One framework. Mobile &
+                                             desktop
+l.144 ...[heading=bibintoc, title={BibliografÃ­a}]
+                                                  
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+LaTeX Info: Redefining \. on input line 147.
+LaTeX Info: Redefining \% on input line 147.
+[10] (./memorianueva.aux (./portada.aux)
 LaTeX Info: Redefining \sptext on input line 27.
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
@@ -1173,13 +1180,13 @@ Package logreq Info: Writing requests to 'memorianueva.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30742 strings out of 477875
- 662279 string characters out of 5836408
- 1865330 words of memory out of 5000000
- 50474 multiletter control sequences out of 15000+600000
+ 30813 strings out of 477875
+ 664690 string characters out of 5836408
+ 1871330 words of memory out of 5000000
+ 50530 multiletter control sequences out of 15000+600000
  561061 words of font info for 84 fonts, out of 8000000 for 9000
  108 hyphenation exceptions out of 8191
- 96i,20n,93p,1969b,1923s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 96i,20n,93p,1969b,1993s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
@@ -1187,10 +1194,10 @@ e/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist
 no/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on memorianueva.pdf (21 pages, 179771 bytes).
+Output written on memorianueva.pdf (22 pages, 189045 bytes).
 PDF statistics:
- 261 PDF objects out of 1000 (max. 8388607)
- 215 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
+ 322 PDF objects out of 1000 (max. 8388607)
+ 275 compressed objects within 3 object streams
+ 62 named destinations out of 1000 (max. 500000)
  107 words of extra memory for PDF output out of 10000 (max. 10000000)
 

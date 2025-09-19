@@ -8,16 +8,17 @@
 En este capítulo se detallan los aspectos técnicos específicos que constituyen la base del proyecto. En primer lugar, se describen los protocolos de comunicación empleados y su función en la transmisión de datos. Luego, se presentan los componentes de hardware utilizados en la implementación del prototipo. A continuación, se analizan las tecnologías de software que integran la solución, la herramienta de control de versiones adoptada para el desarrollo colaborativo y la gestión del código fuente.
 
 \section{Protocolos de comunicación}
-El diseño de un sistema de conteo de tránsito con comunicación bidireccional exige la incorporación de protocolos que aseguren confiabilidad y eficiencia en el intercambio de datos. En este proyecto se integran tres tecnologías principales: RS-232, MQTT y API REST, cada una con un rol específico.
+El diseño de un sistema de conteo de tránsito con comunicación bidireccional demanda la incorporación de protocolos que aseguren confiabilidad y eficiencia en el intercambio de datos. En este proyecto se integran tres tecnologías principales: RS-232, MQTT y API REST, cada una con un rol específico.
 
 \begin{itemize}
-	\item RS-232: es un estándar de comunicación serial utilizado tradicionalmente en sistemas embebidos. Permite la transmisión de datos punto a punto entre el contador de tránsito y el microcontrolador ESP32-C3. Su simplicidad lo hace adecuado para distancias cortas y ambientes donde la interferencia es controlada. Aunque se trata de un protocolo clásico, su adopción garantiza compatibilidad con dispositivos que aún dependen de interfaces seriales.
-	\item MQTT: este protocolo de mensajería ligera se utiliza para la transmisión de eventos de tránsito desde los dispositivos hacia el servidor central y para la recepción de comandos en sentido inverso. MQTT opera sobre TCP/IP y emplea un modelo de publicación/suscripción a través de un broker, lo que facilita la escalabilidad y la integración de múltiples dispositivos. Además, permite implementar mecanismos de calidad de servicio (QoS) que reducen la probabilidad de pérdida de datos en condiciones de conectividad inestable, lo cual resulta crucial para el escenario de rutas nacionales.
-	\item API REST: constituye la interfaz de comunicación entre el backend y los clientes web. Su inclusión en el proyecto posibilita la consulta y el envío de información de manera estructurada, mediante operaciones estándar (GET, POST, PUT, DELETE). La API REST asegura la interoperabilidad con diferentes plataformas y brinda flexibilidad para desarrollar aplicaciones adicionales que utilicen los datos recolectados.
+	\item RS-232: es un estándar de comunicación serial utilizado tradicionalmente en sistemas embebidos. Permite la transmisión de datos punto a punto entre el contador de tránsito y el microcontrolador ESP32-C3. Su simplicidad lo hace adecuado para distancias cortas y ambientes donde la interferencia es controlada. Aunque se trata de un protocolo clásico, su adopción garantiza compatibilidad con dispositivos que aún dependen de interfaces seriales \cite{analogRS232} \cite{tiRS232}.
+	\item MQTT: este protocolo de mensajería ligera se emplea tanto para la transmisión de eventos de tránsito desde los dispositivos hacia el servidor central como para la recepción de comandos en sentido inverso. MQTT opera sobre TCP/IP y emplea un modelo de publicación/suscripción a través de un broker, lo que facilita la escalabilidad y la integración de múltiples dispositivos. Además, permite implementar mecanismos de calidad de servicio (QoS) que reducen la probabilidad de pérdida de datos en condiciones de conectividad inestable, lo cual resulta crucial para el escenario de rutas nacionales \cite{mqttSpec}.
+	
+	\item API REST: constituye la interfaz de comunicación entre el backend y los clientes web. Su inclusión en el proyecto posibilita la consulta y el envío de información de manera estructurada, mediante operaciones estándar (GET, POST, PUT, DELETE). La API REST asegura la interoperabilidad con diferentes plataformas y brinda flexibilidad para desarrollar aplicaciones adicionales que utilicen los datos recolectados \cite{ibmRest} \cite{microsoftApiDesign} .
 		
 \end{itemize}
 
-La combinación de estos protocolos permite cubrir distintos niveles de la arquitectura: comunicación local (RS-232), comunicación de dispositivos con el servidor (MQTT) y comunicación entre el servidor y las aplicaciones de usuario (API REST). De esta forma se garantiza un flujo de datos seguro, confiable y bidireccional, que constituye la base del funcionamiento del prototipo.
+La combinación de estos protocolos permite cubrir distintos niveles de la arquitectura: comunicación local (RS-232), comunicación de dispositivos con el servidor (MQTT) y comunicación entre el servidor y las aplicaciones de usuario (API REST). De esta forma se garantiza un flujo de datos seguro, confiable y bidireccional.
 
 
 
@@ -29,9 +30,9 @@ El prototipo se implementa con un conjunto de componentes de hardware selecciona
 
 \begin{itemize}
 
-\item Contador de tránsito: dispositivo de campo encargado de detectar el paso de vehículos, clasificarlos y generar eventos que serán transmitidos. También, tiene la capacidad de recibir comandos.
+\item Contador de tránsito: dispositivo de campo encargado de detectar el paso de vehículos, clasificarlos y generar eventos que serán transmitidos. También, tiene la capacidad de recibir comandos. 
 
-\item ESP32-C3: microcontrolador de bajo consumo que actúa como unidad de procesamiento y comunicación. Integra conectividad y capacidad de comunicación serial, lo que lo hace adecuado para la interacción con el contador y con el módulo GPRS.
+\item ESP32-C3: microcontrolador de bajo consumo que actúa como unidad de procesamiento y comunicación. Integra conectividad y capacidad de comunicación serial, lo que lo hace adecuado para la interacción con el contador y con el módulo GPRS \cite{esp32c3IDF}.
 
 \item Módulo GPRS SIM800L: permite la conexión de los dispositivos a la red celular, asegurando la transmisión de datos al servidor central mediante MQTT. Se eligió por su bajo costo, disponibilidad en el mercado y facilidad de integración con el ESP32-C3.
 
@@ -40,7 +41,7 @@ El prototipo se implementa con un conjunto de componentes de hardware selecciona
 \item PC con navegador web: constituye el medio de interacción del usuario final con el sistema, a través de la interfaz desarrollada.
 \end{itemize}
 
-La integración de estos componentes asegura que el sistema pueda operar en condiciones reales y que cumpla con los requisitos definidos
+La integración de estos componentes asegura que el sistema pueda operar en condiciones reales y que cumpla con los requisitos.
 
 
 
@@ -50,26 +51,26 @@ El desarrollo del prototipo se sustenta en tecnologías de software abiertas y e
 \begin{itemize}
 
 \item MQTT con Eclipse Mosquitto. 
-La mensajería ligera y bidireccional se implementa mediante el protocolo MQTT, operando sobre el broker Eclipse Mosquitto. Este software es ampliamente utilizado en entornos de Internet de las Cosas (IoT).
+La mensajería ligera y bidireccional se implementa mediante el protocolo MQTT, operando sobre el broker Eclipse Mosquitto \cite{mosquitto}. Este software es ampliamente utilizado en entornos de Internet de las Cosas (IoT).
 
-\item API REST con Node.js y Express. 
-El backend se desarrolla en Node.js, un entorno de ejecución orientado a aplicaciones de red no bloqueantes, y se estructura con Express, un framework ligero que facilita la creación de servicios RESTful.
+\item API REST con Node.js  y Express . 
+El backend se desarrolla en Node.js \cite{nodejs}, un entorno de ejecución orientado a aplicaciones de red no bloqueantes, y se estructura con Express \cite{expressjs}, un framework ligero que facilita la creación de servicios RESTful.
 
 \item Base de datos relacional MySQL. 
-La persistencia de los datos se implementa en MySQL, un sistema gestor de bases de datos relacionales ampliamente adoptado. En ella se almacenan de manera estructurada tanto los eventos de tránsito como los estados reportados por los equipos.
+La persistencia de los datos se implementa en MySQL \cite{mysql}, un sistema gestor de bases de datos relacionales ampliamente adoptado. En ella se almacenan de manera estructurada tanto los eventos de tránsito como los estados reportados por los equipos.
 
-\item Interfaz web con Ionic y Angular.
-Para la interacción con el usuario final se diseñó una aplicación accesible desde cualquier navegador, construida con Ionic y Angular. Ionic aporta componentes visuales responsivos que aseguran usabilidad tanto en entornos de escritorio como en dispositivos móviles.
+\item Interfaz web con Ionic y Angular .
+Para la interacción con el usuario final se diseñó una aplicación accesible desde cualquier navegador, construida con Ionic \cite{ionic} y Angular \cite{angular}. Ionic aporta componentes visuales responsivos que aseguran usabilidad tanto en entornos de escritorio como en dispositivos móviles.
 
 
 \item  Firmware para ESP32-C3 con ESP-IDF.
-El microcontrolador ejecuta un firmware desarrollado en C/C++ sobre ESP-IDF (Espressif IoT Development Framework), el framework oficial de Espressif. Este entorno proporciona librerías optimizada. El firmware controla la captura de datos desde el contador mediante RS-232, gestiona la comunicación con el módulo SIM800L mediante comandos AT y establece la conexión con el broker Mosquitto a través de MQTT.
+El microcontrolador ejecuta un firmware desarrollado en C/C++ sobre ESP-IDF \cite{espidf},  el framework oficial de Espressif. Este entorno proporciona librerías optimizada. El firmware controla la captura de datos desde el contador mediante RS-232, gestiona la comunicación con el módulo SIM800L mediante comandos AT y establece la conexión con el broker Mosquitto a través de MQTT.
 
 \end{itemize}
 
 
 \section{Software de control de versiones}
-Para la gestión del código fuente se empleó GitHub, una plataforma basada en el sistema de control de versiones Git. Esta herramienta permitió almacenar el repositorio central de manera segura, registrar el historial de cambios y garantizar la trazabilidad de cada modificación realizada durante el desarrollo del prototipo.
+Para la gestión del código fuente se empleó GitHub \cite{github}, una plataforma basada en el sistema de control de versiones Git. Esta herramienta permitió almacenar el repositorio central de manera segura, registrar el historial de cambios y garantizar la trazabilidad de cada modificación realizada durante el desarrollo del prototipo.
 
 El repositorio incluye el firmware del ESP32-C3, el backend en Node.js con Express y la interfaz web desarrollada con Ionic y Angular. Esto facilita mantener el código organizado, con la posibilidad de crear ramas independientes para implementar nuevas funciones y, posteriormente, integrarlas al código principal mediante pull requests, lo que permite revisar y validar los cambios antes de su incorporación definitiva.
 
