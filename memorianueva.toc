@@ -2,12 +2,18 @@
 \contentsline {chapter}{Resumen}{\es@scroman {i}}{section*.1}%
 \contentsline {chapter}{\numberline {1}Introducción general}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivación}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Limitaciones sistema actual}{2}{section.1.2}%
+\contentsline {subsection}{\numberline {1.1.1}Contexto actual}{1}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Limitaciones del desarrollo previo}{1}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Impacto esperado}{2}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}Diseño conceptual}{2}{subsection.1.1.4}%
+\contentsline {section}{\numberline {1.2}Objetivos}{2}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Objetivo general}{2}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Objetivos específicos}{2}{subsection.1.2.2}%
 \contentsline {section}{\numberline {1.3}Estado del arte y propuesta de valor}{3}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Alcance}{3}{section.1.4}%
-\contentsline {chapter}{\numberline {2}Introducción Específica}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Protocolos de comunicación}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Componentes de hardware utilizados}{6}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Tecnologías de software aplicadas}{6}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Software de control de versiones}{7}{section.2.4}%
-\contentsline {chapter}{Bibliografía}{9}{appendix*.8}%
+\contentsline {section}{\numberline {1.4}Alcance}{4}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Introducción Específica}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Protocolos de comunicación}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Componentes de hardware utilizados}{8}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Tecnologías de software aplicadas}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Software de control de versiones}{9}{section.2.4}%
+\contentsline {chapter}{Bibliografía}{11}{appendix*.8}%
