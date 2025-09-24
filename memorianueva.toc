@@ -18,4 +18,6 @@
 \contentsline {section}{\numberline {2.4}Software de control de versiones}{9}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Diseño e implementación}{11}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Arquitectura del sistema}{11}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Análisis del software}{11}{section.3.2}%
+\contentsline {subsection}{\numberline {3.1.1}Flujo de datos}{11}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Descripción ampliada de bloques y responsabilidades}{12}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Decisiones de diseño clave}{13}{subsection.3.1.3}%
