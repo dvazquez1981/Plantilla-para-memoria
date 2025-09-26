@@ -26,3 +26,26 @@
 \contentsline {subsection}{\numberline {3.2.2}Módulo GPRS SIM800L}{14}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Contador de tránsito y comunicación RS-232}{14}{subsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.2.4}Alimentación y montaje}{15}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}Desarrollo del backend}{17}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Arquitectura y tecnologías}{17}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Funcionalidades principales}{17}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Organización en controladores}{17}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Mapa de endpoints}{18}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Seguridad y extensibilidad}{18}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.4}Desarrollo del frontend}{19}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Arquitectura y tecnologías}{19}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Funcionalidades principales}{19}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Integración con el backend}{20}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Resumen}{20}{subsection.3.4.4}%
+\contentsline {section}{\numberline {3.5}Despliegue del sistema}{20}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Entorno productivo y configuración}{20}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Monitoreo post-implantación}{21}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Resumen}{21}{subsection.3.5.3}%
+\contentsline {section}{\numberline {3.6}Nodos y Sensores}{21}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Arquitectura del nodo}{22}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Firmware y comunicación}{24}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Integración con la infraestructura existente}{24}{subsection.3.6.3}%
+\contentsline {section}{\numberline {3.7}Comunicación del sistema}{25}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Esquema general}{25}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Flujo de datos}{25}{subsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.7.3}Aspectos técnicos}{25}{subsection.3.7.3}%
