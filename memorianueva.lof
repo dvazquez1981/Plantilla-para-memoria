@@ -1,12 +1,12 @@
 \babel@toc {spanish}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Diagrama en bloques del sistema.\relax }}{5}{figure.caption.6}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Diagrama en bloques del sistema.\relax }}{4}{figure.caption.6}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama de arquitectura del sistema y el flujo de datos.\relax }}{13}{figure.caption.7}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Fotografia contador de tránsito DTEC \footnotemark .\relax }}{15}{figure.caption.8}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Fotografia contador de tránsito DTEC instalado en campo \footnotemark .\relax }}{16}{figure.caption.9}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Contador de tránsito DTEC \footnotemark .\relax }}{22}{figure.caption.11}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Módulo RS-232/TTL \footnotemark .\relax }}{23}{figure.caption.12}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Microcontrolador ESP32-C3 utilizado en los nodos de campo \footnotemark .\relax }}{23}{figure.caption.13}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Módulo SIM800L \footnotemark .\relax }}{24}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama de arquitectura del sistema y el flujo de datos.\relax }}{11}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Fotografia contador de tránsito DTEC \footnotemark .\relax }}{13}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Fotografia contador de tránsito DTEC instalado en campo \footnotemark .\relax }}{14}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Contador de tránsito DTEC \footnotemark .\relax }}{20}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Módulo RS-232/TTL \footnotemark .\relax }}{21}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Microcontrolador ESP32-C3 utilizado en los nodos de campo \footnotemark .\relax }}{21}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Módulo SIM800L \footnotemark .\relax }}{22}{figure.caption.14}%
