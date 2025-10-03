@@ -15,7 +15,7 @@ El flujo de datos del sistema describe cómo se captura, procesa y comunica la i
 
 \begin{itemize}
 
-  \item Detección: el contador detecta un paso y envía una trama por RS-232 al ESP32-C3.
+  \item Detección: el contador detecta un paso, acumula y en determinado intervalo envía una trama por RS-232 al ESP32-C3.
 
   \item Preprocesado en nodo: el firmware valida la trama, añade sello temporal y metadatos, y encola el evento en memoria (FIFO).
 
@@ -78,6 +78,7 @@ El sistema se organiza en cinco bloques principales, cada uno con responsabilida
   \item {Cliente/Visualización:} la interfaz web consume la API REST para consultas históricas y para recibir eventos en tiempo real. Se eligió Ionic + Angular por su compatibilidad con entornos de escritorio y móviles y por facilitar un despliegue unificado. Las funciones principales del cliente son: visualización de eventos en tiempo real, consulta histórica filtrada, envío de comandos remotos con seguimiento de estado y panel de telemetría para mantenimiento preventivo.
 \end{itemize}
 
+Se tomaron decisiones de diseño clave para el sistema. En primer lugar, se separó el broker de la aplicación, lo que permite cambiar de broker o desplegar uno local sin afectar la lógica de negocio. Para la mensajería se optó por MQTT, debido a que es un protocolo ligero que minimiza el overhead en redes GPRS y facilita la comunicación mediante el modelo pub/sub. Además, se implementó una API REST utilizando Node.js y Express para exponer endpoints tanto transaccionales como de gestión, centralizando la autenticación y el control de accesos.
 
 
 La figura \ref{fig:diag_arquitectura} muestra el diagrama de arquitectura del sistema y el flujo de datos.
@@ -90,8 +91,6 @@ La figura \ref{fig:diag_arquitectura} muestra el diagrama de arquitectura del si
   \label{fig:diag_arquitectura}
 \end{figure}
 
-
-Se tomaron decisiones de diseño clave para el sistema. En primer lugar, se separó el broker de la aplicación, lo que permite cambiar de broker o desplegar uno local sin afectar la lógica de negocio. Para la mensajería se optó por MQTT, debido a que es un protocolo ligero que minimiza el overhead en redes GPRS y facilita la comunicación mediante el modelo pub/sub. Además, se implementó una API REST utilizando Node.js y Express para exponer endpoints tanto transaccionales como de gestión, centralizando la autenticación y el control de accesos.
 
 
 \section{Detalle de módulos de hardware}
@@ -212,6 +211,12 @@ En el backend, los comandos se publican en (\texttt{devices/{id}/comm}) y el est
 
 En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de Información del Backend.
 
+
+
+Para el despliegue y la integración continua se empleó Docker Compose \cite{docker_compose}, lo que permite levantar simultáneamente el backend, la base de datos y el broker MQTT \cite{mqttSpec} en contenedores aislados.
+
+El sistema de registro se implementó con Winston  \cite{winston} y Morgan \cite{morgan}, integrados para disponer de trazabilidad tanto de las solicitudes HTTP como de la interacción con MQTT.
+
 \begin{figure}[htbp]
  
   \centering
@@ -219,10 +224,6 @@ En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de Infor
   \captionof{figure}{Diagrama de flujo de Información del Backend}
   \label{fig:diagrama_backend}
   \end{figure}
-
-Para el despliegue y la integración continua se empleó Docker Compose \cite{docker_compose}, lo que permite levantar simultáneamente el backend, la base de datos y el broker MQTT \cite{mqttSpec} en contenedores aislados.
-
-El sistema de registro se implementó con Winston  \cite{winston} y Morgan \cite{morgan}, integrados para disponer de trazabilidad tanto de las solicitudes HTTP como de la interacción con MQTT.
 
 \FloatBarrier
 \subsection{Funcionalidades principales}
@@ -259,6 +260,7 @@ En la figura \ref{fig:diagrama_controladores} se observa el diagrama con la disp
   \label{fig:diagrama_controladores}
   \end{figure}
 
+\clearpage
 
 \subsection{Mapa de endpoints}
 \begin{table}[h]
@@ -338,6 +340,7 @@ En la figura \ref{fig:diagrama_controladores} se observa la estructura de los co
   \label{fig:diagrama_controladores}
 \end{figure}
 
+\clearpage
 
 
 \subsection{Integración con el backend}
@@ -356,6 +359,8 @@ En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de C
   \label{fig:diagramaflujorestapi}
 \end{figure}
 
+
+\clearpage
 
 \section{Despliegue del sistema}
 
@@ -404,7 +409,7 @@ Una vez desplegado el sistema, resulta fundamental contar con mecanismos de moni
 
 \label{sec:nodos-sensores}
 
-En este capítulo se detalla el hardware de los nodos de campo que constituyen la base del sistema de detección de tránsito. Cada nodo combina un microcontrolador \textbf{ESP32-C3} con interfaces de comunicación estándar, lo que permite procesar eventos localmente y establecer un vínculo bidireccional con el servidor central. De esta manera, se logra una solución flexible, escalable y compatible con la infraestructura vial existente.
+En este capítulo se detalla el hardware de los nodos de campo que constituyen la base del sistema de detección de tránsito. Cada nodo combina un microcontrolador ESP32-C3 con interfaces de comunicación estándar, lo que permite procesar eventos localmente y establecer un vínculo bidireccional con el servidor central. De esta manera, se logra una solución flexible, escalable y compatible con la infraestructura vial existente.
 
 \subsection{Arquitectura del nodo}
 La arquitectura de cada nodo se diseñó con el objetivo de reutilizar los contadores de tránsito actualmente desplegados en rutas nacionales, minimizando modificaciones en el equipamiento existente. Para ello, se emplea una interfaz RS-232 que conecta directamente al contador con el microcontrolador. Dado que el ESP32-C3 opera con niveles de señal TTL, se incorporó un conversor MAX232, encargado de realizar la adaptación de niveles eléctricos y asegurar la robustez de la comunicación.
