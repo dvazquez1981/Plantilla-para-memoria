@@ -2,7 +2,7 @@
 
 \label{Chapter3}
 
-En este capítulo se describe la arquitectura global del prototipo, se detalla cada módulo hardware y software que lo compone, y se documentan las decisiones de implementación, los criterios de diseño y las pruebas preliminares realizadas. Se explican los flujos de datos entre el dispositivo de campo, el broker MQTT, el backend (API REST), la interfaz web, se resumen las consideraciones para el despliegue y el monitoreo post-implantación.
+En este capítulo se describe la arquitectura global del prototipo, se detalla cada módulo de hardware y software que lo compone, y se documentan las decisiones de implementación, los criterios de diseño y las pruebas preliminares realizadas. Se explican los flujos de datos entre el dispositivo de campo, el broker MQTT, el backend (API REST), la interfaz web, se resumen las consideraciones para el despliegue y el monitoreo post-implantación.
 
 
 \section{Arquitectura del sistema}
@@ -11,6 +11,7 @@ La arquitectura propuesta separa de forma explícita el dispositivo de campo (co
 
 
 \subsection{Flujo de datos} 
+El flujo de datos del sistema describe cómo se captura, procesa y comunica la información desde el contador hasta la interfaz de usuario, asegurando trazabilidad, persistencia y control de los eventos y comandos. Se detallan las etapas principales:
 
 \begin{itemize}
 
@@ -27,7 +28,7 @@ La arquitectura propuesta separa de forma explícita el dispositivo de campo (co
   \item Emisión de comandos (desde UI): el operador genera un comando en la interfaz, la UI envía
   \texttt{POST /api/devices/{id}/comm} al backend, que crea un \texttt{cmd\_id} único y publica en \texttt{devices/{id}/comm}.
   
-  \item Recepción en nodo y entrega al contador: el ESP32-C3, suscrito a \texttt{devices/{id}/comm}, recibe el comando, valida \texttt{cmd\_id} y lo envía al contador por RS-232, se aplica un timeout configurable por comando.
+  \item Recepción nodo/Entrega al contador: el ESP32-C3 en \texttt{devices/{id}/comm} recibe el comando, valida \texttt{cmd\_id} y lo envía al contador por RS-232, se aplica un timeout configurable por comando.
   
   \item Ejecución y ack: el contador ejecuta la orden y responde por RS-232, el firmware publica el ack/resultado en \texttt{devices/{id}/status} con \texttt{cmd\_id} y \texttt{status} (\texttt{ok}, \texttt{failed}, \texttt{timeout}, \texttt{value}).
 
@@ -35,12 +36,28 @@ La arquitectura propuesta separa de forma explícita el dispositivo de campo (co
 \end{itemize}
 
 
+La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de datos.
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1.15\linewidth]{./Figures/diagSecuencia.png}
+  \caption{Diagrama de secuencia del flujo de datos.}
+  \label{fig:diag_secuencia}
+\end{figure}
+
+
+
 \subsection{Descripción ampliada de bloques y responsabilidades}
+
+El sistema se organiza en cinco bloques principales, cada uno con responsabilidades claramente definidas para garantizar un flujo de datos confiable, eficiente y seguro. Cada bloque cumple funciones específicas dentro del ciclo de captura, transmisión, procesamiento y visualización de los eventos, asegurando trazabilidad, persistencia y control de comandos remotos. Se describen los bloques y sus responsabilidades:
+
+
 \begin{itemize}
 
-  \item {Bloque  Dispositivo de campo:} el nodo de campo integra el contador existente (salida RS-232), un microcontrolador ESP32-C3 y un módem GPRS SIM800L. El firmware, desarrollado sobre \texttt{ESP-IDF}, realiza las siguientes funciones: lectura continua de la trama serial, parsing tolerante a ruido, preprocesado (validación, normalización de campos y asignación de sello temporal UTC), encolamiento FIFO de eventos, gestión de reintentos y publicación MQTT cuando hay conectividad. Además, el nodo se suscribe a los tópicos de comandos y publica telemetría y acks. En el nodo se implementa persistencia mínima (registro de comandos pendientes y últimas N tramas) para recuperación tras reinicio.
+  \item {Dispositivo de campo:} el nodo de campo integra el contador existente (salida RS-232), un microcontrolador ESP32-C3 y un módem GPRS SIM800L. El firmware, desarrollado sobre \texttt{ESP-IDF}, realiza las siguientes funciones: lectura continua de la trama serial, parsing tolerante a ruido, preprocesado (validación, normalización de campos y asignación de sello temporal UTC), encolamiento FIFO de eventos, gestión de reintentos y publicación MQTT cuando hay conectividad. Además, el nodo se suscribe a los tópicos de comandos y publica telemetría y acks. En el nodo se implementa persistencia mínima (registro de comandos pendientes y últimas N tramas) para recuperación tras reinicio.
 
-  \item {Bloque Transporte (broker MQTT):} el broker actúa como bus de mensajes desacoplado. Se recomienda emplear Eclipse Mosquitto en la etapa inicial y evaluar brokers gestionados para despliegues a mayor escala. El broker gestiona autenticación por credenciales, control de tópicos y cifrado. Se emplean tópicos jerárquicos por dispositivo para facilitar filtrado y autorización: 
+  \item {Transporte (broker MQTT):} el broker actúa como bus de mensajes desacoplado. Se recomienda emplear Eclipse Mosquitto en la etapa inicial y evaluar brokers gestionados para despliegues a mayor escala. El broker gestiona autenticación por credenciales, control de tópicos y cifrado. Se emplean tópicos jerárquicos por dispositivo para facilitar filtrado y autorización: 
 
 \begin{itemize}
   \item \texttt{devices/\{id\}/events}
@@ -49,9 +66,7 @@ La arquitectura propuesta separa de forma explícita el dispositivo de campo (co
 \end{itemize}
 
 
-
-
-\item {Bloque Servidor central:} el servidor central reúne dos responsabilidades principales: 
+\item {Servidor central:} el servidor central reúne dos responsabilidades principales: 
 
 \begin{itemize}  
 
@@ -60,34 +75,23 @@ La arquitectura propuesta separa de forma explícita el dispositivo de campo (co
 \item API REST que expone servicios de consulta, gestión y emisión de comandos. Esta separación permite que consumidores adicionales (por ejemplo, módulos analíticos) se suscriban al broker sin impactar la disponibilidad de la API. La persistencia se implementa en MySQL con un esquema relacional que soporta consultas por rango temporal, índices para rendimiento y auditoría de comandos.
  \end{itemize}
 
-  \item {Bloque Cliente/Visualización:} la interfaz web consume la API REST para consultas históricas y para recibir eventos en tiempo real. Se eligió Ionic + Angular por su compatibilidad con entornos de escritorio y móviles y por facilitar un despliegue unificado. Las funciones principales del cliente son: visualización de eventos en tiempo real, consulta histórica filtrada, envío de comandos remotos con seguimiento de estado y panel de telemetría para mantenimiento preventivo.
+  \item {Cliente/Visualización:} la interfaz web consume la API REST para consultas históricas y para recibir eventos en tiempo real. Se eligió Ionic + Angular por su compatibilidad con entornos de escritorio y móviles y por facilitar un despliegue unificado. Las funciones principales del cliente son: visualización de eventos en tiempo real, consulta histórica filtrada, envío de comandos remotos con seguimiento de estado y panel de telemetría para mantenimiento preventivo.
 \end{itemize}
 
 
 
-La figura \ref{fig:diag_arquitectura} muestra el diagrama de arquitectura del sistema y el flujo de datos. 
-El dispositivo de campo (contador + ESP32-C3 + SIM800L), broker MQTT ( Mosquitto),  servidor central (API REST en Node.js/Express + lógica de suscripción MQTT) y  cliente/visualización (interfaz web en Ionic/Angular).
+La figura \ref{fig:diag_arquitectura} muestra el diagrama de arquitectura del sistema y el flujo de datos.
 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.4\linewidth]{./Figures/diagArq.png}
+  \includegraphics[width=0.45\linewidth]{./Figures/diagArq.png}
   \caption{Diagrama de arquitectura del sistema y el flujo de datos.}
   \label{fig:diag_arquitectura}
 \end{figure}
 
 
-\subsection{Decisiones de diseño clave}
-
-\begin{itemize}
-
-\item Separación broker/aplicación: permite cambiar broker o desplegar uno local sin tocar la lógica de negocio.
-
-\item MQTT para mensajería ligera  porque minimiza overhead en GPRS y facilita pub/sub.
-
-\item API REST en Node.js/Express para exponer endpoints transaccionales y de gestión, centralizando autenticación y control de accesos.
-\end{itemize}
-
+Se tomaron decisiones de diseño clave para el sistema. En primer lugar, se separó el broker de la aplicación, lo que permite cambiar de broker o desplegar uno local sin afectar la lógica de negocio. Para la mensajería se optó por MQTT, debido a que es un protocolo ligero que minimiza el overhead en redes GPRS y facilita la comunicación mediante el modelo pub/sub. Además, se implementó una API REST utilizando Node.js y Express para exponer endpoints tanto transaccionales como de gestión, centralizando la autenticación y el control de accesos.
 
 
 \section{Detalle de módulos de hardware}
@@ -142,14 +146,13 @@ El sistema de conteo existente genera tramas con información de los eventos de 
 \end{itemize}
 
 
-En la Figura \ref{fig:foto_dtec} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección de eventos y se mantiene sin modificaciones en su lógica interna. 
-
+En la figura \ref{fig:foto_dtec} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección de eventos y se mantiene sin modificaciones en su lógica interna. 
 
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.5\linewidth]{./Figures/fotoDTEC.jpeg}
-  \caption{Fotografia contador de tránsito DTEC \protect\footnotemark.}
+  \caption{Contador de tránsito DTEC \protect\footnotemark.}
   \label{fig:foto_dtec}
 \end{figure}
 
@@ -157,26 +160,37 @@ En la Figura \ref{fig:foto_dtec} se observa el contador de tránsito. Este dispo
 
 \subsection{Alimentación y montaje}
 
-El nodo debe operar de manera confiable en condiciones de campo, por lo que la alimentación y el encapsulado son aspectos críticos.
-
+Para garantizar el funcionamiento continuo del nodo en entornos de campo,
+se deben considerar dos aspectos fundamentales:
 \begin{itemize}
-\item Fuente de alimentación: se empleó una fuente principal con batería interna recargable, diseñada para cubrir los picos de consumo del módulo SIM800L. La batería se recarga mediante un panel solar, lo que proporciona autonomía. Para estabilizar la entrega de energía se incorporó un módulo regulador de tensión que garantiza el nivel adecuado de voltaje para el módem. El circuito se complementó con capacitores dimensionados para absorber los picos de tensión del SIM800L durante la transmisión de datos, evitando caídas de voltaje que puedan reiniciar el sistema.
+\item Fuente de alimentación: se implementó un sistema de energía basado en una batería interna recargable, específicamente dimensionada para cubrir los picos de consumo del módulo SIM800L durante las transmisiones de datos. La autonomía del sistema está garantizada mediante un panel solar que mantiene la carga de la batería de forma continua.
+
+Para estabilizar la entrega de energía se incorporó un módulo regulador de tensión que garantiza el nivel adecuado de voltaje para el módem. El circuito se complementó con capacitores dimensionados para absorber los picos de tensión del SIM800L, evitando caídas de voltaje que puedan reiniciar el sistema.
+
+La figura \ref{fig:diag_conexiones} se presenta el diagrama de conexión entre los módulos del sistema, detallando las líneas de comunicación serie RS232, la interfaz UART entre el microcontrolador y el módem GSM, así como la distribución de la alimentación eléctrica y los circuitos de estabilización de potencia.
+
+\begin{figure}[htbp]
+  \raggedleft
+  \includegraphics[width=1\linewidth]{./Figures/diagConexion.png}
+  \caption{Diagrama de conexión entre los módulos del sistema.}
+  \label{fig:diag_conexiones}
+\end{figure}
 
 
-\item Carcasa y Gabinete: tanto el contador como el módulo de comunicación remota (ESP32-C3 y SIM800L) cuentan con su propia carcasa de protección y, adicionalmente, ambos se alojan en un gabinete cerrado con protección ambiental, diseñado para resistir humedad, polvo y vibraciones características de los entornos viales. El uso de un gabinete metálico contribuye también a la disipación térmica y a la reducción de interferencias electromagnéticas, que asegura la confiabilidad del sistema en condiciones de intemperie. 
 
-\end{itemize}
+\item Carcasa y Gabinete: tanto el contador como el módulo de comunicación remota (ESP32-C3 y SIM800L) cuentan con su propia carcasa de protección y, adicionalmente, ambos se alojan en un gabinete metálico estandarizado ya existente en la infraestructura vial, diseñado para resistir humedad, polvo y vibraciones. Esta solución aprovecha la protección ambiental, disipación térmica y blindaje electromagnético del gabinete original, garantizando la confiabilidad del sistema en condiciones de intemperie
 
-En la Figura \ref{fig:foto_gabinete} se observa el contador de tránsito instalado en campo, junto con su gabinete de protección y la batería interna que asegura autonomía energética. El conjunto se encuentra montado al costado de la ruta, en condiciones reales de operación, lo que permite apreciar el encapsulado diseñado para resistir las exigencias ambientales del entorno vial.
+En la figura \ref{fig:foto_gabinete} se observa el contador de tránsito instalado en campo, junto con su gabinete de protección y la batería interna que asegura autonomía energética. El conjunto se encuentra montado al costado de la ruta, en condiciones reales de operación, lo que permite apreciar el encapsulado diseñado para resistir las exigencias ambientales del entorno vial.
 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.90\linewidth]{./Figures/fotoGabinete.jpeg}
+  \includegraphics[width=0.80\linewidth]{./Figures/fotoGabinete.jpeg}
   \caption{Fotografia contador de tránsito DTEC instalado en campo \protect\footnotemark.}
   \label{fig:foto_gabinete}
 \end{figure}
 
+\end{itemize}
 \footnotetext{Imagen tomada de \url{http://transito.vialidad.gob.ar/}}
 
 
@@ -187,23 +201,32 @@ El backend constituye el núcleo lógico del sistema, encargado de articular la 
 
 \subsection{Arquitectura y tecnologías}
 
-El servicio fue implementado en Node.js con el framework Express, lo que permitió organizar la aplicación en controladores, rutas y middlewares. Para la interacción con la base de datos relacional se adoptó Sequelize, un ORM que facilita la definición de modelos y garantiza independencia frente a cambios en la capa de persistencia.
+El servicio fue implementado en Node.js con el framework Express, lo que permitió organizar la aplicación en controladores, rutas y middlewares. Para la interacción con la base de datos relacional se adoptó Sequelize \cite{sequelize}, un ORM \cite{fowler2002patterns} que facilita la definición de modelos y garantiza independencia frente a cambios en la capa de persistencia.
 
 La comunicación con los dispositivos se realiza mediante suscripción a tópicos MQTT en el broker Eclipse Mosquitto. 
 
 Cada vez que un dispositivo publica un evento en \texttt{devices/\{id\}/events}, 
 el backend lo recibe, valida el payload y lo persiste en MySQL.
  
-En el caso de comandos, el backend publica en el tópico correspondiente 
-(\texttt{devices/\{id\}/comm}) y actualiza su estado en la base de datos 
-conforme recibe las confirmaciones (\texttt{devices/\{id\}/status}).
+En el backend, los comandos se publican en (\texttt{devices/{id}/comm}) y el estado se actualiza según las confirmaciones (\texttt{devices/{id}/status}). 
 
-ara el despliegue y la integración continua se empleó Docker Compose, lo que permite levantar simultáneamente el backend, la base de datos y el broker MQTT en contenedores aislados.
+En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de Información del Backend.
 
-El sistema de registro se implementó con Winston y Morgan, integrados para disponer de trazabilidad tanto de las solicitudes HTTP como de la interacción con MQTT.
+\begin{figure}[htbp]
+ 
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/diagFlujoConexionBackend.png}
+  \captionof{figure}{Diagrama de flujo de Información del Backend}
+  \label{fig:diagrama_backend}
+  \end{figure}
 
+Para el despliegue y la integración continua se empleó Docker Compose \cite{docker_compose}, lo que permite levantar simultáneamente el backend, la base de datos y el broker MQTT \cite{mqttSpec} en contenedores aislados.
 
+El sistema de registro se implementó con Winston  \cite{winston} y Morgan \cite{morgan}, integrados para disponer de trazabilidad tanto de las solicitudes HTTP como de la interacción con MQTT.
+
+\FloatBarrier
 \subsection{Funcionalidades principales}
+El sistema cuenta con varias funcionalidades esenciales que permiten gestionar de manera eficiente los dispositivos, los eventos generados por ellos, los comandos enviados y la seguridad de acceso. Estas funcionalidades se detallan a continuación:
 
 \begin{itemize}
     \item Gestión de dispositivos: alta, baja, modificación y consulta.
@@ -226,11 +249,22 @@ La lógica de negocio del backend se organiza en controladores, cada uno asociad
   \item UserController: implementa el ciclo de vida de usuarios y la autenticación mediante JWT, así como la validación de permisos en cada endpoint.
 \end{itemize}
 
+En la figura \ref{fig:diagrama_controladores} se observa el diagrama con la disposición de los controladores y flujo de dependencias.
+
+\begin{figure}[htbp]
+ 
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/diagDispoControlladores.png}
+  \captionof{figure}{Diagrama con la disposición de los controladores y flujo de dependencias.}
+  \label{fig:diagrama_controladores}
+  \end{figure}
+
+
 \subsection{Mapa de endpoints}
 \begin{table}[h]
 	\centering
-	\caption[Endpoints REST principales]{Endpoints REST principales expuestos por el backend, junto con el controlador que implementa su lógica}
-	\begin{tabular}{l l p{7cm}}    
+	\caption[Endpoints REST principales]{Endpoints REST principales expuestos por el backend, junto con el controlador que implementa su lógica.}
+	\begin{tabular}{l l p{4.5cm}}    
 		\toprule
 		\textbf{Endpoint} & \textbf{Controlador} & \textbf{Descripción} \\
 		\midrule
@@ -246,7 +280,7 @@ La lógica de negocio del backend se organiza en controladores, cada uno asociad
 		POST /commands & CommandsController & Crear un comando remoto y publicarlo en MQTT \\
 		GET /commands/\{id\} & CommandsController & Consultar estado de un comando (pendiente, ok, failed, timeout, value) \\
 		\addlinespace
-		GET /status/\{device\_id\} & StatusController & Consultar estado operativo y telemetría del dispositivo \\
+		GET /status/\{id\} & StatusController & Consultar estado operativo y telemetría del dispositivo \\
 		\addlinespace
 		POST /usuario/login & UserController & Autenticación de usuario, devuelve token JWT \\
 		POST /usuario & UserController & Alta de usuario \\
@@ -294,18 +328,33 @@ El frontend integra las siguientes funciones clave:
     \item Envío de comandos: panel que habilita la emisión de órdenes remotas al nodo de campo  reset de contador, cambio de parámetros, obtención de parámetros), verificando el acuse de recibo y mostrando el resultado al usuario (\texttt{ok}, \texttt{failed}, \texttt{timeout}, \texttt{value}).
 \end{itemize}
 
+En la figura \ref{fig:diagrama_controladores} se observa la estructura de los componentes por pantalla.
+
+\begin{figure}[htbp]
+ 
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/diagEstructuraComponentesPantallasFrontend.png}
+  \captionof{figure}{Diagrama de estructura de los componentes por pantalla.}
+  \label{fig:diagrama_controladores}
+\end{figure}
+
+
+
 \subsection{Integración con el backend}
 
 Todas las operaciones del frontend se apoyan en los endpoints REST definidos en el backend (ver Sección~\ref{tab:endpoints}).  
 Cada petición incluye en sus cabeceras el token JWT obtenido en el login, lo que garantiza que sólo usuarios autorizados puedan acceder a datos sensibles o emitir comandos.  
 El backend devuelve respuestas en formato JSON, que son interpretadas y representadas en la interfaz en tiempo real, que asegura consistencia entre la vista del operador y el estado real de los dispositivos.
 
-\subsection{Resumen}
+En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de Comunicación con el backend.
 
-El desarrollo del frontend consolidó una interfaz web moderna, accesible y segura que permite a los operadores interactuar con los dispositivos de campo de manera eficiente.  
-El sistema ofrece no sólo la visualización de eventos de tránsito en tiempo real y la consulta de históricos, sino también el envío de comandos con acuse de recibo.  
-De esta forma, la interfaz completa el ciclo de comunicación bidireccional con los nodos, que se convierte en la herramienta central para la supervisión y el control remoto del prototipo.
-
+\begin{figure}[htbp]
+ 
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/diagFlujoRestApi.png}
+  \captionof{figure}{Diagrama de flujo de Comunicación con el backend.}
+  \label{fig:diagramaflujorestapi}
+\end{figure}
 
 
 \section{Despliegue del sistema}
@@ -349,14 +398,6 @@ Una vez desplegado el sistema, resulta fundamental contar con mecanismos de moni
     \item Respaldo y recuperación: la base de datos implementa backups automáticos y permite restauraciones parciales. Esto garantiza que el historial de eventos no se pierda ante fallas de hardware o corrupción de datos.
 \end{itemize}
 
-\subsection{Resumen}
-
-El despliegue integra en un único entorno los componentes críticos del sistema: broker MQTT, API REST, base de datos y frontend web.  
-La contenedorización mediante Docker Compose simplifica la instalación y favorece la portabilidad hacia distintas plataformas (servidores locales, nubes públicas o entornos híbridos).  
-El monitoreo continuo, junto con la gestión de logs y respaldos, asegura que la solución pueda mantenerse operativa de manera confiable en el tiempo, facilitando su escalado y la detección temprana de fallos.
-
-
-
 
 \section{Nodos y Sensores}
 \label{sec:nodos-sensores}
@@ -371,13 +412,13 @@ La arquitectura de cada nodo se diseñó con el objetivo de reutilizar los conta
 \begin{itemize}
     \item Contador de tránsito modelo DTEC: dispositivo comercial encargado de detectar el paso de vehículos y generar tramas de datos con la información del evento.
    
-En la Figura \ref{fig:foto_dtec} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección. 
+En la Figura \ref{fig:foto_dtec2} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección. 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.5\linewidth]{./Figures/fotoDTEC.jpeg}
+  \includegraphics[width=0.5\linewidth]{./Figures/fotoDTEC2.jpeg}
   \caption{Contador de tránsito DTEC \protect\footnotemark.}
-  \label{fig:foto_dtec}
+  \label{fig:foto_dtec2}
 \end{figure}
 
 \footnotetext{Imagen tomada de \url{http://transito.vialidad.gob.ar/}}   
@@ -386,7 +427,7 @@ En la Figura \ref{fig:foto_dtec} se observa el contador de tránsito. Este dispo
   En la Figura \ref{fig:foto_max232} se observa el Módulo de adaptación RS-232/TTL (MAX232).
 
 
-  \begin{figure}[htbp]
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.4\linewidth]{./Figures/fotoMax232.png}
   \caption{Módulo RS-232/TTL \protect\footnotemark.}
@@ -425,17 +466,6 @@ En la Figura \ref{fig:foto_sim800l} se aprecia el módulo SIM800L que implementa
 
 \end{itemize}
 
-\subsection{Firmware y comunicación}
-El firmware fue desarrollado sobre el framework ESP-IDF, lo que asegura soporte nativo para el hardware del ESP32-C3 y flexibilidad en la gestión de tareas concurrentes. Las principales funciones implementadas son:
-
-\begin{itemize}
-    \item Lectura continua de tramas seriales provenientes del contador, con validación y tolerancia a ruido.
-    \item Preprocesado de eventos: normalización de campos, inclusión de sello temporal UTC y metadatos de identificación del nodo.
-    \item Encolamiento FIFO: los eventos son almacenados temporalmente para garantizar el orden de transmisión incluso ante fallos de conectividad.
-    \item Publicación MQTT: envío de eventos hacia el broker en tópicos específicos por dispositivo.
-    \item Suscripción a comandos remotos: recepción de órdenes desde el backend, ejecución local y publicación de resultado.
-    \item Telemetría: envío periódico de parámetros de estado (nivel de batería, conectividad, temperatura).
-\end{itemize}
 
 
 \subsection{Integración con la infraestructura existente}
@@ -447,59 +477,4 @@ En este contexto, los nodos de campo cumplen un doble rol: por un lado, son capt
 
 
 
-\section{Comunicación del sistema}
-\label{sec:comunicacion}
-
-La comunicación constituye un componente esencial en la arquitectura propuesta, ya que habilita el intercambio bidireccional de información entre los nodos de campo y el servidor central. El diseño combina interfaces cableadas locales y protocolos de mensajería ligera sobre redes celulares, que asegura confiabilidad aun en entornos con conectividad limitada.
-
-\subsection{Esquema general}
-Cada nodo de campo conecta el contador de tránsito DTEC mediante la interfaz RS-232, que garantiza compatibilidad con el equipamiento existente. El microcontrolador ESP32-C3 recibe las tramas seriales a través de un módulo MAX232, las procesa y las transmite mediante el módulo SIM800L que utiliza conectividad GPRS.  
-Sobre esta capa de transporte celular se implementa el protocolo MQTT, lo que permite estructurar la comunicación en un modelo de publicación/suscripción ligero y eficiente.  
-
-De esta manera, el flujo de datos se organiza en dos canales principales:  
-\begin{itemize}
-    \item Canal de eventos: envío de detecciones desde el nodo hacia el 
-    broker MQTT en el tópico \texttt{devices/\{device\_id\}/events}.
-    \item Canal de control: recepción de comandos desde el servidor 
-    (\texttt{devices/\{device\_id\}/commands}) y envío de confirmaciones o estados 
-    (\texttt{devices/\{device\_id\}/status}).
-\end{itemize}
-
-\subsection{Flujo de datos}
-El proceso de comunicación en operación sigue las siguientes etapas:
-
-\begin{itemize}
-    \item Detección local: el contador registra un evento de paso y acumula, en el periodo indicado envía  una trama al ESP32-C3 vía RS-232.
-    \item Preprocesamiento: el firmware valida la trama, añade sello temporal y metadatos, y encola el evento en memoria.
-    \item Transmisión GPRS/MQTT: cuando existe conectividad, el nodo publica  el evento en el tópico correspondiente.
-    \item Ingesta y persistencia: el broker Mosquitto distribuye el mensaje al backend, que valida el contenido y lo almacena en la base de datos MySQL.
-    \item Visualización y control: la interfaz web accede a los eventos 
-    mediante la API REST y recibe actualizaciones en tiempo real.
-    \item Comandos remotos: el operador envía una orden desde la interfaz, el backend la publica en el broker y el nodo la ejecuta, respondiendo con un mensaje de estado o ack.
-\end{itemize}
-
-\subsection{Aspectos técnicos}
-El diseño incorpora distintas medidas para asegurar la calidad de la comunicación:
-
-\begin{itemize}
-    \item MQTT sobre GPRS: se seleccionó este protocolo por su bajo consumo 
-    de ancho de banda, adecuado para escenarios con conectividad intermitente.
-    \item  RS-232 local: la comunicación serial entre el contador y el 
-    microcontrolador garantiza compatibilidad con equipos instalados, con bajo costo 
-    y alta robustez en campo.
-    \item Autenticación y seguridad: los clientes MQTT se autentican mediante 
-    credenciales, y en producción se prevé el uso de cifrado para proteger la 
-    integridad de los mensajes.
-    \item Persistencia y reintentos: el firmware implementa colas FIFO y 
-    retransmisión automática para evitar pérdida de eventos en caso de fallas de red.
-    \item Integración con API REST: la capa de aplicación expone endpoints 
-    que permiten consultar datos históricos, emitir comandos y gestionar dispositivos, 
-    complementando la mensajería en tiempo real.
-\end{itemize}
-
-En síntesis, el sistema de comunicación integra tecnologías maduras y abiertas que 
-aseguran interoperabilidad, escalabilidad y confiabilidad en condiciones de campo. 
-El empleo combinado de RS-232, GPRS y MQTT posibilita modernizar la infraestructura 
-existente sin reemplazar los contadores de tránsito, a la vez que habilita la gestión 
-remota de dispositivos en escenarios distribuidos.
 

@@ -1,14 +1,9 @@
 
 \chapter{Ensayos y Resultados} % Main chapter title
-
 \label{sec:ensayos-resultados}
-
-En este capítulo se presentan en detalle los ensayos realizados sobre el sistema desarrollado, 
-con el propósito de validar su funcionamiento en condiciones representativas de uso real. 
-Los ensayos se organizaron en diferentes niveles: banco de pruebas en laboratorio, 
-validación de la API REST, pruebas unitarias e integración de componentes, 
-pruebas del frontend, prueba final de integración end-to-end y una comparación 
-con soluciones comerciales y académicas.  
+En este capítulo se presentan en detalle los ensayos realizados sobre el sistema desarrollado, con el propósito de validar su funcionamiento en condiciones representativas de uso real. 
+Los ensayos se organizaron en diferentes niveles: banco de pruebas en laboratorio, validación de la API REST, pruebas unitarias e integración de componentes, 
+pruebas del frontend, prueba final de integración end-to-end y una comparación con soluciones comerciales y académicas.  
 
 \section{Metodología de pruebas}
 \label{sec:metodologia-pruebas}
@@ -16,7 +11,7 @@ con soluciones comerciales y académicas.
 Para garantizar la reproducibilidad de los resultados, se definió una metodología estructurada que abarcó:
 
 \begin{itemize}
-    \item \textbf{Diseño de escenarios de prueba}: cada caso fue descrito en términos de entradas, condiciones ambientales (conectividad, ruido eléctrico, interrupciones), criterios de éxito y métricas a evaluar.
+    \item Diseño de escenarios de prueba: cada caso fue descrito en términos de entradas, condiciones ambientales (conectividad, ruido eléctrico, interrupciones), criterios de éxito y métricas a evaluar.
     \item \textbf{Instrumentación}: se utilizaron herramientas como \textit{Postman} para la API REST, \textit{Wireshark} para el análisis de tráfico MQTT, \textit{Mosquitto\_sub/pub} para validación manual de tópicos y \textit{Lighthouse} para pruebas de frontend.
     \item \textbf{Registro}: se configuró el backend con \texttt{Winston} y \texttt{Morgan} para guardar trazas en disco y en consola. Adicionalmente, se recolectaron métricas con scripts Python que midieron tiempos de respuesta y pérdidas de mensajes.
     \item \textbf{Criterios de aceptación}: se establecieron como condiciones mínimas de validación: 
