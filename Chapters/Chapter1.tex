@@ -64,6 +64,8 @@ La propuesta separa de forma explícita el transporte de mensajes (broker MQTT) 
 Modernizar los contadores de tránsito en rutas nacionales mediante la renovación de su arquitectura de comunicaciones para habilitar comunicación bidireccional confiable, control remoto y telemetría de estado.
 
 \subsection{Objetivos específicos}
+
+A continuación se detallan los objetivos específicos que orientan el desarrollo del trabajo:
 \begin{itemize}
 
 \item  Garantizar la entrega de eventos aun con conectividad intermitente.
@@ -90,7 +92,7 @@ En el ámbito académico y técnico también se han documentado diversas experie
 
 Además, se han desarrollado plataformas de monitoreo basadas en API REST y bases de datos relacionales, que permiten la integración con interfaces web para la visualización y control \cite{openRemoteSolution}. Estas experiencias muestran la tendencia hacia arquitecturas abiertas y modulares, aunque su adopción práctica suele estar ligada a contextos con mayor disponibilidad de infraestructura y recursos.
 
-En síntesis, el estado del arte muestra soluciones maduras para la gestión remota y la comunicación bidireccional, aunque con limitaciones asociadas a costos elevados, rigidez tecnológica o requerimientos de infraestructura. Estas restricciones evidencian la necesidad de alternativas específicas y adaptadas a entornos viales argentinos, donde la conectividad suele ser intermitente.
+El estado del arte muestra soluciones maduras para la gestión remota y la comunicación bidireccional, aunque con limitaciones asociadas a costos elevados, rigidez tecnológica o requerimientos de infraestructura. Estas restricciones evidencian la necesidad de alternativas específicas y adaptadas a entornos viales argentinos, donde la conectividad suele ser intermitente.
 
 
 \section{Alcance}
@@ -118,9 +120,7 @@ El dispositivo de conteo envía datos por GPRS a un broker MQTT, el servidor cen
 los procesa y almacena en una base de datos, mientras que una API REST permite su 
 consulta y la ejecución de comandos desde una interfaz web.
 
-
-
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{./Figures/diagBloques.png}
   \caption{Diagrama en bloques del sistema.}

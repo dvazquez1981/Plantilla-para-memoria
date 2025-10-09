@@ -2,7 +2,7 @@
 
 \label{Chapter3}
 
-En este capítulo se describe la arquitectura global del prototipo, se detalla cada módulo de hardware y software que lo compone, y se documentan las decisiones de implementación, los criterios de diseño y las pruebas preliminares realizadas. Se explican los flujos de datos entre el dispositivo de campo, el broker MQTT, el backend (API REST), la interfaz web, se resumen las consideraciones para el despliegue y el monitoreo post-implantación.
+En este capítulo se describe la arquitectura global del prototipo, se detalla cada módulo de hardware y software que lo compone, y se documentan las decisiones de implementación y los criterios de diseño. Se explican los flujos de datos entre el dispositivo de campo, el broker MQTT, el backend (API REST), la interfaz web, se resumen las consideraciones para el despliegue y el monitoreo post-implantación.
 
 
 \section{Arquitectura del sistema}
@@ -10,47 +10,9 @@ En este capítulo se describe la arquitectura global del prototipo, se detalla c
 La arquitectura propuesta separa de forma explícita el dispositivo de campo (contador + ESP32-C3 + SIM800L), el transporte de mensajes (broker MQTT) y los servicios de aplicación (API REST, persistencia y frontend). Esta separación facilita la interoperabilidad y permite desplegar la solución de forma local, remota o híbrida según las políticas institucionales
 
 
-\subsection{Flujo de datos} 
-El flujo de datos del sistema describe cómo se captura, procesa y comunica la información desde el contador hasta la interfaz de usuario, asegurando trazabilidad, persistencia y control de los eventos y comandos. Se detallan las etapas principales:
-
-\begin{itemize}
-
-  \item Detección: el contador detecta un paso, acumula y en determinado intervalo envía una trama por RS-232 al ESP32-C3.
-
-  \item Preprocesado en nodo: el firmware valida la trama, añade sello temporal y metadatos, y encola el evento en memoria (FIFO).
-
-  \item Transmisión: cuando la conexión GPRS está disponible, el nodo publica el evento en el tópico MQTT \texttt{devices/{id}/events}.
-  
-  \item Ingesta y persistencia: el broker Mosquitto entrega el mensaje al suscriptor backend, el servicio valida el payload y persiste el registro en la base de datos MySQL.
-  
-  \item Visualización/Control: la interfaz web consulta la API REST para datos históricos y recibe notificaciones en tiempo real.
-  
-  \item Emisión de comandos (desde UI): el operador genera un comando en la interfaz, la UI envía
-  \texttt{POST /api/devices/{id}/comm} al backend, que crea un \texttt{cmd\_id} único y publica en \texttt{devices/{id}/comm}.
-  
-  \item Recepción nodo/Entrega al contador: el ESP32-C3 en \texttt{devices/{id}/comm} recibe el comando, valida \texttt{cmd\_id} y lo envía al contador por RS-232, se aplica un timeout configurable por comando.
-  
-  \item Ejecución y ack: el contador ejecuta la orden y responde por RS-232, el firmware publica el ack/resultado en \texttt{devices/{id}/status} con \texttt{cmd\_id} y \texttt{status} (\texttt{ok}, \texttt{failed}, \texttt{timeout}, \texttt{value}).
-
-  \item Actualización en backend y UI: el suscriptor MQTT del backend recibe el ack, actualiza la tabla \texttt{comm} (campo \texttt{status}, \texttt{ack\_ts}) y notifica a la UI para que el operador vea el resultado.
-\end{itemize}
-
-
-La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de datos.
-
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=1.15\linewidth]{./Figures/diagSecuencia.png}
-  \caption{Diagrama de secuencia del flujo de datos.}
-  \label{fig:diag_secuencia}
-\end{figure}
-
-
-
 \subsection{Descripción ampliada de bloques y responsabilidades}
 
-El sistema se organiza en cinco bloques principales, cada uno con responsabilidades claramente definidas para garantizar un flujo de datos confiable, eficiente y seguro. Cada bloque cumple funciones específicas dentro del ciclo de captura, transmisión, procesamiento y visualización de los eventos, asegurando trazabilidad, persistencia y control de comandos remotos. Se describen los bloques y sus responsabilidades:
+El sistema se organiza en cinco bloques principales, cada uno con responsabilidades claramente definidas para garantizar un flujo de datos confiable, eficiente y seguro. Cada bloque cumple funciones específicas dentro del ciclo de captura, transmisión, procesamiento y visualización de los eventos, que asegura trazabilidad, persistencia y control de comandos remotos. Se describen los bloques y sus responsabilidades:
 
 
 \begin{itemize}
@@ -84,12 +46,53 @@ Se tomaron decisiones de diseño clave para el sistema. En primer lugar, se sepa
 La figura \ref{fig:diag_arquitectura} muestra el diagrama de arquitectura del sistema y el flujo de datos.
 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.45\linewidth]{./Figures/diagArq.png}
   \caption{Diagrama de arquitectura del sistema y el flujo de datos.}
   \label{fig:diag_arquitectura}
 \end{figure}
+
+
+
+\subsection{Flujo de datos} 
+El flujo de datos del sistema describe cómo se captura, procesa y comunica la información desde el contador hasta la interfaz de usuario, asegurando trazabilidad, persistencia y control de los eventos y comandos. Se detallan las etapas principales:
+
+\begin{itemize}
+
+  \item Detección: el contador detecta un paso, acumula y en determinado intervalo envía una trama por RS-232 al ESP32-C3.
+
+  \item Preprocesado en nodo: el firmware valida la trama, añade sello temporal y metadatos, y encola el evento en memoria (FIFO).
+
+  \item Transmisión: cuando la conexión GPRS está disponible, el nodo publica el evento en el tópico MQTT \texttt{devices/{id}/events}.
+  
+  \item Ingesta y persistencia: el broker Mosquitto entrega el mensaje al suscriptor backend, el servicio valida el payload y persiste el registro en la base de datos MySQL.
+  
+  \item Visualización/Control: la interfaz web consulta la API REST para datos históricos y recibe notificaciones en tiempo real.
+  
+  \item Emisión de comandos (desde UI): el operador genera un comando en la interfaz, la UI envía
+  \texttt{POST /api/devices/{id}/comm} al backend, que crea un \texttt{cmd\_id} único y publica en \texttt{devices/{id}/comm}.
+  
+  \item Recepción nodo/Entrega al contador: el ESP32-C3 en \texttt{devices/{id}/comm} recibe el comando, valida \texttt{cmd\_id} y lo envía al contador por RS-232, se aplica un timeout configurable por comando.
+  
+  \item Ejecución y ack: el contador ejecuta la orden y responde por RS-232, el firmware publica el ack/resultado en \texttt{devices/{id}/status} con \texttt{cmd\_id} y \texttt{status} (\texttt{ok}, \texttt{failed}, \texttt{timeout}, \texttt{value}).
+
+  \item Actualización en backend y UI: el suscriptor MQTT del backend recibe el ack, actualiza la tabla \texttt{comm} (campo \texttt{status}, \texttt{ack\_ts}) y notifica a la UI para que el operador vea el resultado.
+\end{itemize}
+
+
+La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de datos.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.15\linewidth]{./Figures/diagSecuencia.png}
+  \caption{Diagrama de secuencia del flujo de datos.}
+  \label{fig:diag_secuencia}
+\end{figure}
+
+
+
 
 
 

@@ -8,23 +8,23 @@
 \contentsline {subsection}{\numberline {1.1.4}Diseño conceptual}{2}{subsection.1.1.4}%
 \contentsline {section}{\numberline {1.2}Objetivos}{2}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Objetivo general}{2}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Objetivos específicos}{2}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.2}Objetivos específicos}{3}{subsection.1.2.2}%
 \contentsline {section}{\numberline {1.3}Estado del arte y propuesta de valor}{3}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Alcance}{3}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Alcance}{4}{section.1.4}%
 \contentsline {chapter}{\numberline {2}Introducción específica}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Protocolos y comunicación}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Componentes de hardware utilizados}{6}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Tecnologías de software aplicadas}{7}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Software de control de versiones}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.3}Tecnologías de software aplicadas}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Software de control de versiones}{9}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Diseño e implementación}{11}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Arquitectura del sistema}{11}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Flujo de datos}{11}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Descripción ampliada de bloques y responsabilidades}{12}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Detalle de módulos de hardware}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.1.1}Descripción ampliada de bloques y responsabilidades}{11}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Flujo de datos}{13}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Detalle de módulos de hardware}{14}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}ESP32-C3 (unidad de control)}{15}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Módulo GPRS SIM800L}{15}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Contador de tránsito y comunicación RS-232}{16}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Alimentación y montaje}{17}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.3}Contador de tránsito y comunicación RS-232}{15}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Alimentación y montaje}{16}{subsection.3.2.4}%
 \contentsline {section}{\numberline {3.3}Desarrollo del backend}{19}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Arquitectura y tecnologías}{19}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Funcionalidades principales}{21}{subsection.3.3.2}%
@@ -41,4 +41,3 @@
 \contentsline {section}{\numberline {3.6}Nodos y Sensores}{29}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}Arquitectura del nodo}{29}{subsection.3.6.1}%
 \contentsline {subsection}{\numberline {3.6.2}Integración con la infraestructura existente}{31}{subsection.3.6.2}%
-\contentsline {chapter}{Bibliografía}{33}{appendix*.23}%
