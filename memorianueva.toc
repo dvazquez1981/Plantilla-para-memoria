@@ -21,7 +21,6 @@
 \contentsline {subsection}{\numberline {3.1.1}Descripción ampliada de bloques y responsabilidades}{11}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Flujo de datos}{13}{subsection.3.1.2}%
 \contentsline {section}{\numberline {3.2}Arquitectura del nodo}{14}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Alimentación y montaje}{15}{subsection.3.2.1}%
 \contentsline {section}{\numberline {3.3}Desarrollo del backend}{17}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Arquitectura y tecnologías}{18}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Funcionalidades principales}{19}{subsection.3.3.2}%
