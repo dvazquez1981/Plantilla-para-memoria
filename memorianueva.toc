@@ -27,17 +27,17 @@
 \contentsline {subsection}{\numberline {3.2.4}Alimentación y montaje}{16}{subsection.3.2.4}%
 \contentsline {section}{\numberline {3.3}Desarrollo del backend}{19}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Arquitectura y tecnologías}{19}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Funcionalidades principales}{21}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.2}Funcionalidades principales}{20}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Organización en controladores}{21}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Mapa de endpoints}{23}{subsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.3.5}Seguridad y extensibilidad}{23}{subsection.3.3.5}%
-\contentsline {section}{\numberline {3.4}Desarrollo del frontend}{23}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Arquitectura y tecnologías}{24}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Funcionalidades principales}{24}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Integración con el backend}{26}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Despliegue del sistema}{28}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Entorno productivo y configuración}{28}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Monitoreo post-implantación}{28}{subsection.3.5.2}%
-\contentsline {section}{\numberline {3.6}Nodos y Sensores}{29}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Arquitectura del nodo}{29}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Integración con la infraestructura existente}{31}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.3.4}Mapa de endpoints}{21}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Seguridad y extensibilidad}{22}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.4}Desarrollo del frontend}{22}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Arquitectura y tecnologías}{23}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Funcionalidades principales}{23}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Integración con el backend}{24}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Despliegue del sistema}{26}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Entorno productivo y configuración}{26}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Monitoreo post-implantación}{26}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Nodos y Sensores}{27}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Arquitectura del nodo}{27}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Integración con la infraestructura existente}{29}{subsection.3.6.2}%

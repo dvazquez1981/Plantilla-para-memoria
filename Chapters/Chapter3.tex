@@ -48,7 +48,7 @@ La figura \ref{fig:diag_arquitectura} muestra el diagrama de arquitectura del si
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.45\linewidth]{./Figures/diagArq.png}
+  \includegraphics[width=0.5\linewidth]{./Figures/diagArq.png}
   \caption{Diagrama de arquitectura del sistema y el flujo de datos.}
   \label{fig:diag_arquitectura}
 \end{figure}
@@ -82,7 +82,6 @@ El flujo de datos del sistema describe cómo se captura, procesa y comunica la i
 
 
 La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de datos.
-
 
 \begin{figure}[H]
   \centering
@@ -187,7 +186,7 @@ En la figura \ref{fig:foto_gabinete} se observa el contador de tránsito instala
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/fotoGabinete.jpeg}
+  \includegraphics[width=1.05\linewidth]{./Figures/fotoGabinete.jpeg}
   \caption{Fotografia contador de tránsito DTEC instalado en campo \protect\footnotemark.}
   \label{fig:foto_gabinete}
 \end{figure}
@@ -212,19 +211,18 @@ el backend lo recibe, valida el payload y lo persiste en MySQL.
  
 En el backend, los comandos se publican en (\texttt{devices/{id}/comm}) y el estado se actualiza según las confirmaciones (\texttt{devices/{id}/status}). 
 
-En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de Información del Backend.
-
-
-
 Para el despliegue y la integración continua se empleó Docker Compose \cite{docker_compose}, lo que permite levantar simultáneamente el backend, la base de datos y el broker MQTT \cite{mqttSpec} en contenedores aislados.
 
 El sistema de registro se implementó con Winston  \cite{winston} y Morgan \cite{morgan}, integrados para disponer de trazabilidad tanto de las solicitudes HTTP como de la interacción con MQTT.
 
-\begin{figure}[htbp]
+En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de información del backend.
+
+
+\begin{figure}[H]
  
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/diagFlujoConexionBackend.png}
-  \captionof{figure}{Diagrama de flujo de Información del Backend}
+  \includegraphics[width=1.0\linewidth]{./Figures/diagFlujoConexionBackend.png}
+  \captionof{figure}{Diagrama de flujo de información del Backend.}
   \label{fig:diagrama_backend}
   \end{figure}
 
@@ -243,7 +241,7 @@ El sistema cuenta con varias funcionalidades esenciales que permiten gestionar d
 
 \subsection{Organización en controladores}
 
-La lógica de negocio del backend se organiza en controladores, cada uno asociado a un recurso del sistema. Esto asegura separación de responsabilidades, facilita el mantenimiento y permite la escalabilidad de la aplicación.
+La lógica de negocio del backend se organiza en controladores, cada uno asociado a un recurso del sistema, lo que asegura una clara separación de responsabilidades, facilita el mantenimiento y permite la escalabilidad de la aplicación:
 
 \begin{itemize}
   \item DevicesController: gestiona las operaciones CRUD sobre los dispositivos de campo, además de registrar los eventos recibidos vía MQTT y asociarlos a un dispositivo específico.
@@ -255,18 +253,22 @@ La lógica de negocio del backend se organiza en controladores, cada uno asociad
 
 En la figura \ref{fig:diagrama_controladores} se observa el diagrama con la disposición de los controladores y flujo de dependencias.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/diagDispoControlladores.png}
+  \includegraphics[scale=0.11]{./Figures/diagDispoControlladores.png}
   \captionof{figure}{Diagrama con la disposición de los controladores y flujo de dependencias.}
   \label{fig:diagrama_controladores}
   \end{figure}
 
-\clearpage
+
 
 \subsection{Mapa de endpoints}
-\begin{table}[h]
+
+El backend expone una serie de endpoints REST que conforman la interfaz principal de comunicación con los servicios de aplicación y los dispositivos de campo.  
+A continuación se presenta el mapa general de los endpoints y sus respectivos controladores:
+
+\begin{table}[H]
 	\centering
 	\caption[Endpoints REST principales]{Endpoints REST principales expuestos por el backend, junto con el controlador que implementa su lógica.}
 	\begin{tabular}{l l p{4.5cm}}    
@@ -335,7 +337,7 @@ El frontend integra las siguientes funciones clave:
 
 En la figura \ref{fig:diagrama_controladores} se observa la estructura de los componentes por pantalla.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  
   \centering
   \includegraphics[width=1\linewidth]{./Figures/diagEstructuraComponentesPantallasFrontend.png}
@@ -343,7 +345,6 @@ En la figura \ref{fig:diagrama_controladores} se observa la estructura de los co
   \label{fig:diagrama_controladores}
 \end{figure}
 
-\clearpage
 
 
 \subsection{Integración con el backend}
@@ -352,13 +353,13 @@ Todas las operaciones del frontend se apoyan en los endpoints REST definidos en 
 Cada petición incluye en sus cabeceras el token JWT obtenido en el login, lo que garantiza que sólo usuarios autorizados puedan acceder a datos sensibles o emitir comandos.  
 El backend devuelve respuestas en formato JSON, que son interpretadas y representadas en la interfaz en tiempo real, que asegura consistencia entre la vista del operador y el estado real de los dispositivos.
 
-En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de Comunicación con el backend.
+En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de comunicación con el backend.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
  
   \centering
   \includegraphics[width=1\linewidth]{./Figures/diagFlujoRestApi.png}
-  \captionof{figure}{Diagrama de flujo de Comunicación con el backend.}
+  \captionof{figure}{Diagrama de flujo de comunicación con el backend.}
   \label{fig:diagramaflujorestapi}
 \end{figure}
 

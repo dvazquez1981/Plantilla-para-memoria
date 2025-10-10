@@ -9,11 +9,11 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Contador de tránsito DTEC \footnotemark .\relax }}{16}{figure.caption.10}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Diagrama de conexión entre los módulos del sistema.\relax }}{17}{figure.caption.11}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Fotografia contador de tránsito DTEC instalado en campo \footnotemark .\relax }}{18}{figure.caption.12}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagrama de flujo de Información del Backend\relax }}{20}{figure.caption.13}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Diagrama con la disposición de los controladores y flujo de dependencias.\relax }}{22}{figure.caption.14}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagrama de estructura de los componentes por pantalla.\relax }}{25}{figure.caption.16}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagrama de flujo de Comunicación con el backend.\relax }}{27}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Contador de tránsito DTEC \footnotemark .\relax }}{30}{figure.caption.18}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Módulo RS-232/TTL \footnotemark .\relax }}{30}{figure.caption.19}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Microcontrolador ESP32-C3 utilizado en los nodos de campo \footnotemark .\relax }}{30}{figure.caption.20}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Módulo SIM800L \footnotemark .\relax }}{31}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagrama de flujo de información del Backend.\relax }}{20}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Diagrama con la disposición de los controladores y flujo de dependencias.\relax }}{21}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagrama de estructura de los componentes por pantalla.\relax }}{24}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagrama de flujo de comunicación con el backend.\relax }}{25}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Contador de tránsito DTEC \footnotemark .\relax }}{28}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Módulo RS-232/TTL \footnotemark .\relax }}{28}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Microcontrolador ESP32-C3 utilizado en los nodos de campo \footnotemark .\relax }}{28}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Módulo SIM800L \footnotemark .\relax }}{29}{figure.caption.21}%
