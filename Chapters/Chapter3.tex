@@ -92,72 +92,82 @@ La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de
 
 
 
-
-
-
-\section{Detalle de módulos de hardware}
-La implementación del prototipo requiere integrar componentes de hardware que permitan adaptar el sistema de detección de tránsito existente a un modelo de comunicación bidireccional. En esta sección se describen los módulos seleccionados, sus funciones principales, las interfaces involucradas y las consideraciones de integración.
-
-
-\subsection{ESP32-C3 (unidad de control)}
-El ESP32-C3 constituye el núcleo de procesamiento del nodo de campo. Se trata de un microcontrolador de bajo consumo con conectividad, elegido principalmente por su capacidad de cómputo, su soporte de entornos de desarrollo abiertos y la disponibilidad de bibliotecas optimizadas para protocolos de comunicación.
+\section{Arquitectura del nodo}
+La arquitectura de cada nodo se diseñó con el objetivo de reutilizar los contadores de tránsito actualmente desplegados en rutas nacionale. Cada nodo integra varios módulos que permiten la adquisición, procesamiento y transmisión de los datos de tránsito:
 
 \begin{itemize}
-
-\item Rol en la arquitectura: coordina la recepción de eventos desde el contador a través de RS-232, gestiona el encolamiento FIFO, controla la comunicación con el módem SIM800L mediante comandos AT y actúa como cliente MQTT.
-
-\item Entorno de desarrollo: el firmware se desarrolló sobre ESP-IDF, el framework oficial de Espressif, que permite gestionar tareas concurrentes mediante FreeRTOS y facilita la integración de librerías de red y drivers UART.
-
-\item Ventajas técnicas: bajo costo, consumo reducido, capacidad de ejecutar varias tareas en paralelo y soporte nativo para criptografía y seguridad en comunicaciones.
-
-\item Consideraciones de diseño: se provee una correcta disipación térmica y  estabilidad de la alimentación, especialmente durante la transmisión de datos.
-
-\end{itemize}
-
-\subsection{Módulo GPRS SIM800L}
-
-El módulo SIM800L implementa la conectividad celular GPRS, que permite la transmisión bidireccional de datos entre dispositivos remotos y servidor centralizado.
-
-
-\begin{itemize}
-
-\item Funciones principales: establecimiento de sesiones TCP/IP sobre GPRS, controlado por el ESP32-C3 mediante comandos AT. Soporta publicación y suscripción MQTT a través de sockets TCP persistentes.
-
-\item Integración con ESP32-C3: la comunicación entre ambos se realiza mediante UART secundaria. El firmware implementa comandos de inicialización, registro en red, apertura de contexto y gestión de reconexiones.
-
-\item Aspectos críticos: el SIM800L presenta picos de consumo que pueden superar los 2 A durante la transmisión, se  dispone de una fuente con suficiente margen y filtros adecuados para evitar reinicios inesperados.
-
-\item Limitaciones: ancho de banda reducido (máximo teórico de 85,6 kbps en GPRS), lo que refuerza la decisión de emplear MQTT por su bajo overhead.
+    \item Contador de tránsito modelo DTEC: dispositivo encargado de detectar el paso de vehículos y generar tramas de datos con la información del evento.
+   
+    \item Módulo de adaptación RS-232/TTL (MAX232): circuito de conversión de niveles eléctricos que asegura compatibilidad entre la interfaz serial del contador (RS-232) y el microcontrolador (niveles TTL).
+      
+    \item ESP32-C3: microcontrolador que ejecuta el firmware desarrollado sobre ESP-IDF. Sus funciones incluyen el preprocesamiento de eventos, el encolamiento FIFO, la suscripción a comandos remotos y la gestión integral de la comunicación con el servidor.
+   
+    \item Módulo de comunicación GPRS (SIM800L): interfaz de conectividad celular que publica eventos en el broker MQTT, recibe comandos desde el servidor y retransmite respuestas o estados del nodo.
+    
 
 \end{itemize}
 
 
-\subsection{Contador de tránsito y comunicación RS-232}
-
-El sistema de conteo existente genera tramas con información de los eventos de paso de vehículos acumulados en un intervalo de tiempo (por defecto 1 hora). La comunicación con el ESP32-C3 se establece mediante interfaz RS-232, estándar ampliamente utilizado para transmisión serial de datos.
-
-\begin{itemize}
-\item Formato de trama:  el equipo incluye identificador de Dipositivo, timestamp local, valores de clasificación tránsito por carril.
-
-\item Adaptación eléctrica: se utiliza un conversor de niveles (MAX232) para adaptar las señales RS-232 al rango TTL del microcontrolador.
-
-\item Ventaja: la reutilización de la interfaz serial del contador evita modificar el sistema de detección existente, reduciendo costos de integración.
-
-
-\end{itemize}
-
-
-En la figura \ref{fig:foto_dtec} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección de eventos y se mantiene sin modificaciones en su lógica interna. 
-
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.5\linewidth]{./Figures/fotoDTEC.jpeg}
-  \caption{Contador de tránsito DTEC \protect\footnotemark.}
-  \label{fig:foto_dtec}
-\end{figure}
-
-\footnotetext{Imagen tomada de \url{http://transito.vialidad.gob.ar/}}
+%
+%\subsection{ESP32-C3 (unidad de control)}
+%El ESP32-C3 constituye el núcleo de procesamiento del nodo de campo. Se trata de un microcontrolador de bajo consumo con conectividad, elegido principalmente por su capacidad de cómputo, su soporte de entornos de desarrollo abiertos y la disponibilidad de bibliotecas optimizadas para protocolos de comunicación.
+%
+%\begin{itemize}
+%
+%\item Rol en la arquitectura: coordina la recepción de eventos desde el contador a través de RS-232, gestiona el encolamiento FIFO, controla la comunicación con el módem SIM800L mediante comandos AT y actúa como cliente MQTT.
+%
+%\item Entorno de desarrollo: el firmware se desarrolló sobre ESP-IDF, el framework oficial de Espressif, que permite gestionar tareas concurrentes mediante FreeRTOS y facilita la integración de librerías de red y drivers UART.
+%
+%\item Ventajas técnicas: bajo costo, consumo reducido, capacidad de ejecutar varias tareas en paralelo y soporte nativo para criptografía y seguridad en comunicaciones.
+%
+%\item Consideraciones de diseño: se provee una correcta disipación térmica y  estabilidad de la alimentación, especialmente durante la transmisión de datos.
+%
+%\end{itemize}
+%
+%\subsection{Módulo GPRS SIM800L}
+%
+%El módulo SIM800L implementa la conectividad celular GPRS, que permite la transmisión bidireccional de datos entre dispositivos remotos y servidor centralizado.
+%
+%
+%\begin{itemize}
+%
+%\item Funciones principales: establecimiento de sesiones TCP/IP sobre GPRS, controlado por el ESP32-C3 mediante comandos AT. Soporta publicación y suscripción MQTT a través de sockets TCP persistentes.
+%
+%\item Integración con ESP32-C3: la comunicación entre ambos se realiza mediante UART secundaria. El firmware implementa comandos de inicialización, registro en red, apertura de contexto y gestión de reconexiones.
+%
+%\item Aspectos críticos: el SIM800L presenta picos de consumo que pueden superar los 2 A durante la transmisión, se  dispone de una fuente con suficiente margen y filtros adecuados para evitar reinicios inesperados.
+%
+%\item Limitaciones: ancho de banda reducido (máximo teórico de 85,6 kbps en GPRS), lo que refuerza la decisión de emplear MQTT por su bajo overhead.
+%
+%\end{itemize}
+%
+%
+%\subsection{Contador de tránsito y comunicación RS-232}
+%
+%El sistema de conteo existente genera tramas con información de los eventos de paso de vehículos acumulados en un intervalo de tiempo (por defecto 1 hora). La comunicación con el ESP32-C3 se establece mediante interfaz RS-232, estándar ampliamente utilizado para transmisión serial de datos.
+%
+%\begin{itemize}
+%\item Formato de trama:  el equipo incluye identificador de Dipositivo, timestamp local, valores de clasificación tránsito por carril.
+%
+%\item Adaptación eléctrica: se utiliza un conversor de niveles (MAX232) para adaptar las señales RS-232 al rango TTL del microcontrolador.
+%
+%\item Ventaja: la reutilización de la interfaz serial del contador evita modificar el sistema de detección existente, reduciendo costos de integración.
+%
+%
+%\end{itemize}
+%
+%
+%En la figura \ref{fig:foto_dtec} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección de eventos y se mantiene sin modificaciones en su lógica interna. 
+%
+%
+%\begin{figure}[htbp]
+%  \centering
+%  \includegraphics[width=0.5\linewidth]{./Figures/fotoDTEC.jpeg}
+%  \caption{Contador de tránsito DTEC \protect\footnotemark.}
+%  \label{fig:foto_dtec}
+%\end{figure}
+%
+%\footnotetext{Imagen tomada de \url{http://transito.vialidad.gob.ar/}}
 
 \subsection{Alimentación y montaje}
 
@@ -172,7 +182,7 @@ La figura \ref{fig:diag_conexiones} se presenta el diagrama de conexión entre l
 
 \begin{figure}[H]
   \raggedleft
-  \includegraphics[width=1.2\linewidth]{./Figures/diagConexion.png}
+  \includegraphics[width=1\linewidth]{./Figures/diagConexion.png}
   \caption{Diagrama de conexión entre los módulos del sistema.}
   \label{fig:diag_conexiones}
 \end{figure}
@@ -186,7 +196,7 @@ En la figura \ref{fig:foto_gabinete} se observa el contador de tránsito instala
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1.05\linewidth]{./Figures/fotoGabinete.jpeg}
+  \includegraphics[width=1\linewidth]{./Figures/fotoGabinete.jpeg}
   \caption{Fotografia contador de tránsito DTEC instalado en campo \protect\footnotemark.}
   \label{fig:foto_gabinete}
 \end{figure}
@@ -221,7 +231,7 @@ En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de infor
 \begin{figure}[H]
  
   \centering
-  \includegraphics[width=1.0\linewidth]{./Figures/diagFlujoConexionBackend.png}
+  \includegraphics[width=1.02\linewidth]{./Figures/diagFlujoConexionBackend.png}
   \captionof{figure}{Diagrama de flujo de información del Backend.}
   \label{fig:diagrama_backend}
   \end{figure}
@@ -241,7 +251,7 @@ El sistema cuenta con varias funcionalidades esenciales que permiten gestionar d
 
 \subsection{Organización en controladores}
 
-La lógica de negocio del backend se organiza en controladores, cada uno asociado a un recurso del sistema, lo que asegura una clara separación de responsabilidades, facilita el mantenimiento y permite la escalabilidad de la aplicación:
+La lógica de negocio del backend se organiza en controladores, cada uno asociado a un recurso del sistema, lo que asegura una clara separación de responsabilidades, facilita el mantenimiento y permite la escalabilidad de la aplicación. Entre los controladores principales se encuentran los siguientes:
 
 \begin{itemize}
   \item DevicesController: gestiona las operaciones CRUD sobre los dispositivos de campo, además de registrar los eventos recibidos vía MQTT y asociarlos a un dispositivo específico.
@@ -408,76 +418,8 @@ Una vez desplegado el sistema, resulta fundamental contar con mecanismos de moni
 \end{itemize}
 
 
-\section{Nodos y Sensores}
-\label{sec:nodos-sensores}
 
-\label{sec:nodos-sensores}
-
-En este capítulo se detalla el hardware de los nodos de campo que constituyen la base del sistema de detección de tránsito. Cada nodo combina un microcontrolador ESP32-C3 con interfaces de comunicación estándar, lo que permite procesar eventos localmente y establecer un vínculo bidireccional con el servidor central. De esta manera, se logra una solución flexible, escalable y compatible con la infraestructura vial existente.
-
-\subsection{Arquitectura del nodo}
-La arquitectura de cada nodo se diseñó con el objetivo de reutilizar los contadores de tránsito actualmente desplegados en rutas nacionales, minimizando modificaciones en el equipamiento existente. Para ello, se emplea una interfaz RS-232 que conecta directamente al contador con el microcontrolador. Dado que el ESP32-C3 opera con niveles de señal TTL, se incorporó un conversor MAX232, encargado de realizar la adaptación de niveles eléctricos y asegurar la robustez de la comunicación.
-
-\begin{itemize}
-    \item Contador de tránsito modelo DTEC: dispositivo comercial encargado de detectar el paso de vehículos y generar tramas de datos con la información del evento.
-   
-En la Figura \ref{fig:foto_dtec2} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección. 
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.5\linewidth]{./Figures/fotoDTEC2.jpeg}
-  \caption{Contador de tránsito DTEC \protect\footnotemark.}
-  \label{fig:foto_dtec2}
-\end{figure}
-
-\footnotetext{Imagen tomada de \url{http://transito.vialidad.gob.ar/}}   
- 
-    \item Módulo de adaptación RS-232/TTL (MAX232): circuito de conversión de niveles eléctricos que asegura compatibilidad entre la interfaz serial del contador (RS-232) y el microcontrolador (niveles TTL).
-  En la Figura \ref{fig:foto_max232} se observa el Módulo de adaptación RS-232/TTL (MAX232).
-
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.4\linewidth]{./Figures/fotoMax232.png}
-  \caption{Módulo RS-232/TTL \protect\footnotemark.}
-  \label{fig:foto_max232}
-\end{figure}
-
-\footnotetext{Imagen tomada de \url{https://www.alldatasheet.com/datasheet-pdf/pdf/73074/MAXIM/MAX232.html}}   
-     
-    
-    \item ESP32-C3: microcontrolador que ejecuta el firmware desarrollado sobre ESP-IDF. Sus funciones incluyen el preprocesamiento de eventos, el encolamiento FIFO, la suscripción a comandos remotos y la gestión integral de la comunicación con el servidor.
-   En la Figura \ref{fig:esp32} se muestra el Microntrolador utilizado en campo.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\linewidth]{./Figures/fotoEsp32c3.png}
-  \caption{Microcontrolador ESP32-C3 utilizado en los nodos de campo \protect\footnotemark.}
-  \label{fig:esp32}
-\end{figure}
-
-\footnotetext{Imagen tomada de \url{https://docs.espressif.com/projects/esp-idf/en/v5.0/esp32c3/hw-reference/esp32c3/user-guide-devkitm-1.html}}
-
-    
-    \item Módulo de comunicación GPRS (SIM800L): interfaz de conectividad celular que publica eventos en el broker MQTT, recibe comandos desde el servidor y retransmite respuestas o estados del nodo.
-    
-En la Figura \ref{fig:foto_sim800l} se aprecia el módulo SIM800L que implementa la conectividad celular GPRS.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.4\linewidth]{./Figures/fotoSim800l.png}
-  \caption{Módulo SIM800L \protect\footnotemark.}
-  \label{fig:foto_sim800l}
-\end{figure}
-
-\footnotetext{Imagen tomada de \url{https://www.alldatasheet.com/datasheet-pdf/pdf/1741389/SIMCOM/SIM800L.html}}
-
-
-\end{itemize}
-
-
-
-\subsection{Integración con la infraestructura existente}
+\section{Integración con la infraestructura existente}
 Una de las principales ventajas de este diseño es que no requiere modificaciones internas en el contador de tránsito. El nodo recibe los pulsos de detección mediante la interfaz RS-232, que preserva la integridad del equipo original. 
 
 El ESP32-C3 no se limita a reenviar datos, sino que añade valor al sistema al realizar un preprocesado local: filtra tramas, agrupa eventos en función de ventanas de tiempo y asegura la transmisión con políticas de reintento. Asimismo, la conexión con el servidor central mediante MQTT garantiza interoperabilidad con aplicaciones externas y facilita la escalabilidad del sistema.

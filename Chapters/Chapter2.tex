@@ -33,20 +33,57 @@ El prototipo se implementa con un conjunto de componentes de hardware selecciona
 
 \item  Contador de tránsito: dispositivo de campo encargado de detectar y acumular el paso de vehículos y generar tramas de datos que contienen información de conteo, clasificación y marcas temporales. Estos equipos permiten registrar de manera continua el flujo vehicular en rutas nacionales y constituyen la base del sistema de monitoreo. Si bien en el mercado existen distintos contadores comerciales que ofrecen funcionalidades similares, muchos de ellos presentan altos costos de adquisición, dependencia de plataformas propietarias o limitaciones de integración. En este trabajo se optó por utilizar un contador desarrollado por la Dirección Nacional de Vialidad,  cual ha sido probado en distintos rutas nacionales del país y cuenta con una interfaz de salida RS-232 \cite{tiRS232} con un adaptador MAX232 \cite{max232}. Esta elección responde a criterios de soberanía tecnológica, optimización de recursos ya disponibles y reducción de costos. Además, el contador no solo transmite información de eventos, sino que también admite la recepción de comandos externos a través del nodo, lo que habilita funcionalidades de diagnóstico, reconfiguración remota y confirmación de estado. De este forma, se garantiza la compatibilidad con la infraestructura existente y se potencia su integración dentro de una arquitectura moderna basada en protocolos abiertos.
 
-En la figura \ref{fig:foto_dtec1} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección de eventos. 
+En la figura \ref{fig:foto_dtec2} se observa el contador de tránsito. Este dispositivo constituye la base del sistema de detección de eventos. 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.4\linewidth]{./Figures/fotoDTEC.jpeg}
+  \includegraphics[width=0.5\linewidth]{./Figures/fotoDTEC2.jpeg}
   \caption{Contador de tránsito DTEC \protect\footnotemark.}
-  \label{fig:foto_dtec1}
+  \label{fig:foto_dtec2}
+\end{figure}
+\footnotetext{Imagen tomada de \url{http://transito.vialidad.gob.ar/}}
+
+ \item Módulo de adaptación RS-232/TTL (MAX232): circuito que permite la correcta comunicación entre el contador y el microcontrolador que asegura compatibilidad entre la interfaz serial del contador (RS-232) y las señales TTL requeridas por el microcontrolador. Este circuito se encarga de convertir los niveles de tensión de manera bidireccional y protege los dispositivos y garantizando una transmisión de datos confiable y sin errores.
+ 
+  En la figura \ref{fig:foto_max232} se observa el módulo de adaptación RS-232/TTL (MAX232).
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\linewidth]{./Figures/fotoMax232.png}
+  \caption{Módulo RS-232/TTL \protect\footnotemark.}
+  \label{fig:foto_max232}
 \end{figure}
 
+\footnotetext{Imagen tomada de \url{https://www.alldatasheet.com/datasheet-pdf/pdf/73074/MAXIM/MAX232.html}}   
+     
 
 
 \item ESP32-C3: microcontrolador de bajo consumo que actúa como unidad de procesamiento y comunicación. Integra conectividad y capacidad de comunicación serial, lo que lo hace adecuado para la interacción con el contador y con el módulo GPRS \cite{esp32c3IDF}.
 
+En la figura \ref{fig:esp32} se muestra el microntrolador utilizado en campo.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{./Figures/fotoEsp32c3.png}
+  \caption{Microcontrolador ESP32-C3 utilizado en los nodos de campo \protect\footnotemark.}
+  \label{fig:esp32}
+\end{figure}
+
+\footnotetext{Imagen tomada de \url{https://docs.espressif.com/projects/esp-idf/en/v5.0/esp32c3/hw-reference/esp32c3/user-guide-devkitm-1.html}}
+
 \item Módulo GPRS SIM800L: permite la conexión de los dispositivos a la red celular \cite{sim800l_datasheet}, que asegura la transmisión de datos al servidor central mediante MQTT. Se eligió por su bajo costo, disponibilidad en el mercado y facilidad de integración con el ESP32-C3.
+
+En la figura \ref{fig:foto_sim800l} se aprecia el módulo SIM800L que implementa la conectividad celular GPRS.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\linewidth]{./Figures/fotoSim800l.png}
+  \caption{Módulo SIM800L \protect\footnotemark.}
+  \label{fig:foto_sim800l}
+\end{figure}
+
+\footnotetext{Imagen tomada de \url{https://www.alldatasheet.com/datasheet-pdf/pdf/1741389/SIMCOM/SIM800L.html}}
 
 \item Servidor central: responsable de recibir los datos transmitidos, almacenarlos en una base de datos y responder a las solicitudes de los usuarios.
 
@@ -65,7 +102,7 @@ En la figura \ref{fig:foto_dtec1} se observa el contador de tránsito. Este disp
 
 
 
-\footnotetext{Imagen tomada de \url{http://transito.vialidad.gob.ar/}}
+
 La integración de estos componentes asegura que el sistema pueda operar en condiciones reales y que cumpla con los requisitos.
 
 
