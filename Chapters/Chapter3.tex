@@ -56,7 +56,7 @@ La figura \ref{fig:diag_arquitectura} muestra el diagrama de arquitectura del si
 
 
 \subsection{Flujo de datos} 
-El flujo de datos del sistema describe cómo se captura, procesa y comunica la información desde el contador hasta la interfaz de usuario, asegurando trazabilidad, persistencia y control de los eventos y comandos. Se detallan las etapas principales:
+El flujo de datos del sistema describe cómo se captura, procesa y comunica la información desde el contador hasta la interfaz de usuario, lo que permite la trazabilidad, persistencia y control de los eventos y comandos. Se detallan las etapas principales:
 
 \begin{itemize}
 
@@ -93,7 +93,7 @@ La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de
 
 
 \section{Arquitectura del nodo}
-La arquitectura de cada nodo se diseñó con el objetivo de reutilizar los contadores de tránsito actualmente desplegados en rutas nacionale. Cada nodo integra varios módulos que permiten la adquisición, procesamiento y transmisión de los datos de tránsito:
+La arquitectura de cada nodo se diseñó con el objetivo de reutilizar los contadores de tránsito actualmente desplegados en las rutas nacionales. Cada nodo integra varios módulos que permiten la adquisición, procesamiento y transmisión de los datos de tránsito:
 
 \begin{itemize}
     \item Contador de tránsito modelo DTEC: dispositivo encargado de detectar el paso de vehículos y generar tramas de datos con la información del evento.
@@ -186,7 +186,7 @@ La figura \ref{fig:diag_conexiones} se presenta el diagrama de conexión entre l
 
 
 
-\item Carcasa y Gabinete: tanto el contador como el módulo de comunicación remota (ESP32-C3 y SIM800L) cuentan con su propia carcasa de protección y, adicionalmente, ambos se alojan en un gabinete metálico estandarizado ya existente en la infraestructura vial, diseñado para resistir humedad, polvo y vibraciones. Esta solución aprovecha la protección ambiental, disipación térmica y blindaje electromagnético del gabinete original, garantizando la confiabilidad del sistema en condiciones de intemperie
+\item Carcasa y gabinete: tanto el contador como el módulo de comunicación remota (ESP32-C3 y SIM800L) cuentan con su propia carcasa de protección y, adicionalmente, ambos se alojan en un gabinete metálico estandarizado ya existente en la infraestructura vial, diseñado para resistir humedad, polvo y vibraciones. Esta solución aprovecha la protección ambiental, disipación térmica y blindaje electromagnético del gabinete original, garantizando la confiabilidad del sistema en condiciones de intemperie
 
 En la figura \ref{fig:foto_gabinete} se observa el contador de tránsito instalado en campo, junto con su gabinete de protección y la batería interna que asegura autonomía energética. El conjunto se encuentra montado al costado de la ruta, en condiciones reales de operación, lo que permite apreciar el encapsulado diseñado para resistir las exigencias ambientales del entorno vial.
 
@@ -274,7 +274,7 @@ En la figura \ref{fig:diagrama_controladores} se observa el diagrama con la disp
 \subsection{Mapa de endpoints}
 
 El backend expone una serie de endpoints REST que conforman la interfaz principal de comunicación con los servicios de aplicación y los dispositivos de campo.  
-A continuación se presenta el mapa general de los endpoints y sus respectivos controladores:
+A continuación, se presenta el mapa general de los endpoints y sus respectivos controladores:
 
 \begin{table}[H]
 	\centering

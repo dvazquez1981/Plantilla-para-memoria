@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  10 OCT 2025 01:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  13 OCT 2025 23:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1135,11 +1135,11 @@ l.75 \item  H
 LaTeX Info: Redefining \. on input line 105.
 LaTeX Info: Redefining \% on input line 105.
  [3]
-<./Figures/diagBloques.png, id=336, 912.40875pt x 410.53375pt>
+<./Figures/diagBloques.png, id=336, 944.52875pt x 412.54124pt>
 File: ./Figures/diagBloques.png Graphic file (type png)
 <use ./Figures/diagBloques.png>
 Package pdftex.def Info: ./Figures/diagBloques.png  used on input line 125.
-(pdftex.def)             Requested size: 389.80269pt x 175.38597pt.
+(pdftex.def)             Requested size: 389.80269pt x 170.25719pt.
 )
 LaTeX Info: Redefining \. on input line 123.
 LaTeX Info: Redefining \% on input line 123.
@@ -1159,17 +1159,17 @@ Cap\'{\i }tulo 2.
 File: ./Figures/fotoDTEC2.jpeg Graphic file (type jpg)
 <use ./Figures/fotoDTEC2.jpeg>
 Package pdftex.def Info: ./Figures/fotoDTEC2.jpeg  used on input line 40.
-(pdftex.def)             Requested size: 194.90134pt x 259.8569pt.
+(pdftex.def)             Requested size: 155.91869pt x 207.88062pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 41.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 41.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 44.
-LaTeX Info: Redefining \. on input line 44.
-LaTeX Info: Redefining \% on input line 44.
- [6]
-<./Figures/fotoMax232.png, id=373, 447.6725pt x 268.00125pt>
+LaTeX Info: Redefining \. on input line 46.
+LaTeX Info: Redefining \% on input line 46.
+ [6 <./Figures/fotoDTEC2.jpeg>]
+<./Figures/fotoMax232.png, id=375, 447.6725pt x 268.00125pt>
 File: ./Figures/fotoMax232.png Graphic file (type png)
 <use ./Figures/fotoMax232.png>
 Package pdftex.def Info: ./Figures/fotoMax232.png  used on input line 53.
@@ -1180,37 +1180,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--58
 m / datasheet-[]pdf / pdf / 73074 / MAXIM /
  []
 
-<./Figures/fotoEsp32c3.png, id=378, 489.9661pt x 261.51941pt>
+<./Figures/fotoEsp32c3.png, id=380, 285.065pt x 527.9725pt>
 File: ./Figures/fotoEsp32c3.png Graphic file (type png)
 <use ./Figures/fotoEsp32c3.png>
 Package pdftex.def Info: ./Figures/fotoEsp32c3.png  used on input line 68.
-(pdftex.def)             Requested size: 331.33466pt x 176.85716pt.
-LaTeX Info: Redefining \. on input line 72.
-LaTeX Info: Redefining \% on input line 72.
-[7 <./Figures/fotoDTEC2.jpeg> <./Figures/fotoMax232.png>]
+(pdftex.def)             Requested size: 116.94199pt x 216.59096pt.
+
 Underfull \hbox (badness 10000) in paragraph at lines 73--73
 [][][]\T1/ppl/m/n/9 Imagen to-ma-da de [][]$https : / / docs . espressif . com 
 / projects / esp-[]idf / en / v5 . 0 / esp32c3 /
  []
 
-<./Figures/fotoSim800l.png, id=393, 287.0725pt x 315.1775pt>
+LaTeX Info: Redefining \. on input line 77.
+LaTeX Info: Redefining \% on input line 77.
+[7 <./Figures/fotoMax232.png> <./Figures/fotoEsp32c3.png>]
+<./Figures/fotoSim800l.png, id=398, 287.0725pt x 315.1775pt>
 File: ./Figures/fotoSim800l.png Graphic file (type png)
 <use ./Figures/fotoSim800l.png>
 Package pdftex.def Info: ./Figures/fotoSim800l.png  used on input line 81.
 (pdftex.def)             Requested size: 155.91869pt x 171.18881pt.
-LaTeX Info: Redefining \. on input line 93.
-LaTeX Info: Redefining \% on input line 93.
-[8 <./Figures/fotoEsp32c3.png> <./Figures/fotoSim800l.png>]
-LaTeX Info: Redefining \. on input line 134.
-LaTeX Info: Redefining \% on input line 134.
+LaTeX Info: Redefining \. on input line 116.
+LaTeX Info: Redefining \% on input line 116.
+ [8 <./Figures/fotoSim800l.png>]
+LaTeX Info: Redefining \. on input line 146.
+LaTeX Info: Redefining \% on input line 146.
  [9])
 LaTeX Info: Redefining \. on input line 124.
 LaTeX Info: Redefining \% on input line 124.
  [10]
 \openout2 = `Chapters/Chapter3.aux'.
 
-
-(./Chapters/Chapter3.tex
+ (./Chapters/Chapter3.tex
 Cap\'{\i }tulo 3.
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 20
 .
@@ -1230,7 +1230,7 @@ File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 
 
 ]
-<./Figures/diagArq.png, id=445, 440.64626pt x 825.0825pt>
+<./Figures/diagArq.png, id=446, 440.64626pt x 825.0825pt>
 File: ./Figures/diagArq.png Graphic file (type png)
 <use ./Figures/diagArq.png>
 Package pdftex.def Info: ./Figures/diagArq.png  used on input line 51.
@@ -1241,7 +1241,7 @@ LaTeX Info: Redefining \% on input line 55.
 LaTeX Info: Redefining \. on input line 75.
 LaTeX Info: Redefining \% on input line 75.
  [13 <./Figures/diagArq.png>]
-<./Figures/diagSecuencia.png, id=457, 2766.335pt x 2176.13pt>
+<./Figures/diagSecuencia.png, id=458, 2766.335pt x 2176.13pt>
 File: ./Figures/diagSecuencia.png Graphic file (type png)
 <use ./Figures/diagSecuencia.png>
 Package pdftex.def Info: ./Figures/diagSecuencia.png  used on input line 88.
@@ -1259,7 +1259,7 @@ Overfull \hbox (2.53424pt too wide) in paragraph at lines 103--104
  de-sa-rro-lla-do so-bre ESP-
  []
 
-<./Figures/diagConexion.png, id=465, 1851.91875pt x 1668.2325pt>
+<./Figures/diagConexion.png, id=466, 1851.91875pt x 1668.2325pt>
 File: ./Figures/diagConexion.png Graphic file (type png)
 <use ./Figures/diagConexion.png>
 Package pdftex.def Info: ./Figures/diagConexion.png  used on input line 182.
@@ -1267,18 +1267,18 @@ Package pdftex.def Info: ./Figures/diagConexion.png  used on input line 182.
 LaTeX Info: Redefining \. on input line 186.
 LaTeX Info: Redefining \% on input line 186.
 [15]
-<./Figures/fotoGabinete.jpeg, id=471, 1053.9375pt x 1244.65pt>
+<./Figures/fotoGabinete.jpeg, id=472, 1046.91125pt x 959.585pt>
 File: ./Figures/fotoGabinete.jpeg Graphic file (type jpg)
 <use ./Figures/fotoGabinete.jpeg>
 Package pdftex.def Info: ./Figures/fotoGabinete.jpeg  used on input line 196.
-(pdftex.def)             Requested size: 389.80269pt x 460.34236pt.
+(pdftex.def)             Requested size: 389.80269pt x 357.28113pt.
 LaTeX Info: Redefining \. on input line 200.
 LaTeX Info: Redefining \% on input line 200.
  [16 <./Figures/diagConexion.png>]
-LaTeX Info: Redefining \. on input line 214.
-LaTeX Info: Redefining \% on input line 214.
+LaTeX Info: Redefining \. on input line 220.
+LaTeX Info: Redefining \% on input line 220.
  [17 <./Figures/fotoGabinete.jpeg>]
-<./Figures/diagFlujoConexionBackend.png, id=491, 3654.65375pt x 3835.32875pt>
+<./Figures/diagFlujoConexionBackend.png, id=493, 3654.65375pt x 3835.32875pt>
 File: ./Figures/diagFlujoConexionBackend.png Graphic file (type png)
 <use ./Figures/diagFlujoConexionBackend.png>
 Package pdftex.def Info: ./Figures/diagFlujoConexionBackend.png  used on input 
@@ -1289,24 +1289,23 @@ Overfull \hbox (7.79771pt too wide) in paragraph at lines 232--233
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 236.
-LaTeX Info: Redefining \% on input line 236.
-[18]
-LaTeX Info: Redefining \. on input line 253.
-LaTeX Info: Redefining \% on input line 253.
- [19 <./Figures/diagFlujoConexionBackend.png>]
-<./Figures/diagDispoControlladores.png, id=504, 3680.75125pt x 1539.7525pt>
+LaTeX Info: Redefining \. on input line 242.
+LaTeX Info: Redefining \% on input line 242.
+[18 <./Figures/diagFlujoConexionBackend.png>]
+<./Figures/diagDispoControlladores.png, id=500, 3596.43625pt x 1306.8825pt>
 File: ./Figures/diagDispoControlladores.png Graphic file (type png)
 <use ./Figures/diagDispoControlladores.png>
 Package pdftex.def Info: ./Figures/diagDispoControlladores.png  used on input l
 ine 267.
-(pdftex.def)             Requested size: 404.8839pt x 169.37329pt.
+(pdftex.def)             Requested size: 395.6092pt x 143.75752pt.
 
-Overfull \hbox (15.0812pt too wide) in paragraph at lines 267--268
+Overfull \hbox (5.80652pt too wide) in paragraph at lines 267--268
  [][] 
  []
 
-
+LaTeX Info: Redefining \. on input line 271.
+LaTeX Info: Redefining \% on input line 271.
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 293--294
 []|\T1/ppl/m/n/10.95 Consultar even-tos por
  []
@@ -1322,7 +1321,7 @@ LaTeX Info: Redefining \% on input line 309.
 LaTeX Info: Redefining \. on input line 321.
 LaTeX Info: Redefining \% on input line 321.
  [21]
-<./Figures/diagEstructuraComponentesPantallasFrontend.png, id=515, 2371.86125pt
+<./Figures/diagEstructuraComponentesPantallasFrontend.png, id=516, 2371.86125pt
  x 1609.01125pt>
 File: ./Figures/diagEstructuraComponentesPantallasFrontend.png Graphic file (ty
 pe png)
@@ -1333,7 +1332,7 @@ ng  used on input line 351.
 LaTeX Info: Redefining \. on input line 355.
 LaTeX Info: Redefining \% on input line 355.
  [22]
-<./Figures/diagFlujoRestApi.png, id=522, 1461.46pt x 2166.0925pt>
+<./Figures/diagFlujoRestApi.png, id=523, 1461.46pt x 2166.0925pt>
 File: ./Figures/diagFlujoRestApi.png Graphic file (type png)
 <use ./Figures/diagFlujoRestApi.png>
 Package pdftex.def Info: ./Figures/diagFlujoRestApi.png  used on input line 369
@@ -1457,10 +1456,10 @@ hvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on memorianueva.pdf (41 pages, 2696497 bytes).
+Output written on memorianueva.pdf (41 pages, 2470437 bytes).
 PDF statistics:
- 691 PDF objects out of 1000 (max. 8388607)
- 598 compressed objects within 6 object streams
+ 692 PDF objects out of 1000 (max. 8388607)
+ 599 compressed objects within 6 object streams
  143 named destinations out of 1000 (max. 500000)
  367 words of extra memory for PDF output out of 10000 (max. 10000000)
 
