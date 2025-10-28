@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  27 OCT 2025 09:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  27 OCT 2025 21:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -855,7 +855,15 @@ Package csquotes Info: ... found 'babel' package.
 LaTeX Warning: Unused global option(s):
     [biblatexoptions].
 
-No file memorianueva.aux.
+(./memorianueva.aux (./portada.aux)
+LaTeX Info: Redefining \. on input line 27.
+LaTeX Info: Redefining \% on input line 27.
+ (./Chapters/Chapter1.aux)
+(./Chapters/Chapter2.aux) (./Chapters/Chapter3.aux
+
+LaTeX Warning: Label `fig:diagrama_controladores' multiply defined.
+
+))
 \openout1 = `memorianueva.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
@@ -931,12 +939,13 @@ Package biblatex Info: Data encoding 'utf8' specified.
 \openout3 = `memorianueva-blx.bib'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'memorianueva.bbl' not found.
+Package biblatex Info: ... file 'memorianueva.bbl' found.
 
-No file memorianueva.bbl.
+(./memorianueva.bbl)
 Package biblatex Info: Reference section=0 on input line 70.
 Package biblatex Info: Reference segment=0 on input line 70.
 Package hyperref Info: Link coloring ON on input line 70.
+ (./memorianueva.out) (./memorianueva.out)
 \@outlinefile=\write4
 \openout4 = `memorianueva.out'.
 
@@ -971,6 +980,7 @@ LaTeX Info: Redefining \. on input line 70.
 LaTeX Info: Redefining \% on input line 70.
 LaTeX Info: Redefining \dotlessi on input line 70.
 Package scrbase Info: activating spanish \byname on input line 70.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1020,9 +1030,9 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 48.
 
 
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/fondo.pdf): PDF inclusion: fo
-und PDF version <1.6>, but at most version <1.5> allowed
-<Figures/fondo.pdf, id=4, 597.55246pt x 845.07718pt>
+pdfTeX warning: pdflatex (file ./Figures/fondo.pdf): PDF inclusion: found PDF v
+ersion <1.6>, but at most version <1.5> allowed
+<Figures/fondo.pdf, id=152, 597.55246pt x 845.07718pt>
 File: Figures/fondo.pdf Graphic file (type pdf)
 <use Figures/fondo.pdf>
 Package pdftex.def Info: Figures/fondo.pdf  used on input line 51.
@@ -1059,26 +1069,38 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 1: section
 [3] [4
 
-]
-No file memorianueva.toc.
+] (./memorianueva.toc
+LaTeX Info: Redefining \sptext on input line 1.
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 \tf@toc=\write5
 \openout5 = `memorianueva.toc'.
+
 
 1: section
 [5] [6
 
-]
-No file memorianueva.lof.
+] (./memorianueva.lof
+LaTeX Info: Redefining \sptext on input line 1.
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 \tf@lof=\write6
 \openout6 = `memorianueva.lof'.
+
 
 1: section
 [7] [8
 
-]
-No file memorianueva.lot.
+] (./memorianueva.lot
+LaTeX Info: Redefining \sptext on input line 1.
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 \tf@lot=\write7
 \openout7 = `memorianueva.lot'.
+
 
 1: section
 [9] [10
@@ -1089,81 +1111,31 @@ No file memorianueva.lot.
 
 (./Chapters/Chapter1.tex
 Cap\'{\i }tulo 1.
-
-LaTeX Warning: Citation 'asiain2021lora' on page 1 undefined on input line 31.
-
-
-LaTeX Warning: Citation 'micko2023iot' on page 1 undefined on input line 31.
-
-
-LaTeX Warning: Citation 'peruzzi2022lorawan' on page 1 undefined on input line 
-33.
-
-
-LaTeX Warning: Citation 'micko2023iot' on page 1 undefined on input line 33.
-
 1: section
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.42 \item  I
-             mposibilidad de actualizaciÃ³n remota. Cualquier modificaciÃ³n ...
-[1
+l.43 
+      [1
 
 
 ]
-
-LaTeX Warning: Citation 'miovision' on page 2 undefined on input line 56.
-
-
-LaTeX Warning: Citation 'sensys' on page 2 undefined on input line 56.
-
-
-LaTeX Warning: Citation 'metrocount' on page 2 undefined on input line 56.
-
-LaTeX Info: Redefining \. on input line 71.
-LaTeX Info: Redefining \% on input line 71.
+LaTeX Info: Redefining \. on input line 75.
+LaTeX Info: Redefining \% on input line 75.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.71 \item  G
-             arantizar la entrega de eventos aun con conectividad intermitente.
+l.75 \item  H
+             abilitar la ejecuciÃ³n remota de comandos y la actualizaciÃ³n d...
 [2]
-
-LaTeX Warning: Citation 'exemys' on page 3 undefined on input line 89.
-
-
-LaTeX Warning: Citation 'digiRemoteManager' on page 3 undefined on input line 8
-9.
-
-
-LaTeX Warning: Citation 'monitoringVehicles2023' on page 3 undefined on input l
-ine 91.
-
-
-LaTeX Warning: Citation 'iotSmartTraffic2021' on page 3 undefined on input line
- 91.
-
-
-LaTeX Warning: Citation 'iopMQTTSystem2023' on page 3 undefined on input line 9
-1.
-
-
-LaTeX Warning: Citation 'openRemoteSolution' on page 3 undefined on input line 
-93.
-
-LaTeX Info: Redefining \. on input line 103.
-LaTeX Info: Redefining \% on input line 103.
-[3]
-
-LaTeX Warning: Reference `fig:diag_bloques' on page 4 undefined on input line 1
-18.
-
-<./Figures/diagBloques.png, id=95, 944.52875pt x 412.54124pt>
+LaTeX Info: Redefining \. on input line 105.
+LaTeX Info: Redefining \% on input line 105.
+ [3]
+<./Figures/diagBloques.png, id=336, 944.52875pt x 412.54124pt>
 File: ./Figures/diagBloques.png Graphic file (type png)
 <use ./Figures/diagBloques.png>
 Package pdftex.def Info: ./Figures/diagBloques.png  used on input line 125.
@@ -1176,34 +1148,6 @@ LaTeX Info: Redefining \% on input line 123.
 
  (./Chapters/Chapter2.tex
 Cap\'{\i }tulo 2.
-
-LaTeX Warning: Citation 'esp32c3' on page 5 undefined on input line 14.
-
-
-LaTeX Warning: Citation 'analogRS232' on page 5 undefined on input line 14.
-
-
-LaTeX Warning: Citation 'tiRS232' on page 5 undefined on input line 14.
-
-
-LaTeX Warning: Citation 'comerTCPIP' on page 5 undefined on input line 16.
-
-
-LaTeX Warning: Citation 'mqttSpec' on page 5 undefined on input line 16.
-
-
-LaTeX Warning: Citation 'ibmRest' on page 5 undefined on input line 18.
-
-
-LaTeX Warning: Citation 'microsoftApiDesign' on page 5 undefined on input line 
-18.
-
-
-Overfull \hbox (6.77097pt too wide) in paragraph at lines 18--19
-\T1/ppl/m/n/10.95 cio-na-les que uti-li-cen los da-tos re-co-lec-ta-dos [[]], [
-[]]
- []
-
 1: section
 [5
 
@@ -1211,17 +1155,7 @@ Overfull \hbox (6.77097pt too wide) in paragraph at lines 18--19
 
 
 ]
-
-LaTeX Warning: Citation 'tiRS232' on page 6 undefined on input line 34.
-
-
-LaTeX Warning: Citation 'max232' on page 6 undefined on input line 34.
-
-
-LaTeX Warning: Reference `fig:foto_dtec2' on page 6 undefined on input line 36.
-
-
-<./Figures/fotoDTEC2.jpeg, id=110, 1204.5pt x 1606.0pt>
+<./Figures/fotoDTEC2.jpeg, id=364, 1204.5pt x 1606.0pt>
 File: ./Figures/fotoDTEC2.jpeg Graphic file (type jpg)
 <use ./Figures/fotoDTEC2.jpeg>
 Package pdftex.def Info: ./Figures/fotoDTEC2.jpeg  used on input line 40.
@@ -1234,15 +1168,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 44.
 LaTeX Info: Redefining \. on input line 46.
 LaTeX Info: Redefining \% on input line 46.
-[6 <./Figures/fotoDTEC2.jpeg>]
-
-LaTeX Warning: Citation 'max232' on page 7 undefined on input line 46.
-
-
-LaTeX Warning: Reference `fig:foto_max232' on page 7 undefined on input line 48
-.
-
-<./Figures/fotoMax232.png, id=120, 447.6725pt x 268.00125pt>
+ [6 <./Figures/fotoDTEC2.jpeg>]
+<./Figures/fotoMax232.png, id=375, 447.6725pt x 268.00125pt>
 File: ./Figures/fotoMax232.png Graphic file (type png)
 <use ./Figures/fotoMax232.png>
 Package pdftex.def Info: ./Figures/fotoMax232.png  used on input line 53.
@@ -1253,13 +1180,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--58
 m / datasheet-[]pdf / pdf / 73074 / MAXIM /
  []
 
-
-LaTeX Warning: Citation 'esp32c3IDF' on page 7 undefined on input line 62.
-
-
-LaTeX Warning: Reference `fig:esp32' on page 7 undefined on input line 64.
-
-<./Figures/fotoEsp32c3.png, id=123, 285.065pt x 527.9725pt>
+<./Figures/fotoEsp32c3.png, id=380, 285.065pt x 527.9725pt>
 File: ./Figures/fotoEsp32c3.png Graphic file (type png)
 <use ./Figures/fotoEsp32c3.png>
 Package pdftex.def Info: ./Figures/fotoEsp32c3.png  used on input line 68.
@@ -1270,77 +1191,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--73
 / projects / esp-[]idf / en / v5 . 0 / esp32c3 /
  []
 
-
-LaTeX Warning: Citation 'sim800l_datasheet' on page 7 undefined on input line 7
-5.
-
-LaTeX Info: Redefining \. on input line 76.
-LaTeX Info: Redefining \% on input line 76.
+LaTeX Info: Redefining \. on input line 77.
+LaTeX Info: Redefining \% on input line 77.
 [7 <./Figures/fotoMax232.png> <./Figures/fotoEsp32c3.png>]
-
-LaTeX Warning: Reference `fig:foto_sim800l' on page 8 undefined on input line 7
-7.
-
-<./Figures/fotoSim800l.png, id=139, 287.0725pt x 315.1775pt>
+<./Figures/fotoSim800l.png, id=398, 287.0725pt x 315.1775pt>
 File: ./Figures/fotoSim800l.png Graphic file (type png)
 <use ./Figures/fotoSim800l.png>
 Package pdftex.def Info: ./Figures/fotoSim800l.png  used on input line 81.
 (pdftex.def)             Requested size: 155.91869pt x 171.18881pt.
-
-LaTeX Warning: Citation 'mosquitto' on page 8 undefined on input line 115.
-
-LaTeX Info: Redefining \. on input line 116.
-LaTeX Info: Redefining \% on input line 116.
-[8 <./Figures/fotoSim800l.png>]
-
-LaTeX Warning: Citation 'nodejs' on page 9 undefined on input line 118.
-
-
-LaTeX Warning: Citation 'expressjs' on page 9 undefined on input line 118.
-
-
-Overfull \hbox (9.34592pt too wide) in paragraph at lines 117--119
-[]\T1/ppl/m/n/10.95 API REST con No-de.js y Ex-press. El bac-kend se de-sa-rro-
-lla en No-de.js [[]],
- []
-
-
-LaTeX Warning: Citation 'mysql' on page 9 undefined on input line 121.
-
-
-LaTeX Warning: Citation 'sequelize' on page 9 undefined on input line 124.
-
-
-LaTeX Warning: Citation 'winston' on page 9 undefined on input line 127.
-
-
-LaTeX Warning: Citation 'morgan' on page 9 undefined on input line 130.
-
-
-LaTeX Warning: Citation 'ionic' on page 9 undefined on input line 133.
-
-
-LaTeX Warning: Citation 'angular' on page 9 undefined on input line 133.
-
-
-LaTeX Warning: Citation 'docker_compose' on page 9 undefined on input line 136.
-
-
-
-Overfull \hbox (18.90236pt too wide) in paragraph at lines 135--137
-\T1/ppl/m/n/10.95 tión de los ser-vi-cios del bac-kend, se uti-li-za Doc-ker Co
-m-po-se [[]].
- []
-
-
-LaTeX Warning: Citation 'espidf' on page 9 undefined on input line 139.
-
-
-LaTeX Warning: Citation 'github' on page 9 undefined on input line 145.
-
-LaTeX Info: Redefining \. on input line 146.
-LaTeX Info: Redefining \% on input line 146.
-[9])
+LaTeX Info: Redefining \. on input line 112.
+LaTeX Info: Redefining \% on input line 112.
+ [8 <./Figures/fotoSim800l.png>]
+LaTeX Info: Redefining \. on input line 142.
+LaTeX Info: Redefining \% on input line 142.
+ [9])
 LaTeX Info: Redefining \. on input line 124.
 LaTeX Info: Redefining \% on input line 124.
  [10]
@@ -1366,26 +1230,18 @@ File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 
 
 ]
-
-LaTeX Warning: Reference `fig:diag_arquitectura' on page 12 undefined on input 
-line 46.
-
-<./Figures/diagArq.png, id=169, 440.64626pt x 825.0825pt>
+<./Figures/diagArq.png, id=446, 440.64626pt x 825.0825pt>
 File: ./Figures/diagArq.png Graphic file (type png)
 <use ./Figures/diagArq.png>
 Package pdftex.def Info: ./Figures/diagArq.png  used on input line 51.
 (pdftex.def)             Requested size: 194.90134pt x 364.93848pt.
 LaTeX Info: Redefining \. on input line 55.
 LaTeX Info: Redefining \% on input line 55.
-[12]
+ [12]
 LaTeX Info: Redefining \. on input line 75.
 LaTeX Info: Redefining \% on input line 75.
  [13 <./Figures/diagArq.png>]
-
-LaTeX Warning: Reference `fig:diag_secuencia' on page 14 undefined on input lin
-e 84.
-
-<./Figures/diagSecuencia.png, id=182, 2766.335pt x 2176.13pt>
+<./Figures/diagSecuencia.png, id=458, 2766.335pt x 2176.13pt>
 File: ./Figures/diagSecuencia.png Graphic file (type png)
 <use ./Figures/diagSecuencia.png>
 Package pdftex.def Info: ./Figures/diagSecuencia.png  used on input line 88.
@@ -1403,115 +1259,79 @@ Overfull \hbox (2.53424pt too wide) in paragraph at lines 103--104
  de-sa-rro-lla-do so-bre ESP-
  []
 
-
-LaTeX Warning: Reference `fig:diag_conexiones' on page 15 undefined on input li
-ne 178.
-
-<./Figures/diagConexion.png, id=190, 1851.91875pt x 1668.2325pt>
+<./Figures/diagConexion.png, id=466, 1851.91875pt x 1668.2325pt>
 File: ./Figures/diagConexion.png Graphic file (type png)
 <use ./Figures/diagConexion.png>
 Package pdftex.def Info: ./Figures/diagConexion.png  used on input line 182.
-(pdftex.def)             Requested size: 389.80269pt x 351.12828pt.
+(pdftex.def)             Requested size: 311.84334pt x 280.89752pt.
 LaTeX Info: Redefining \. on input line 186.
 LaTeX Info: Redefining \% on input line 186.
 [15]
-
-LaTeX Warning: Reference `fig:foto_gabinete' on page 16 undefined on input line
- 191.
-
-<./Figures/fotoGabinete.jpeg, id=195, 1046.91125pt x 959.585pt>
+<./Figures/fotoGabinete.jpeg, id=472, 1046.91125pt x 959.585pt>
 File: ./Figures/fotoGabinete.jpeg Graphic file (type jpg)
 <use ./Figures/fotoGabinete.jpeg>
 Package pdftex.def Info: ./Figures/fotoGabinete.jpeg  used on input line 196.
 (pdftex.def)             Requested size: 389.80269pt x 357.28113pt.
 LaTeX Info: Redefining \. on input line 200.
 LaTeX Info: Redefining \% on input line 200.
-[16 <./Figures/diagConexion.png>]
-
-LaTeX Warning: Citation 'sequelize' on page 17 undefined on input line 213.
-
-
-LaTeX Warning: Citation 'fowler2002patterns' on page 17 undefined on input line
- 213.
-
-LaTeX Info: Redefining \. on input line 220.
-LaTeX Info: Redefining \% on input line 220.
-[17 <./Figures/fotoGabinete.jpeg>]
-
-LaTeX Warning: Citation 'docker_compose' on page 18 undefined on input line 222
-.
-
-
-LaTeX Warning: Citation 'mqttSpec' on page 18 undefined on input line 222.
-
-
-Overfull \hbox (47.94022pt too wide) in paragraph at lines 222--223
-[]\T1/ppl/m/n/10.95 Para el des-plie-gue y la in-te-gra-ción con-ti-nua se em-p
-leó Doc-ker Com-po-se [[]],
+ [16 <./Figures/diagConexion.png>]
+Overfull \hbox (34.21082pt too wide) in paragraph at lines 217--218
+[]\T1/ppl/m/n/10.95 Cada vez que un dis-po-si-ti-vo pu-bli-ca una me-di-cion en
+ \T1/pcr/m/n/10.95 dispositivo/{id}/medicion\T1/ppl/m/n/10.95 ,
  []
 
+LaTeX Info: Redefining \. on input line 219.
+LaTeX Info: Redefining \% on input line 219.
+[17 <./Figures/fotoGabinete.jpeg>]
+Overfull \hbox (7.25249pt too wide) in paragraph at lines 219--220
+\T1/ppl/m/n/10.95 las res-pues-tas se ac-tua-li-zan se-gún los en-víos en \T1/p
+cr/m/n/10.95 dispositivo/{id}/respuesta
+ []
 
-LaTeX Warning: Citation 'winston' on page 18 undefined on input line 224.
-
-
-LaTeX Warning: Citation 'morgan' on page 18 undefined on input line 224.
-
-
-LaTeX Warning: Reference `fig:diagrama_backend' on page 18 undefined on input l
-ine 226.
-
-<./Figures/diagFlujoConexionBackend.png, id=212, 3654.65375pt x 3835.32875pt>
+<./Figures/diagFlujoConexionBackend.png, id=493, 2266.4675pt x 2246.3925pt>
 File: ./Figures/diagFlujoConexionBackend.png Graphic file (type png)
 <use ./Figures/diagFlujoConexionBackend.png>
 Package pdftex.def Info: ./Figures/diagFlujoConexionBackend.png  used on input 
-line 232.
-(pdftex.def)             Requested size: 397.6004pt x 417.20569pt.
+line 231.
+(pdftex.def)             Requested size: 397.6004pt x 394.05006pt.
 
-Overfull \hbox (7.79771pt too wide) in paragraph at lines 232--233
+Overfull \hbox (7.79771pt too wide) in paragraph at lines 231--232
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 242.
-LaTeX Info: Redefining \% on input line 242.
+LaTeX Info: Redefining \. on input line 241.
+LaTeX Info: Redefining \% on input line 241.
 [18 <./Figures/diagFlujoConexionBackend.png>]
-
-LaTeX Warning: Reference `fig:diagrama_controladores' on page 19 undefined on i
-nput line 262.
-
-<./Figures/diagDispoControlladores.png, id=219, 3596.43625pt x 1306.8825pt>
+<./Figures/diagDispoControlladores.png, id=500, 3596.43625pt x 1306.8825pt>
 File: ./Figures/diagDispoControlladores.png Graphic file (type png)
 <use ./Figures/diagDispoControlladores.png>
 Package pdftex.def Info: ./Figures/diagDispoControlladores.png  used on input l
-ine 267.
+ine 266.
 (pdftex.def)             Requested size: 395.6092pt x 143.75752pt.
 
-Overfull \hbox (5.80652pt too wide) in paragraph at lines 267--268
+Overfull \hbox (5.80652pt too wide) in paragraph at lines 266--267
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 271.
-LaTeX Info: Redefining \% on input line 271.
+LaTeX Info: Redefining \. on input line 270.
+LaTeX Info: Redefining \% on input line 270.
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
-[]|\T1/ppl/m/n/10.95 Consultar even-tos por
+Underfull \hbox (badness 4266) in paragraph at lines 291--292
+[]|\T1/ppl/m/n/10.95 Crea me-di-cio-nes de un
  []
 
 
-Overfull \hbox (4.47751pt too wide) in paragraph at lines 282--308
+Overfull \hbox (40.17348pt too wide) in paragraph at lines 281--308
  [][] 
  []
 
 LaTeX Info: Redefining \. on input line 309.
 LaTeX Info: Redefining \% on input line 309.
 [20 <./Figures/diagDispoControlladores.png>]
-LaTeX Info: Redefining \. on input line 321.
-LaTeX Info: Redefining \% on input line 321.
+LaTeX Info: Redefining \. on input line 325.
+LaTeX Info: Redefining \% on input line 325.
  [21]
-
-LaTeX Warning: Reference `fig:diagrama_controladores' on page 22 undefined on i
-nput line 346.
-
-<./Figures/diagEstructuraComponentesPantallasFrontend.png, id=241, 2371.86125pt
+<./Figures/diagEstructuraComponentesPantallasFrontend.png, id=516, 2371.86125pt
  x 1609.01125pt>
 File: ./Figures/diagEstructuraComponentesPantallasFrontend.png Graphic file (ty
 pe png)
@@ -1521,21 +1341,18 @@ ng  used on input line 351.
 (pdftex.def)             Requested size: 389.80269pt x 264.4197pt.
 LaTeX Info: Redefining \. on input line 355.
 LaTeX Info: Redefining \% on input line 355.
-[22]
-
-LaTeX Warning: Reference `tab:endpoints' on page 23 undefined on input line 360
-.
-
-
-LaTeX Warning: Reference `fig:diagramaflujorestapi' on page 23 undefined on inp
-ut line 364.
-
-<./Figures/diagFlujoRestApi.png, id=248, 1461.46pt x 2166.0925pt>
+ [22]
+<./Figures/diagFlujoRestApi.png, id=523, 3341.48375pt x 2904.8525pt>
 File: ./Figures/diagFlujoRestApi.png Graphic file (type png)
 <use ./Figures/diagFlujoRestApi.png>
 Package pdftex.def Info: ./Figures/diagFlujoRestApi.png  used on input line 369
 .
-(pdftex.def)             Requested size: 389.80269pt x 577.74664pt.
+(pdftex.def)             Requested size: 428.78532pt x 372.72408pt.
+
+Overfull \hbox (38.98264pt too wide) in paragraph at lines 369--370
+ [][] 
+ []
+
 LaTeX Info: Redefining \. on input line 373.
 LaTeX Info: Redefining \% on input line 373.
 [23 <./Figures/diagEstructuraComponentesPantallasFrontend.png>]
@@ -1555,10 +1372,47 @@ LaTeX Info: Redefining \% on input line 414.
 LaTeX Info: Redefining \. on input line 125.
 LaTeX Info: Redefining \% on input line 125.
  [26]
+Overfull \hbox (19.64346pt too wide) in paragraph at lines 145--145
+\T1/ppl/m/n/10.95 Road In-fras-truc-tu-re^^T. En: \T1/ppl/m/it/10.95 Sen-sors \
+T1/ppl/m/n/10.95 23.9 (2023), pág. 4469. \T1/ppl/m/sc/10.95 doi\T1/ppl/m/n/10.9
+5 : [][]$10 . 3390 / s23094469$[][].
+ []
 
-LaTeX Warning: Empty bibliography on input line 145.
 
-(./memorianueva.aux (./portada.aux)
+Overfull \hbox (7.87157pt too wide) in paragraph at lines 145--145
+[]\T1/ppl/m/n/10.95 Sensys Net-works. \T1/ppl/m/it/10.95 Do-cu-men-ta-ción téc-
+ni-ca y pro-duc-tos\T1/ppl/m/n/10.95 . [][]$https : / / sensysnetworks .
+ []
+
+1: section
+[27
+
+
+
+]
+Overfull \hbox (7.0357pt too wide) in paragraph at lines 145--145
+\T1/ppl/m/n/10.95 Úl-ti-mo ac-ce-so: 19 de sep-tiem-bre de 2025. 2025. \T1/ppl/
+m/sc/10.95 url\T1/ppl/m/n/10.95 : [][]$https : / / ionicframework .
+ []
+
+! Misplaced alignment tab character &.
+<argument> Angular - One framework. Mobile &
+                                             desktop
+l.145 ...[heading=bibintoc, title={BibliografÃ­a}]
+                                                  
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+LaTeX Info: Redefining \. on input line 145.
+LaTeX Info: Redefining \% on input line 145.
+[28]
+LaTeX Info: Redefining \. on input line 148.
+LaTeX Info: Redefining \% on input line 148.
+ [29] (./memorianueva.aux (./portada.aux)
 LaTeX Info: Redefining \sptext on input line 27.
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
@@ -1568,16 +1422,10 @@ LaTeX Info: Redefining \% on input line 27.
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-
-Package rerunfilecheck Warning: File `memorianueva.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `memorianueva.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D99069ACD1040CC908026A8AE151A4B1;6638.
+Package rerunfilecheck Info: File `memorianueva.out' has not changed.
+(rerunfilecheck)             Checksum: 6345D2DCD6C8EB56B4B205134F6F94CE;6748.
 
 Package biblatex Warning: Please (re)run BibTeX on the file(s):
 (biblatex)                memorianueva
@@ -1588,25 +1436,45 @@ Package logreq Info: Writing requests to 'memorianueva.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 31035 strings out of 477875
- 668772 string characters out of 5836408
- 1867330 words of memory out of 5000000
- 50688 multiletter control sequences out of 15000+600000
- 566765 words of font info for 96 fonts, out of 8000000 for 9000
+ 31331 strings out of 477875
+ 677485 string characters out of 5836408
+ 1874330 words of memory out of 5000000
+ 50912 multiletter control sequences out of 15000+600000
+ 571277 words of font info for 101 fonts, out of 8000000 for 9000
  108 hyphenation exceptions out of 8191
- 96i,20n,93p,1969b,1858s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic
-/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on memorianueva.pdf (38 pages, 2438474 bytes).
+ 96i,20n,93p,1969b,1992s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
+hvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on memorianueva.pdf (41 pages, 2463859 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
- 96 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 692 PDF objects out of 1000 (max. 8388607)
+ 599 compressed objects within 6 object streams
+ 143 named destinations out of 1000 (max. 500000)
+ 367 words of extra memory for PDF output out of 10000 (max. 10000000)
 

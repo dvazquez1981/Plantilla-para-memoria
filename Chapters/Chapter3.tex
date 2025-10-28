@@ -22,9 +22,9 @@ El sistema se organiza en cinco bloques principales, cada uno con responsabilida
   \item {Transporte (broker MQTT):} el broker actúa como bus de mensajes desacoplado. Se recomienda emplear Eclipse Mosquitto en la etapa inicial y evaluar brokers gestionados para despliegues a mayor escala. El broker gestiona autenticación por credenciales, control de tópicos y cifrado. Se emplean tópicos jerárquicos por dispositivo para facilitar filtrado y autorización: 
 
 \begin{itemize}
-  \item \texttt{devices/\{id\}/events}
-  \item \texttt{devices/\{id\}/comm} 
-  \item \texttt{devices/\{id\}/status}
+  \item \texttt{dispositivo/\{id\}/medicion}
+  \item \texttt{dispositivo/\{id\}/comando} 
+  \item \texttt{dispositivo/\{id\}/respuesta}
 \end{itemize}
 
 
@@ -64,20 +64,20 @@ El flujo de datos del sistema describe cómo se captura, procesa y comunica la i
 
   \item Preprocesado en nodo: el firmware valida la trama, añade sello temporal y metadatos, y encola el evento en memoria (FIFO).
 
-  \item Transmisión: cuando la conexión GPRS está disponible, el nodo publica el evento en el tópico MQTT \texttt{devices/{id}/events}.
+  \item Transmisión: cuando la conexión GPRS está disponible, el nodo publica las mediciones en el tópico MQTT \texttt{dispositivo/{id}/medicion}.
   
   \item Ingesta y persistencia: el broker Mosquitto entrega el mensaje al suscriptor backend, el servicio valida el payload y persiste el registro en la base de datos MySQL.
   
   \item Visualización/Control: la interfaz web consulta la API REST para datos históricos y recibe notificaciones en tiempo real.
   
   \item Emisión de comandos (desde UI): el operador genera un comando en la interfaz, la UI envía
-  \texttt{POST /api/devices/{id}/comm} al backend, que crea un \texttt{cmd\_id} único y publica en \texttt{devices/{id}/comm}.
+  \texttt{POST /app/comando} al backend, que crea un \texttt{comm\_id} único con dispostivoId y publica en \texttt{dispositivo/{id}/comando}.
   
-  \item Recepción nodo/Entrega al contador: el ESP32-C3 en \texttt{devices/{id}/comm} recibe el comando, valida \texttt{cmd\_id} y lo envía al contador por RS-232, se aplica un timeout configurable por comando.
+  \item Recepción nodo/Entrega al contador: el ESP32-C3 en \\ \texttt{dispositivo/{id}/comando} recibe el comando, valida \texttt{cmd\_id} y lo envía al contador por RS-232, se aplica un timeout configurable por comando.
   
-  \item Ejecución y ack: el contador ejecuta la orden y responde por RS-232, el firmware publica el ack/resultado en \texttt{devices/{id}/status} con \texttt{cmd\_id} y \texttt{status} (\texttt{ok}, \texttt{failed}, \texttt{timeout}, \texttt{value}).
+  \item Ejecución y ack: el contador ejecuta la orden y responde por RS-232, el firmware publica el ack/resultado en \texttt{dispositivo/{id}/respuesta} con \texttt{cmd\_id} y \texttt{status} (\texttt{ok}, \texttt{failed}, \texttt{timeout}, \texttt{value}).
 
-  \item Actualización en backend y UI: el suscriptor MQTT del backend recibe el ack, actualiza la tabla \texttt{comm} (campo \texttt{status}, \texttt{ack\_ts}) y notifica a la UI para que el operador vea el resultado.
+  \item Actualización en backend y UI: el suscriptor MQTT del backend recibe el ack, actualiza la tabla \texttt{respuesta} (campo \texttt{valor}, \texttt{ack\_ts}) y notifica a la UI para que el operador vea el resultado.
 \end{itemize}
 
 
@@ -179,7 +179,7 @@ La figura \ref{fig:diag_conexiones} se presenta el diagrama de conexión entre l
 
 \begin{figure}[H]
   \raggedleft
-  \includegraphics[width=1\linewidth]{./Figures/diagConexion.png}
+  \includegraphics[width=0.8\linewidth]{./Figures/diagConexion.png}
   \caption{Diagrama de conexión entre los módulos del sistema.}
   \label{fig:diag_conexiones}
 \end{figure}
@@ -214,10 +214,9 @@ El servicio fue implementado en Node.js con el framework Express, lo que permiti
 
 La comunicación con los dispositivos se realiza mediante suscripción a tópicos MQTT en el broker Eclipse Mosquitto. 
 
-Cada vez que un dispositivo publica un evento en \texttt{devices/\{id\}/events}, 
-el backend lo recibe, valida el payload y lo persiste en MySQL.
+Cada vez que un dispositivo publica una medicion en \texttt{dispositivo/\{id\}/medicion}, el backend lo recibe, valida el payload y lo persiste en MySQL.
  
-En el backend, los comandos se publican en (\texttt{devices/{id}/comm}) y el estado se actualiza según las confirmaciones (\texttt{devices/{id}/status}). 
+En el backend, los comandos se publican en \texttt{dispositivo/\{id\}/comando}  y las respuestas se actualizan según los envíos en \texttt{dispositivo/\{id\}/respuesta} incluyendo en el body el cmd\_id. 
 
 Para el despliegue y la integración continua se empleó Docker Compose \cite{docker_compose}, lo que permite levantar simultáneamente el backend, la base de datos y el broker MQTT \cite{mqttSpec} en contenedores aislados.
 
@@ -252,10 +251,10 @@ El sistema cuenta con varias funcionalidades esenciales que permiten gestionar d
 La lógica de negocio del backend se organiza en controladores, cada uno asociado a un recurso del sistema, lo que asegura una clara separación de responsabilidades, facilita el mantenimiento y permite la escalabilidad de la aplicación. Entre los controladores principales se encuentran los siguientes:
 
 \begin{itemize}
-  \item DevicesController: gestiona las operaciones CRUD sobre los dispositivos de campo, además de registrar los eventos recibidos vía MQTT y asociarlos a un dispositivo específico.
-  \item EventsController: encapsula la lógica de ingesta de eventos de tránsito, validación de payloads y persistencia en la base de datos.
-  \item CommandsController: administra la emisión y seguimiento de comandos remotos, generando un \texttt{cmd\_id} único y actualizando el estado conforme se reciben los \texttt{ack}.
-  \item StatusController: centraliza la recepción de estados y telemetría (batería, conectividad), garantizando que la base de datos refleje la situación en tiempo real.
+  \item DispositivoController: gestiona las operaciones CRUD sobre los dispositivos de campo, además de registrar los eventos recibidos vía MQTT y asociarlos a un dispositivo específico.
+  \item MedicionController: encapsula la lógica de ingesta de eventos de tránsito, validación de payloads y persistencia en la base de datos.
+  \item ComandoController: administra la emisión y seguimiento de comandos remotos, generando un \texttt{cmd\_id} único y actualizando el estado conforme se reciben los \texttt{ack}.
+  \item RespuestaController: centraliza la recepción de estados y telemetría (batería, conectividad), garantizando que la base de datos refleje la situación en tiempo real.
   \item UserController: implementa el ciclo de vida de usuarios y la autenticación mediante JWT, así como la validación de permisos en cada endpoint.
 \end{itemize}
 
@@ -274,7 +273,7 @@ En la figura \ref{fig:diagrama_controladores} se observa el diagrama con la disp
 \subsection{Mapa de endpoints}
 
 El backend expone una serie de endpoints REST que conforman la interfaz principal de comunicación con los servicios de aplicación y los dispositivos de campo.  
-A continuación, se presenta el mapa general de los endpoints y sus respectivos controladores:
+A continuación, se presenta el mapa general de los endpoints y controladores mas importantes para el flujo:
 
 \begin{table}[H]
 	\centering
@@ -283,19 +282,20 @@ A continuación, se presenta el mapa general de los endpoints y sus respectivos 
 		\toprule
 		\textbf{Endpoint} & \textbf{Controlador} & \textbf{Descripción} \\
 		\midrule
-		GET /devices & DevicesController & Lista todos los dispositivos registrados \\
-		GET /devices/\{id\} & DevicesController & Devuelve información de un dispositivo específico \\
-		POST /devices & DevicesController & Alta de un nuevo dispositivo \\
-		PATCH /devices/\{id\} & DevicesController & Actualización de atributos de un dispositivo \\
-		DELETE /devices/\{id\} & DevicesController & Eliminación de un dispositivo \\
+		GET /dispositivo & DispositivoController & Lista todos los dispositivos registrados \\
+		GET /dispositivo/\{id\} & DispositivoController & Devuelve información de un dispositivo específico \\
+		POST /dispositivo & DispositivoController & Alta de un nuevo dispositivo \\
+		PATCH /dispositivo/\{id\} & DispositivoController & Actualización de atributos de un dispositivo \\
+		DELETE /dispositivo/\{id\} & DispositivoController & Eliminación de un dispositivo \\
 		\addlinespace
-		GET /events/device/\{id\} & EventsController & Consultar eventos por dispositivo \\
-		GET /events/range & EventsController & Consultar eventos por rango temporal \\
+		POST /medicion & MedicionController & Crea  mediciones de un dispositivo \\
+		GET /medicion/dispositivo/\{id\} & MedicionController & Consultar mediciones por dispositivo \\
+		GET /medicion/range & MedicionController & Consultar mediciones por rango temporal \\
 		\addlinespace
-		POST /commands & CommandsController & Crear un comando remoto y publicarlo en MQTT \\
-		GET /commands/\{id\} & CommandsController & Consultar estado de un comando (pendiente, ok, failed, timeout, value) \\
+		POST /comando & ComandoController & Crear un comando remoto y publicarlo en MQTT \\
+		GET /comando/\{id\} & ComandoController & Consultar un comando  \\
 		\addlinespace
-		GET /status/\{id\} & StatusController & Consultar estado operativo y telemetría del dispositivo \\
+		GET /respuesta/\{id\} & RespuestaController & Consultar respuesta de un comando \\
 		\addlinespace
 		POST /usuario/login & UserController & Autenticación de usuario, devuelve token JWT \\
 		POST /usuario & UserController & Alta de usuario \\
@@ -366,7 +366,7 @@ En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de c
 \begin{figure}[H]
  
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/diagFlujoRestApi.png}
+  \includegraphics[width=1.1\linewidth]{./Figures/diagFlujoRestApi.png}
   \captionof{figure}{Diagrama de flujo de comunicación con el backend.}
   \label{fig:diagramaflujorestapi}
 \end{figure}

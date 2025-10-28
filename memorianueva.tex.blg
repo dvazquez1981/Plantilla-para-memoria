@@ -1,0 +1,5 @@
+[0] Config.pm:306> INFO - This is Biber 2.18
+[0] Config.pm:309> INFO - Logfile is 'memorianueva.tex.blg'
+[73] biber:340> INFO - === lun oct 27, 2025, 17:18:19
+[101] Utils.pm:399> ERROR - Cannot find 'memorianueva.tex.bcf'!
+[101] Biber.pm:135> INFO - ERRORS: 1
