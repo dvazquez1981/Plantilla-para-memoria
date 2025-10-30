@@ -5,10 +5,100 @@ En este capítulo se presentan en detalle los ensayos realizados sobre el sistem
 Los ensayos se organizaron en diferentes niveles: banco de pruebas en laboratorio, validación de la API REST, pruebas unitarias e integración de componentes, 
 pruebas del frontend, prueba final de integración end-to-end y una comparación con soluciones comerciales y académicas.  
 
-\section{Metodología de pruebas}
-\label{sec:metodologia-pruebas}
 
-Para garantizar la reproducibilidad de los resultados, se definió una metodología estructurada que abarcó:
+\section{Banco de pruebas}
+\label{sec:banco-pruebas}
+
+El banco de pruebas se diseñó con el propósito de reproducir las condiciones reales de operación del sistema de detección de tránsito, garantizando la validez de los resultados obtenidos en un entorno controlado. Este entorno permitió evaluar la robustez del firmware, la estabilidad de las comunicaciones y la capacidad del backend para procesar eventos en diferentes escenarios de conectividad.
+
+El objetivo principal fue analizar el comportamiento integral del sistema ante situaciones representativas de campo, incluyendo la pérdida temporal del enlace GPRS, el almacenamiento local de eventos y la recuperación automática una vez restablecida la conexión.
+
+\subsection{Diseño del entorno de pruebas}
+
+El banco se compuso de los siguientes elementos principales:
+
+\begin{itemize}
+    \item Contador de tránsito DTEC: configurado para generar tramas de detección simuladas, con distintos intervalos de paso vehicular.
+    \item Nodo de campo (ESP32-C3 + SIM800L): encargado de recibir las tramas RS-232, almacenarlas temporalmente y transmitirlas mediante MQTT al servidor central.
+    \item Servidor de backend: implementado en Node.js/Express, con base de datos MySQL y broker Eclipse Mosquitto, desplegado mediante Docker Compose.
+    \item Interfaz web de monitoreo: utilizada para visualizar en tiempo real los eventos recibidos y el estado de los dispositivos.
+\end{itemize}
+
+El montaje permitió reproducir tres escenarios de prueba diferenciados:
+
+\begin{enumerate}
+    \item Conectividad estable: transmisión continua sin pérdidas de enlace.
+    \item Conectividad intermitente: simulación de cortes GPRS aleatorios, verificando la persistencia de los datos en la cola interna del nodo.
+    \item Modo desconectado prolongado: interrupción total de red durante intervalos extensos, evaluando la capacidad del firmware para conservar eventos en memoria y transmitirlos una vez reconectado.
+\end{enumerate}
+
+\subsection{Metodología experimental}
+
+Las pruebas se realizaron mediante la generación de tramas seriales controladas, representando detecciones vehiculares. Se implementó un módulo de simulación que permitió enviar secuencias de tramas RS-232 al ESP32-C3, registrando tanto los tiempos de procesamiento como la cantidad de eventos almacenados en la cola FIFO.
+
+Para la simulación de pérdida de conectividad, se forzó el corte del enlace GPRS  al módulo SIM800L, y se verificó que los mensajes no enviados quedaran encolados localmente. Una vez restablecida la conexión, los eventos se publicaron en el tópico MQTT correspondiente en: 
+
+\begin{itemize}
+  \item \texttt{dispositivo/\{id\}/medicion}
+  \item \texttt{dispositivo/\{id\}/respuesta}
+\end{itemize}
+
+El backend, por su parte, registró la llegada de los eventos en la base de datos MySQL, verificando integridad, timestamps y ausencia de duplicaciones.
+
+
+\subsection{Resultados y observaciones}
+
+Los resultados experimentales demostraron que el sistema fue capaz de:
+
+\begin{itemize}
+    \item Mantener la integridad de los datos bajo escenarios de conectividad inestable.
+    \item Garantizar la entrega de eventos mediante la cola FIFO implementada en el firmware.
+    \item Ejecutar comandos remotos y recibir respuestas de manera confiable.
+    \item Reanudar correctamente la transmisión tras cortes de red sin pérdida de información.
+\end{itemize}
+
+En promedio, los tiempos de publicación por evento se mantuvieron dentro de rangos aceptables (entre 300 y 600 ms) en escenarios con conexión estable, y con demoras proporcionales en los períodos de reconexión.
+
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.9\textwidth]{banco_pruebas.png}
+%    \caption[Diagrama del proceso de pruebas]{Diagrama del proceso de pruebas utilizado para la validación del flujo de eventos y comandos en el sistema.}
+%    \label{fig:banco-pruebas}
+%\end{figure}
+
+En conclusión, el banco de pruebas permitió validar la arquitectura propuesta, que permite confirmar un comportamiento confiable frente a condiciones reales de operación y que demuestra la efectividad de los mecanismos de encolado y retransmisión implementados.
+
+\section{Pruebas de la API REST}
+\label{sec:pruebas-api}
+
+En esta sección se detallan las pruebas realizadas sobre la API REST que se implemento en el backend del sistema. El propósito de estas pruebas fue validar la correcta interacción entre los distintos componentes (backend, base de datos y broker MQTT) y comprobar la integridad, seguridad y rendimiento de las operaciones ofrecidas por los endpoints definidos.  
+
+
+
+
+\subsection{Objetivos y alcance}
+
+\subsection{Diseño del entorno de pruebas}
+
+El banco se compuso de los siguientes elementos principales:
+
+\begin{itemize}
+    \item Contador de tránsito DTEC: configurado para generar tramas de detección simuladas, con distintos intervalos de paso vehicular.
+    \item Nodo de campo (ESP32-C3 + SIM800L): encargado de recibir las tramas RS-232, almacenarlas temporalmente y transmitirlas mediante MQTT al servidor central.
+    \item Servidor de backend: implementado en Node.js/Express, con base de datos MySQL y broker Eclipse Mosquitto, desplegado mediante Docker Compose.
+    \item Interfaz web de monitoreo: utilizada para visualizar en tiempo real los eventos recibidos y el estado de los dispositivos.
+\end{itemize}
+
+
+El montaje permitió reproducir tres escenarios de prueba diferenciados:
+
+\begin{enumerate}
+    \item Conectividad estable: transmisión continua sin pérdidas de enlace.
+    \item Conectividad intermitente: simulación de cortes GPRS aleatorios, verificando la persistencia de los datos en la cola interna del nodo.
+    \item Modo desconectado prolongado: interrupción total de red durante intervalos extensos, evaluando la capacidad del firmware para conservar eventos en memoria y transmitirlos una vez reconectado.
+\end{enumerate}
+
+
 
 \begin{itemize}
     \item Diseño de escenarios de prueba: cada caso fue descrito en términos de entradas, condiciones ambientales (conectividad, ruido eléctrico, interrupciones), criterios de éxito y métricas a evaluar.

@@ -8,9 +8,9 @@
 \contentsline {subsection}{\numberline {1.1.4}Diseño conceptual}{2}{subsection.1.1.4}%
 \contentsline {section}{\numberline {1.2}Objetivos}{2}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Objetivo general}{2}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Objetivos específicos}{2}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.2}Objetivos específicos}{3}{subsection.1.2.2}%
 \contentsline {section}{\numberline {1.3}Estado del arte y propuesta de valor}{3}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Alcance}{3}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Alcance}{4}{section.1.4}%
 \contentsline {chapter}{\numberline {2}Introducción específica}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Protocolos y comunicación}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Componentes de hardware utilizados}{6}{section.2.2}%
@@ -21,18 +21,32 @@
 \contentsline {subsection}{\numberline {3.1.1}Descripción ampliada de bloques y responsabilidades}{11}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Flujo de datos}{13}{subsection.3.1.2}%
 \contentsline {section}{\numberline {3.2}Arquitectura del nodo}{14}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Desarrollo del backend}{17}{section.3.3}%
+\contentsline {section}{\numberline {3.3}Desarrollo del backend}{16}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Arquitectura y tecnologías}{17}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Funcionalidades principales}{19}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Organización en controladores}{19}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Mapa de endpoints}{20}{subsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.3.5}Seguridad y extensibilidad}{21}{subsection.3.3.5}%
-\contentsline {section}{\numberline {3.4}Desarrollo del frontend}{21}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Arquitectura y tecnologías}{22}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Funcionalidades principales}{22}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Integración con el backend}{23}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Despliegue del sistema}{25}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Entorno productivo y configuración}{25}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Monitoreo post-implantación}{25}{subsection.3.5.2}%
-\contentsline {section}{\numberline {3.6}Integración con la infraestructura existente}{26}{section.3.6}%
-\contentsline {chapter}{Bibliografía}{27}{appendix*.21}%
+\contentsline {subsection}{\numberline {3.3.2}Funcionalidades principales}{17}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Organización en controladores}{18}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Mapa de endpoints}{19}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Seguridad y extensibilidad}{20}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.4}Desarrollo del frontend}{20}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Arquitectura y tecnologías}{20}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Funcionalidades principales}{20}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Integración con el backend}{21}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Despliegue del sistema}{23}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Entorno productivo y configuración}{23}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Monitoreo post-implantación}{23}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Integración con la infraestructura existente}{24}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Ensayos y Resultados}{25}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Banco de pruebas}{25}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Diseño del entorno de pruebas}{25}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Metodología experimental}{26}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Resultados y observaciones}{26}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Pruebas de la API REST}{26}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Objetivos y alcance}{27}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Diseño del entorno de pruebas}{27}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Banco de pruebas}{27}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Pruebas de la API REST}{28}{section.4.4}%
+\contentsline {paragraph}{Ejemplo de request y response para creación de dispositivo:}{28}{section*.20}%
+\contentsline {section}{\numberline {4.5}Pruebas de componentes}{29}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Pruebas del frontend}{29}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Prueba final de integración}{29}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Comparación con otras soluciones}{29}{section.4.8}%
