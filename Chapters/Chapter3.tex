@@ -364,27 +364,16 @@ En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de c
 El despliegue del sistema comprende la puesta en marcha coordinada de los distintos servicios que componen la arquitectura: el broker MQTT, la API REST, la base de datos relacional y la interfaz web.  
 El objetivo es trasladar el prototipo desde un entorno de desarrollo hacia un entorno productivo, que asegura escalabilidad, confiabilidad y capacidad de monitoreo post-implantación.  
 
-\subsection{Entorno productivo y configuración}
+\subsubsection*{3.5.1. Entorno productivo e integración continua}
 
-Para simplificar la orquestación se emplea Docker Compose, lo que permite instanciar todos los servicios en contenedores aislados pero comunicados entre sí.  
-Cada componente cumple un rol específico:  
+El entorno productivo se implementa bajo un esquema de \textit{cloud on-premise}, es decir, una nube privada alojada en los servidores locales de la organización. 
+Este enfoque combina las ventajas de la virtualización y la gestión centralizada propias del entorno \textit{cloud}, con el control, la seguridad y la independencia de un despliegue local.
 
-\begin{itemize}
-    \item Broker MQTT (Eclipse Mosquitto): configurado como servicio de mensajería central. Se habilitan credenciales de acceso, control de tópicos por dispositivo y soporte de cifrado TLS en despliegues productivos. Su rol es recibir eventos desde los nodos de campo y distribuirlos a los suscriptores autorizados (API REST u otros consumidores).
-    
-    \item API REST (Node.js/Express): implementada como contenedor independiente, integra lógica de negocio y suscripción al broker MQTT. De esta forma, cada evento recibido es validado, transformado y almacenado en la base de datos. La API expone endpoints para:
-    \begin{itemize}
-        \item Gestión de dispositivos y usuarios.
-        \item Consulta de eventos por rango temporal o por dispositivo.
-        \item Emisión y seguimiento de comandos remotos.
-        \item Acceso al estado operativo y telemetría de cada nodo.
-    \end{itemize}
-    Todos los endpoints están protegidos mediante autenticación con tokens JWT.
-    
-    \item Base de datos relacional (MySQL): instancia dedicada a persistencia de información. Su esquema incluye tablas de dispositivos, eventos, comandos y usuarios. Se definen índices para optimizar consultas históricas y se configuran respaldos automáticos diarios.
-    
-    \item Interfaz web (Ionic/Angular): desplegada como servicio accesible en navegador. Consume la API REST para mostrar eventos en tiempo real, ejecutar comandos y consultar históricos.
-\end{itemize}
+Para la orquestación se emplea Docker Compose, que permite instanciar todos los servicios (broker MQTT, API REST, base de datos y aplicación web) en contenedores aislados pero comunicados entre sí. 
+De esta forma, el sistema puede escalar, actualizarse y mantenerse de manera unificada, preservando la trazabilidad y la integridad de los datos.
+
+La integración continua (CI) automatiza la construcción, prueba y despliegue del sistema. 
+Cada actualización del repositorio genera nuevas imágenes Docker, ejecuta validaciones automáticas y despliega los servicios en el entorno \textit{on-premise}, garantizando coherencia entre versiones y reduciendo errores manuales.
 
 \subsection{Monitoreo post-implantación}
 

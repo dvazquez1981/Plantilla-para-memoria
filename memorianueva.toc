@@ -32,9 +32,8 @@
 \contentsline {subsection}{\numberline {3.4.2}Funcionalidades principales}{20}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Integración con el backend}{21}{subsection.3.4.3}%
 \contentsline {section}{\numberline {3.5}Despliegue del sistema}{23}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Entorno productivo y configuración}{23}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Monitoreo post-implantación}{23}{subsection.3.5.2}%
-\contentsline {section}{\numberline {3.6}Integración con la infraestructura existente}{24}{section.3.6}%
+\contentsline {subsection}{\numberline {3.5.1}Monitoreo post-implantación}{23}{subsection.3.5.1}%
+\contentsline {section}{\numberline {3.6}Integración con la infraestructura existente}{23}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Ensayos y Resultados}{25}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Banco de pruebas}{25}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Diseño del entorno de pruebas}{25}{subsection.4.1.1}%
@@ -45,7 +44,7 @@
 \contentsline {subsection}{\numberline {4.2.2}Diseño del entorno de pruebas}{27}{subsection.4.2.2}%
 \contentsline {section}{\numberline {4.3}Banco de pruebas}{27}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Pruebas de la API REST}{28}{section.4.4}%
-\contentsline {paragraph}{Ejemplo de request y response para creación de dispositivo:}{28}{section*.20}%
+\contentsline {paragraph}{Ejemplo de request y response para creación de dispositivo:}{28}{section*.21}%
 \contentsline {section}{\numberline {4.5}Pruebas de componentes}{29}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Pruebas del frontend}{29}{section.4.6}%
 \contentsline {section}{\numberline {4.7}Prueba final de integración}{29}{section.4.7}%
