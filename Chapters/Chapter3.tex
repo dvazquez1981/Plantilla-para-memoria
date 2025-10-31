@@ -79,7 +79,6 @@ El flujo de datos del sistema describe cómo se captura, procesa y comunica la i
   \item Actualización en backend y UI: el suscriptor MQTT del backend recibe el ack, actualiza la tabla \texttt{respuesta} (campo \texttt{valor}, \texttt{ack\_ts}) y notifica a la UI para que el operador vea el resultado.
 \end{itemize}
 \pagebreak
-
 La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de datos.
 
 \begin{figure}[H]
@@ -204,7 +203,7 @@ En la figura \ref{fig:foto_gabinete} se observa el contador de tránsito instala
 
 \section{Desarrollo del backend}
 
-El backend constituye el núcleo lógico del sistema, encargado de articular la comunicación entre los dispositivos de campo, la base de datos y la interfaz de usuario. Su diseño se basó en principios de modularidad, escalabilidad y seguridad, empleando un conjunto de tecnologías ampliamente utilizadas en entornos de Internet de las Cosas (IoT).
+El backend es el núcleo lógico del sistema, encargado de integrar dispositivos, base de datos e interfaz. Su diseño prioriza la modularidad, escalabilidad y seguridad, con tecnologías comunes en entornos IoT.
 
 
 \subsection{Arquitectura y tecnologías}
@@ -224,7 +223,7 @@ En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de infor
   \label{fig:diagrama_backend}
   \end{figure}
 
-\FloatBarrier
+
 \subsection{Funcionalidades principales}
 El sistema cuenta con varias funcionalidades esenciales que permiten gestionar de manera eficiente los dispositivos, los eventos generados por ellos, los comandos enviados y la seguridad de acceso. Estas funcionalidades se detallan a continuación:
 
@@ -239,13 +238,14 @@ El sistema cuenta con varias funcionalidades esenciales que permiten gestionar d
 
 \subsection{Organización en controladores}
 
-La lógica de negocio del backend se organiza en controladores, cada uno asociado a un recurso del sistema, lo que asegura una clara separación de responsabilidades, facilita el mantenimiento y permite la escalabilidad de la aplicación. Entre los controladores principales se encuentran los siguientes:
+La lógica de negocio del backend se organiza en controladores, cada uno asociado a un recurso del sistema, lo que favorece la separación de responsabilidades, el mantenimiento y la escalabilidad. Los principales controladores son:
 
 \begin{itemize}
   \item DispositivoController: gestiona las operaciones CRUD sobre los dispositivos de campo, además de registrar los eventos recibidos vía MQTT y asociarlos a un dispositivo específico.
   \item MedicionController: encapsula la lógica de ingesta de eventos de tránsito, validación de payloads y persistencia en la base de datos.
-  \item ComandoController: administra la emisión y seguimiento de comandos remotos, generando un \texttt{cmd\_id} único y actualizando el estado conforme se reciben los \texttt{ack}.
-  \item RespuestaController: centraliza la recepción de estados y telemetría (batería, conectividad), que garantiza que la base de datos refleje la situación en tiempo real.
+  \item ComandoController: administra la emisión y seguimiento de comandos remotos, generando un \texttt{cmd\_id} único.
+  
+  \item RespuestaController: centraliza la recepción de estados y telemetría (batería, conectividad), en respuesta al comando que se envía, esto garantiza que la base de datos refleje la situación en tiempo real.
   \item UserController: implementa el ciclo de vida de usuarios y la autenticación mediante JWT\cite{jwtRFC7519}, así como la validación de permisos en cada endpoint.
 \end{itemize}
 
@@ -254,7 +254,7 @@ En la figura \ref{fig:diagrama_controladores} se observa el diagrama con la disp
 \begin{figure}[H]
  
   \centering
-  \includegraphics[scale=0.11]{./Figures/diagDispoControlladores.png}
+  \includegraphics[scale=0.118]{./Figures/diagDispoControlladores.png}
   \captionof{figure}{Diagrama con la disposición de los controladores y flujo de dependencias.}
   \label{fig:diagrama_controladores}
   \end{figure}
@@ -269,7 +269,7 @@ A continuación, se presenta la tabla general de los endpoints y controladores m
 \begin{table}[H]
 	\centering
 	\caption[Endpoints REST principales]{Endpoints REST principales expuestos por el backend, junto con el controlador que implementa su lógica.}
-	\begin{tabular}{l l p{3.5cm}}    
+	\begin{tabular}{l l p{3.4cm}}    
 		\toprule
 		\textbf{Endpoint} & \textbf{Controlador} & \textbf{Descripción} \\
 		\midrule
@@ -324,18 +324,16 @@ El frontend integra las siguientes funciones clave:
     \item Detalle de dispositivo: despliega datos específicos de un contador y últimas tramas recibidas.
     \item Panel de mediciones: permite visualizar los eventos de tránsito procesados, con actualización dinámica cuando el dispositivo transmite nuevas tramas.
     \item Historial de eventos: consulta de registros almacenados en la base de datos, filtrados por dispositivo y rango temporal.
-    \item Envío de comandos: panel que permite emitir órdenes remotas hacia el nodo de campo, como reset del contador, modificación u obtención de parámetros. El sistema verifica el acuse de recibo de cada orden y muestra al usuario el resultado correspondiente (ok, failed, timeout o value).
-    
+    \item Envío de comandos: panel que permite emitir órdenes remotas hacia el nodo de campo, como reset del contador, modificación u obtención de parámetros. El sistema verifica el acuse de recibo de cada orden y muestra al usuario el resultado correspondiente (ok, failed, timeout o value).   
 \end{itemize}
-
-En la figura \ref{fig:diagrama_controladores} se observa la estructura de los componentes por pantalla.
-
+\pagebreak
+En la figura \ref{fig:diagrama_front_pantallas} se observa la estructura de los componentes por pantalla.
 \begin{figure}[H]
  
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/diagEstructuraComponentesPantallasFrontend.png}
+  \includegraphics[width=0.8\linewidth]{./Figures/diagEstructuraComponentesPantallasFrontend.png}
   \captionof{figure}{Diagrama de estructura de los componentes por pantalla.}
-  \label{fig:diagrama_controladores}
+  \label{fig:diagrama_front_pantallas}
 \end{figure}
 
 
@@ -346,6 +344,7 @@ Todas las operaciones del frontend se apoyan en los endpoints REST definidos en 
 Cada petición incluye en sus cabeceras el token JWT obtenido en el login, lo que garantiza que solo usuarios autorizados puedan acceder a datos sensibles o emitir comandos.  
 El backend devuelve respuestas en formato JSON, que son interpretadas y representadas en la interfaz en tiempo real, lo que asegura consistencia entre la vista del operador y el estado real de los dispositivos.
 
+\pagebreak
 En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de comunicación con el backend.
 
 \begin{figure}[H]
@@ -364,9 +363,9 @@ En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de c
 El despliegue del sistema comprende la puesta en marcha coordinada de los distintos servicios que componen la arquitectura: el broker MQTT, la API REST, la base de datos relacional y la interfaz web.  
 El objetivo es trasladar el prototipo desde un entorno de desarrollo hacia un entorno productivo, que asegura escalabilidad, confiabilidad y capacidad de monitoreo post-implantación.  
 
-\subsubsection*{3.5.1. Entorno productivo e integración continua}
+\subsection{Entorno productivo e integración continua}
 
-El entorno productivo se implementa bajo un esquema de \textit{cloud on-premise}, es decir, una nube privada alojada en los servidores locales de la organización. 
+El entorno productivo se implementa bajo un esquema de \textit{cloud on-premise}, es decir, una nube privada alojada en los servidores locales de Vialidad Nacional. 
 Este enfoque combina las ventajas de la virtualización y la gestión centralizada propias del entorno \textit{cloud}, con el control, la seguridad y la independencia de un despliegue local.
 
 Para la orquestación se emplea Docker Compose, que permite instanciar todos los servicios (broker MQTT, API REST, base de datos y aplicación web) en contenedores aislados pero comunicados entre sí. 

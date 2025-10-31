@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  30 OCT 2025 23:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2025.4.30)  31 OCT 2025 10:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -859,11 +859,7 @@ LaTeX Warning: Unused global option(s):
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
  (./Chapters/Chapter1.aux)
-(./Chapters/Chapter2.aux) (./Chapters/Chapter3.aux
-
-LaTeX Warning: Label `fig:diagrama_controladores' multiply defined.
-
-) (./Chapters/Chapter4.aux
+(./Chapters/Chapter2.aux) (./Chapters/Chapter3.aux) (./Chapters/Chapter4.aux
 
 LaTeX Warning: Label `sec:banco-pruebas' multiply defined.
 
@@ -1391,79 +1387,79 @@ LaTeX Info: Redefining \% on input line 82.
 <./Figures/diagSecuencia.png, id=453, 2766.335pt x 2176.13pt>
 File: ./Figures/diagSecuencia.png Graphic file (type png)
 <use ./Figures/diagSecuencia.png>
-Package pdftex.def Info: ./Figures/diagSecuencia.png  used on input line 87.
+Package pdftex.def Info: ./Figures/diagSecuencia.png  used on input line 86.
 (pdftex.def)             Requested size: 448.2707pt x 352.60419pt.
 
-Overfull \hbox (58.46802pt too wide) in paragraph at lines 87--88
+Overfull \hbox (58.46802pt too wide) in paragraph at lines 86--87
  [][] 
  []
 
 
-Overfull \hbox (2.53424pt too wide) in paragraph at lines 102--103
+Overfull \hbox (2.53424pt too wide) in paragraph at lines 101--102
 []\T1/ppl/m/n/10.95 ESP32-C3: mi-cro-con-tro-la-dor que eje-cu-ta el firm-wa-re
  de-sa-rro-lla-do so-bre ESP-
  []
 
-LaTeX Info: Redefining \. on input line 172.
-LaTeX Info: Redefining \% on input line 172.
+LaTeX Info: Redefining \. on input line 171.
+LaTeX Info: Redefining \% on input line 171.
 [14 <./Figures/diagSecuencia.png>]
 <./Figures/diagConexion.png, id=460, 1851.91875pt x 1668.2325pt>
 File: ./Figures/diagConexion.png Graphic file (type png)
 <use ./Figures/diagConexion.png>
-Package pdftex.def Info: ./Figures/diagConexion.png  used on input line 181.
+Package pdftex.def Info: ./Figures/diagConexion.png  used on input line 180.
 (pdftex.def)             Requested size: 311.84334pt x 280.89752pt.
-LaTeX Info: Redefining \. on input line 190.
-LaTeX Info: Redefining \% on input line 190.
+LaTeX Info: Redefining \. on input line 189.
+LaTeX Info: Redefining \% on input line 189.
  [15 <./Figures/diagConexion.png>]
 <./Figures/fotoGabinete.jpeg, id=467, 1046.91125pt x 959.585pt>
 File: ./Figures/fotoGabinete.jpeg Graphic file (type jpg)
 <use ./Figures/fotoGabinete.jpeg>
-Package pdftex.def Info: ./Figures/fotoGabinete.jpeg  used on input line 195.
+Package pdftex.def Info: ./Figures/fotoGabinete.jpeg  used on input line 194.
 (pdftex.def)             Requested size: 389.80269pt x 357.28113pt.
 
 
-LaTeX Warning: Citation 'sequelize' on page 16 undefined on input line 212.
+LaTeX Warning: Citation 'sequelize' on page 16 undefined on input line 211.
 
 
 LaTeX Warning: Citation 'fowler2002patterns' on page 16 undefined on input line
- 212.
+ 211.
 
-LaTeX Info: Redefining \. on input line 213.
-LaTeX Info: Redefining \% on input line 213.
+LaTeX Info: Redefining \. on input line 212.
+LaTeX Info: Redefining \% on input line 212.
 [16 <./Figures/fotoGabinete.jpeg>]
 
-LaTeX Warning: Citation 'docker_compose' on page 17 undefined on input line 214
+LaTeX Warning: Citation 'docker_compose' on page 17 undefined on input line 213
 .
 
 
-LaTeX Warning: Citation 'mqttSpec' on page 17 undefined on input line 214.
+LaTeX Warning: Citation 'mqttSpec' on page 17 undefined on input line 213.
 
 
-LaTeX Warning: Citation 'winston' on page 17 undefined on input line 214.
+LaTeX Warning: Citation 'winston' on page 17 undefined on input line 213.
 
 
-LaTeX Warning: Citation 'morgan' on page 17 undefined on input line 214.
+LaTeX Warning: Citation 'morgan' on page 17 undefined on input line 213.
 
 <./Figures/diagFlujoConexionBackend.png, id=476, 2266.4675pt x 2246.3925pt>
 File: ./Figures/diagFlujoConexionBackend.png Graphic file (type png)
 <use ./Figures/diagFlujoConexionBackend.png>
 Package pdftex.def Info: ./Figures/diagFlujoConexionBackend.png  used on input 
-line 222.
+line 221.
 (pdftex.def)             Requested size: 350.82004pt x 347.70737pt.
-LaTeX Info: Redefining \. on input line 234.
-LaTeX Info: Redefining \% on input line 234.
+LaTeX Info: Redefining \. on input line 233.
+LaTeX Info: Redefining \% on input line 233.
 [17 <./Figures/diagFlujoConexionBackend.png>]
 
 LaTeX Warning: Citation 'jwtRFC7519' on page 18 undefined on input line 249.
 
-<./Figures/diagDispoControlladores.png, id=483, 3596.43625pt x 1306.8825pt>
+<./Figures/diagDispoControlladores.png, id=483, 3379.62625pt x 1266.7325pt>
 File: ./Figures/diagDispoControlladores.png Graphic file (type png)
 <use ./Figures/diagDispoControlladores.png>
 Package pdftex.def Info: ./Figures/diagDispoControlladores.png  used on input l
 ine 257.
-(pdftex.def)             Requested size: 395.6092pt x 143.75752pt.
+(pdftex.def)             Requested size: 398.78214pt x 149.46927pt.
 
-Overfull \hbox (5.80652pt too wide) in paragraph at lines 257--258
+Overfull \hbox (8.97945pt too wide) in paragraph at lines 257--258
  [][] 
  []
 
@@ -1480,17 +1476,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 276--277
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 277--278
-[]|\T1/ppl/m/n/10.95 Devuelve in-for-
+Underfull \hbox (badness 3407) in paragraph at lines 277--278
+[]|\T1/ppl/m/n/10.95 Devuelve in-for-ma-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 277--278
-\T1/ppl/m/n/10.95 ma-ción de un
- []
-
-
-Underfull \hbox (badness 3000) in paragraph at lines 278--279
+Underfull \hbox (badness 1622) in paragraph at lines 278--279
 []|\T1/ppl/m/n/10.95 Alta de un nue-vo
  []
 
@@ -1505,23 +1496,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 279--280
  []
 
 
-Underfull \hbox (badness 3780) in paragraph at lines 280--281
+Underfull \hbox (badness 1546) in paragraph at lines 280--281
 []|\T1/ppl/m/n/10.95 Eliminación de un
  []
 
 
-Underfull \hbox (badness 6094) in paragraph at lines 283--284
+Underfull \hbox (badness 1067) in paragraph at lines 283--284
 []|\T1/ppl/m/n/10.95 Consultar me-di-cio-
  []
 
 
-Underfull \hbox (badness 6094) in paragraph at lines 284--285
+Underfull \hbox (badness 1067) in paragraph at lines 284--285
 []|\T1/ppl/m/n/10.95 Consultar me-di-cio-
- []
-
-
-Underfull \hbox (badness 2173) in paragraph at lines 286--287
-[]|\T1/ppl/m/n/10.95 Crear un co-man-do
  []
 
 
@@ -1540,48 +1526,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 291--292
  []
 
 
-Underfull \hbox (badness 4556) in paragraph at lines 293--294
+Underfull \hbox (badness 1983) in paragraph at lines 293--294
 []|\T1/ppl/m/n/10.95 Listar usua-rios re-
  []
 
 
-Overfull \hbox (11.72072pt too wide) in paragraph at lines 272--299
+Overfull \hbox (8.87526pt too wide) in paragraph at lines 272--299
  [][] 
  []
 
 LaTeX Info: Redefining \. on input line 305.
 LaTeX Info: Redefining \% on input line 305.
 [19]
-<./Figures/diagEstructuraComponentesPantallasFrontend.png, id=495, 2371.86125pt
+LaTeX Info: Redefining \. on input line 330.
+LaTeX Info: Redefining \% on input line 330.
+ [20]
+<./Figures/diagEstructuraComponentesPantallasFrontend.png, id=499, 2371.86125pt
  x 1609.01125pt>
 File: ./Figures/diagEstructuraComponentesPantallasFrontend.png Graphic file (ty
 pe png)
 <use ./Figures/diagEstructuraComponentesPantallasFrontend.png>
 Package pdftex.def Info: ./Figures/diagEstructuraComponentesPantallasFrontend.p
-ng  used on input line 336.
-(pdftex.def)             Requested size: 389.80269pt x 264.4197pt.
-LaTeX Info: Redefining \. on input line 340.
-LaTeX Info: Redefining \% on input line 340.
- [20]
-<./Figures/diagFlujoRestApi.png, id=502, 3341.48375pt x 2904.8525pt>
+ng  used on input line 334.
+(pdftex.def)             Requested size: 311.84334pt x 211.53575pt.
+LaTeX Info: Redefining \. on input line 348.
+LaTeX Info: Redefining \% on input line 348.
+ [21 <./Figures/diagEstructuraComponentesPantallasFrontend.png>]
+<./Figures/diagFlujoRestApi.png, id=507, 3341.48375pt x 2904.8525pt>
 File: ./Figures/diagFlujoRestApi.png Graphic file (type png)
 <use ./Figures/diagFlujoRestApi.png>
-Package pdftex.def Info: ./Figures/diagFlujoRestApi.png  used on input line 354
+Package pdftex.def Info: ./Figures/diagFlujoRestApi.png  used on input line 353
 .
 (pdftex.def)             Requested size: 428.78532pt x 372.72408pt.
 
-Overfull \hbox (38.98264pt too wide) in paragraph at lines 354--355
+Overfull \hbox (38.98264pt too wide) in paragraph at lines 353--354
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 358.
-LaTeX Info: Redefining \% on input line 358.
-[21 <./Figures/diagEstructuraComponentesPantallasFrontend.png>]
-LaTeX Info: Redefining \. on input line 360.
-LaTeX Info: Redefining \% on input line 360.
- [22 <./Figures/diagFlujoRestApi.png>]
-LaTeX Info: Redefining \. on input line 398.
-LaTeX Info: Redefining \% on input line 398.
+LaTeX Info: Redefining \. on input line 359.
+LaTeX Info: Redefining \% on input line 359.
+[22 <./Figures/diagFlujoRestApi.png>]
+LaTeX Info: Redefining \. on input line 397.
+LaTeX Info: Redefining \% on input line 397.
  [23
 
 ])
@@ -1644,14 +1630,8 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-
-Package rerunfilecheck Warning: File `memorianueva.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `memorianueva.out':
-(rerunfilecheck)             Before: EE7D6717A86F4039CCDD9D6CA566CA67;9178
-(rerunfilecheck)             After:  24C770530B234ADD1D6DFDF36DC6E1CA;8934.
+Package rerunfilecheck Info: File `memorianueva.out' has not changed.
+(rerunfilecheck)             Checksum: E731C26610BCCCA1EE2DB8679B5021B7;9216.
 
 Package biblatex Warning: Please (re)run BibTeX on the file(s):
 (biblatex)                memorianueva
@@ -1663,9 +1643,9 @@ Package logreq Info: Writing requests to 'memorianueva.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  31185 strings out of 477875
- 671644 string characters out of 5836408
+ 671663 string characters out of 5836408
  1871330 words of memory out of 5000000
- 50778 multiletter control sequences out of 15000+600000
+ 50779 multiletter control sequences out of 15000+600000
  571277 words of font info for 101 fonts, out of 8000000 for 9000
  108 hyphenation exceptions out of 8191
  96i,21n,93p,1969b,2798s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1689,10 +1669,6 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
 
-
-pdfTeX warning (dest): name{subsection.3.5.2} has been referenced but does not 
-exist, replaced by a fixed one
-
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
 texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
@@ -1701,10 +1677,10 @@ hvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on memorianueva.pdf (41 pages, 2457045 bytes).
+Output written on memorianueva.pdf (41 pages, 2454015 bytes).
 PDF statistics:
- 618 PDF objects out of 1000 (max. 8388607)
- 525 compressed objects within 6 object streams
- 126 named destinations out of 1000 (max. 500000)
+ 617 PDF objects out of 1000 (max. 8388607)
+ 524 compressed objects within 6 object streams
+ 125 named destinations out of 1000 (max. 500000)
  471 words of extra memory for PDF output out of 10000 (max. 10000000)
 
