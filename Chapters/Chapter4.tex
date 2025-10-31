@@ -107,7 +107,7 @@ Todas las operaciones CRUD se ejecutaron correctamente y devolvieron respuestas 
 
 \begin{itemize}
     \item Autenticación: las solicitudes sin token o con credenciales inválidas fueron rechazadas con los códigos 401 y 403.  
-    \item Integración MQTT: los comandos se publicaron en los tópicos \\ \texttt{dispositivo/\{id\}/comando}, y las respuestas se recibieron en \\ \texttt{dispositivo/\{id\}/respuesta}, actualizando los estados en la base de datos.
+    \item Integración MQTT: los comandos se publicaron en los tópicos \\ \texttt{dispositivo/\{id\}/comando}, y las respuestas se recibieron en \\ \texttt{dispositivo/\{id\}/respuesta}, que actualizó los estados en la base de datos.
     \item Persistencia: no se registraron pérdidas ni duplicaciones de datos en la base de datos MySQL.
     \item Rendimiento: el tiempo de respuesta promedio fue de 210 ms en entorno local y de 550 ms bajo simulación GPRS, con un máximo de 1,2 s en carga alta.
     \item Manejo de errores: los mensajes de error fueron claros y usaron códigos estandarizados (400, 404, 423, 500).
@@ -248,10 +248,10 @@ El ensayo buscó garantizar que el sistema, en su conjunto, cumpliera con los re
 Para la validación end-to-end se configuró un entorno de ensayo en el que participaron todos los subsistemas desplegados simultáneamente:
 
 \begin{itemize}
-    \item \textbf{Nodo de campo:} compuesto por el microcontrolador ESP32-C3, el módulo GPRS SIM800L y la interfaz RS-232 hacia el contador de tránsito DTEC, encargado de generar detecciones simuladas.
-    \item \textbf{Broker MQTT:} instancia del servidor Eclipse Mosquitto, actuando como intermediario para la mensajería entre los nodos de campo y el backend.
-    \item \textbf{Backend:} implementado en Node.js/Express, con base de datos MySQL y ORM Sequelize, encargado de procesar los eventos, registrar los datos y gestionar los comandos remotos.
-    \item \textbf{Interfaz web (frontend):} desarrollada con Ionic y Angular, utilizada para visualizar en tiempo real las detecciones, el estado de los dispositivos y emitir comandos de control.
+    \item Nodo de campo: compuesto por el microcontrolador ESP32-C3, el módulo GPRS SIM800L y la interfaz RS-232 hacia el contador de tránsito DTEC, encargado de generar detecciones simuladas.
+    \item Broker MQTT: instancia del servidor Eclipse Mosquitto, actuando como intermediario para la mensajería entre los nodos de campo y el backend.
+    \item Backend: implementado en Node.js/Express, con base de datos MySQL y ORM Sequelize, encargado de procesar los eventos, registrar los datos y gestionar los comandos remotos.
+    \item Interfaz web (frontend): desarrollada con Ionic y Angular, utilizada para visualizar en tiempo real las detecciones, el estado de los dispositivos y emitir comandos de control.
 \end{itemize}
 
 El flujo de integración se estructuró de la siguiente manera:
