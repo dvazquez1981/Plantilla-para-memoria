@@ -42,11 +42,19 @@
 \contentsline {subsection}{\numberline {4.1.3}Resultados y observaciones}{26}{subsection.4.1.3}%
 \contentsline {section}{\numberline {4.2}Pruebas de la API REST}{26}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Objetivos y alcance}{27}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Diseño del entorno de pruebas}{27}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Banco de pruebas}{27}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Pruebas de la API REST}{28}{section.4.4}%
-\contentsline {paragraph}{Ejemplo de request y response para creación de dispositivo:}{28}{section*.20}%
-\contentsline {section}{\numberline {4.5}Pruebas de componentes}{29}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Pruebas del frontend}{29}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Prueba final de integración}{29}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Comparación con otras soluciones}{29}{section.4.8}%
+\contentsline {subsection}{\numberline {4.2.2}Metodología de prueba}{27}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Resultados obtenidos}{27}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Conclusiones}{29}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Pruebas de componentes}{29}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Enfoque general}{29}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Resultados por componente}{29}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Conclusiones}{30}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Pruebas del frontend}{30}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Objetivos}{30}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Metodología}{30}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Resultados y observaciones}{31}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Prueba final de integración}{31}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Metodología de la prueba}{31}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Resultados obtenidos}{32}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Conclusiones de la integración}{33}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}Comparación con otras soluciones}{33}{section.4.6}%

@@ -1,24 +1,24 @@
+\chapter{Ensayos y Resultados}
 
-\chapter{Ensayos y Resultados} % Main chapter title
-\label{sec:ensayos-resultados}
 En este capítulo se presentan en detalle los ensayos realizados sobre el sistema desarrollado, con el propósito de validar su funcionamiento en condiciones representativas de uso real. 
 Los ensayos se organizaron en diferentes niveles: banco de pruebas en laboratorio, validación de la API REST, pruebas unitarias e integración de componentes, 
 pruebas del frontend, prueba final de integración end-to-end y una comparación con soluciones comerciales y académicas.  
 
 
 \section{Banco de pruebas}
-\label{sec:banco-pruebas}
 
-El banco de pruebas se diseñó con el propósito de reproducir las condiciones reales de operación del sistema de detección de tránsito, garantizando la validez de los resultados obtenidos en un entorno controlado. Este entorno permitió evaluar la robustez del firmware, la estabilidad de las comunicaciones y la capacidad del backend para procesar eventos en diferentes escenarios de conectividad.
+El banco de pruebas se diseñó con el propósito de reproducir las condiciones reales de operación del sistema de detección de tránsito. 
+De este modo, se garantizó la validez de los resultados dentro de un entorno controlado. 
+El montaje permitió evaluar la robustez del firmware, la estabilidad de las comunicaciones y la capacidad del backend para procesar eventos en distintos escenarios de conectividad.
 
-El objetivo principal fue analizar el comportamiento integral del sistema ante situaciones representativas de campo, incluyendo la pérdida temporal del enlace GPRS, el almacenamiento local de eventos y la recuperación automática una vez restablecida la conexión.
+El objetivo principal consistió en analizar el comportamiento integral del sistema ante situaciones representativas de campo, que incluyeron la pérdida temporal del enlace GPRS, el almacenamiento local de eventos y la recuperación automática una vez restablecida la conexión.
 
 \subsection{Diseño del entorno de pruebas}
 
 El banco se compuso de los siguientes elementos principales:
 
 \begin{itemize}
-    \item Contador de tránsito DTEC: configurado para generar tramas de detección simuladas, con distintos intervalos de paso vehicular.
+    \item Contador de tránsito DTEC: configurado para generar tramas de detección simuladas con distintos intervalos de paso vehicular.
     \item Nodo de campo (ESP32-C3 + SIM800L): encargado de recibir las tramas RS-232, almacenarlas temporalmente y transmitirlas mediante MQTT al servidor central.
     \item Servidor de backend: implementado en Node.js/Express, con base de datos MySQL y broker Eclipse Mosquitto, desplegado mediante Docker Compose.
     \item Interfaz web de monitoreo: utilizada para visualizar en tiempo real los eventos recibidos y el estado de los dispositivos.
@@ -28,22 +28,25 @@ El montaje permitió reproducir tres escenarios de prueba diferenciados:
 
 \begin{enumerate}
     \item Conectividad estable: transmisión continua sin pérdidas de enlace.
-    \item Conectividad intermitente: simulación de cortes GPRS aleatorios, verificando la persistencia de los datos en la cola interna del nodo.
-    \item Modo desconectado prolongado: interrupción total de red durante intervalos extensos, evaluando la capacidad del firmware para conservar eventos en memoria y transmitirlos una vez reconectado.
+    \item Conectividad intermitente: cortes GPRS aleatorios con verificación de la persistencia de los datos en la cola interna del nodo.
+    \item Modo desconectado prolongado: interrupción total de red durante intervalos extensos, lo que permitió evaluar la capacidad del firmware para conservar eventos en memoria y transmitirlos al restablecer la conexión.
 \end{enumerate}
 
 \subsection{Metodología experimental}
 
-Las pruebas se realizaron mediante la generación de tramas seriales controladas, representando detecciones vehiculares. Se implementó un módulo de simulación que permitió enviar secuencias de tramas RS-232 al ESP32-C3, registrando tanto los tiempos de procesamiento como la cantidad de eventos almacenados en la cola FIFO.
+Las pruebas se realizaron mediante la generación de tramas seriales controladas que representaban detecciones vehiculares. 
+Se empleó un módulo de simulación que envió secuencias de tramas RS-232 al ESP32-C3. 
+Durante cada ensayo se registraron los tiempos de procesamiento y la cantidad de eventos almacenados en la cola FIFO.
 
-Para la simulación de pérdida de conectividad, se forzó el corte del enlace GPRS  al módulo SIM800L, y se verificó que los mensajes no enviados quedaran encolados localmente. Una vez restablecida la conexión, los eventos se publicaron en el tópico MQTT correspondiente en: 
+Para simular la pérdida de conectividad, se interrumpió manualmente el enlace GPRS del módulo SIM800L. 
+Se verificó que los mensajes no enviados quedaran en cola local y que, una vez restablecida la conexión, los eventos se publicaran correctamente en los tópicos MQTT correspondientes:
 
 \begin{itemize}
   \item \texttt{dispositivo/\{id\}/medicion}
   \item \texttt{dispositivo/\{id\}/respuesta}
 \end{itemize}
 
-El backend, por su parte, registró la llegada de los eventos en la base de datos MySQL, verificando integridad, timestamps y ausencia de duplicaciones.
+El backend registró la llegada de los eventos en la base de datos MySQL y comprobó su integridad, marcas de tiempo y ausencia de duplicaciones.
 
 
 \subsection{Resultados y observaciones}
@@ -51,252 +54,279 @@ El backend, por su parte, registró la llegada de los eventos en la base de dato
 Los resultados experimentales demostraron que el sistema fue capaz de:
 
 \begin{itemize}
-    \item Mantener la integridad de los datos bajo escenarios de conectividad inestable.
-    \item Garantizar la entrega de eventos mediante la cola FIFO implementada en el firmware.
-    \item Ejecutar comandos remotos y recibir respuestas de manera confiable.
-    \item Reanudar correctamente la transmisión tras cortes de red sin pérdida de información.
+    \item Mantener la integridad de los datos en escenarios de conectividad inestable.
+    \item Asegurar la entrega de eventos por medio de la cola FIFO implementada en el firmware.
+    \item Ejecutar comandos remotos y recibir respuestas de forma confiable.
+    \item Reanudar la transmisión después de cortes de red sin pérdida de información.
 \end{itemize}
 
-En promedio, los tiempos de publicación por evento se mantuvieron dentro de rangos aceptables (entre 300 y 600 ms) en escenarios con conexión estable, y con demoras proporcionales en los períodos de reconexión.
+Los tiempos promedio de publicación por evento se mantuvieron entre 300 y 600 ms en escenarios con conexión estable, con demoras proporcionales durante los períodos de reconexión.
 
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.9\textwidth]{banco_pruebas.png}
-%    \caption[Diagrama del proceso de pruebas]{Diagrama del proceso de pruebas utilizado para la validación del flujo de eventos y comandos en el sistema.}
-%    \label{fig:banco-pruebas}
-%\end{figure}
+En conclusión, el banco de pruebas permitió validar la arquitectura propuesta. 
+Los resultados confirmaron un comportamiento confiable frente a condiciones reales de operación y demostraron la efectividad de los mecanismos de encolado y retransmisión.
 
-En conclusión, el banco de pruebas permitió validar la arquitectura propuesta, que permite confirmar un comportamiento confiable frente a condiciones reales de operación y que demuestra la efectividad de los mecanismos de encolado y retransmisión implementados.
 
 \section{Pruebas de la API REST}
-\label{sec:pruebas-api}
 
-En esta sección se detallan las pruebas realizadas sobre la API REST que se implemento en el backend del sistema. El propósito de estas pruebas fue validar la correcta interacción entre los distintos componentes (backend, base de datos y broker MQTT) y comprobar la integridad, seguridad y rendimiento de las operaciones ofrecidas por los endpoints definidos.  
-
-
-
+Esta sección presenta las pruebas realizadas sobre la API REST implementada en el backend del sistema. 
+El propósito fue validar la interacción entre los componentes principales (backend, base de datos y broker MQTT) y comprobar la integridad, la seguridad y el rendimiento de las operaciones ofrecidas por los endpoints.
 
 \subsection{Objetivos y alcance}
 
-\subsection{Diseño del entorno de pruebas}
-
-El banco se compuso de los siguientes elementos principales:
+Los objetivos específicos que guiaron la planificación de las pruebas fueron los siguientes:
 
 \begin{itemize}
-    \item Contador de tránsito DTEC: configurado para generar tramas de detección simuladas, con distintos intervalos de paso vehicular.
-    \item Nodo de campo (ESP32-C3 + SIM800L): encargado de recibir las tramas RS-232, almacenarlas temporalmente y transmitirlas mediante MQTT al servidor central.
-    \item Servidor de backend: implementado en Node.js/Express, con base de datos MySQL y broker Eclipse Mosquitto, desplegado mediante Docker Compose.
-    \item Interfaz web de monitoreo: utilizada para visualizar en tiempo real los eventos recibidos y el estado de los dispositivos.
+    \item Verificar la implementación correcta de los endpoints asociados a dispositivos, mediciones, comandos, respuestas y usuarios.
+    \item Confirmar la persistencia y consistencia de los datos en la base de datos MySQL.
+    \item Validar el esquema de autenticación y autorización mediante tokens JWT.
+    \item Evaluar la integración con el broker MQTT para la publicación y recepción de mensajes.
+    \item Medir el tiempo de respuesta y la estabilidad del servicio en diferentes condiciones de red y carga.
+    \item Comprobar el manejo de errores y la coherencia de las respuestas ante solicitudes inválidas.
 \end{itemize}
 
+El alcance incluyó operaciones sincrónicas (consultas, altas, modificaciones y eliminaciones) y asincrónicas (envío y recepción de comandos MQTT) con el fin de cubrir todos los flujos funcionales.
 
-El montaje permitió reproducir tres escenarios de prueba diferenciados:
+\subsection{Metodología de prueba}
 
-\begin{enumerate}
-    \item Conectividad estable: transmisión continua sin pérdidas de enlace.
-    \item Conectividad intermitente: simulación de cortes GPRS aleatorios, verificando la persistencia de los datos en la cola interna del nodo.
-    \item Modo desconectado prolongado: interrupción total de red durante intervalos extensos, evaluando la capacidad del firmware para conservar eventos en memoria y transmitirlos una vez reconectado.
-\end{enumerate}
+El proceso de validación se realizó con la herramienta \textit{Postman} \cite{postman}. 
+Se elaboraron colecciones de solicitudes y scripts de prueba en la pestaña \textit{Tests}, que verificaron los códigos de estado HTTP, la estructura de las respuestas y el contenido de los mensajes.  
 
+El \textit{Collection Runner} \cite{postman_runner} permitió ejecutar los casos de prueba en distintos entornos: desarrollo local, red simulada GPRS e integración con el broker MQTT. 
+Los resultados se exportaron en formato JSON y se analizaron mediante la extensión \textit{Newman} \cite{newman_postman}.  
 
+El middleware \textit{Morgan} registró las solicitudes HTTP, mientras que el sistema de logging \textit{Winston} almacenó eventos críticos del backend, como errores de conexión, tiempos de procesamiento y publicaciones MQTT.  
+La trazabilidad obtenida permitió optimizar parámetros como la concurrencia de conexiones MySQL y la retención de mensajes MQTT.
+
+Para evaluar la tolerancia a fallos, se interrumpieron deliberadamente las conexiones del broker MQTT y del enlace GPRS. 
+Los mensajes en cola se reenviaron al restablecer la red sin generar duplicaciones ni pérdidas.
+
+\subsection{Resultados obtenidos}
+
+Las pruebas confirmaron la estabilidad y solidez de la API REST.  
+Todas las operaciones CRUD se ejecutaron correctamente y devolvieron respuestas en formato JSON con los códigos HTTP apropiados.  
 
 \begin{itemize}
-    \item Diseño de escenarios de prueba: cada caso fue descrito en términos de entradas, condiciones ambientales (conectividad, ruido eléctrico, interrupciones), criterios de éxito y métricas a evaluar.
-    \item \textbf{Instrumentación}: se utilizaron herramientas como \textit{Postman} para la API REST, \textit{Wireshark} para el análisis de tráfico MQTT, \textit{Mosquitto\_sub/pub} para validación manual de tópicos y \textit{Lighthouse} para pruebas de frontend.
-    \item \textbf{Registro}: se configuró el backend con \texttt{Winston} y \texttt{Morgan} para guardar trazas en disco y en consola. Adicionalmente, se recolectaron métricas con scripts Python que midieron tiempos de respuesta y pérdidas de mensajes.
-    \item \textbf{Criterios de aceptación}: se establecieron como condiciones mínimas de validación: 
-    (i) latencia promedio menor a 500 ms en API REST, 
-    (ii) pérdida de eventos inferior al 0.1\% en escenarios de conectividad intermitente,
-    (iii) tiempo de recuperación ante desconexión GPRS menor a 30 segundos.
+    \item Autenticación: las solicitudes sin token o con credenciales inválidas fueron rechazadas con los códigos 401 y 403.  
+    \item Integración MQTT: los comandos se publicaron en los tópicos \\ \texttt{dispositivo/\{id\}/comando}, y las respuestas se recibieron en \\ \texttt{dispositivo/\{id\}/respuesta}, actualizando los estados en la base de datos.
+    \item Persistencia: no se registraron pérdidas ni duplicaciones de datos en la base de datos MySQL.
+    \item Rendimiento: el tiempo de respuesta promedio fue de 210 ms en entorno local y de 550 ms bajo simulación GPRS, con un máximo de 1,2 s en carga alta.
+    \item Manejo de errores: los mensajes de error fueron claros y usaron códigos estandarizados (400, 404, 423, 500).
+    
 \end{itemize}
 
-\section{Banco de pruebas}
-\label{sec:banco-pruebas}
+A continuación, se presenta la tabla de los resultados de pruebas de endpoints REST:
 
-El banco de pruebas se diseñó para simular condiciones reales de operación de los contadores de tránsito, 
-incluyendo conectividad GPRS intermitente y generación de eventos artificiales.  
+\begin{table}[H]
+	\centering
+	\caption[Resultados de pruebas de endpoints REST]{Resultados de las pruebas realizadas sobre los principales endpoints de la API REST mediante Postman.}
+	\begin{tabular}{l l p{3.4cm} p{1cm} p{1cm}}    
+		\toprule
+		\textbf{Endpoint} & \textbf{Tipo} & \textbf{Resultado} & \textbf{Código HTTP} & \textbf{Tiempo medio (ms)} \\
+		\midrule
+		GET /dispositivo & GET & Consulta correcta de todos los dispositivos & 200 & 215 \\
+		GET /dispositivo/\{id\} & GET & Recuperación exitosa de un dispositivo específico & 200 & 225 \\
+		POST /dispositivo & POST & Alta de nuevo dispositivo & 201 & 245 \\
+		GET /medicion/dispositivo/\{id\} & GET & Consulta de mediciones por dispositivo & 200 & 230 \\
+		POST /comando & POST & Publicación de comando en MQTT & 201 & 310 \\
+		GET /comando/\{id\} & GET & Consulta de estado de comando & 200 & 520 \\
+		POST /respuesta & POST & Registro de respuesta & 201 & 245 \\
+		GET /respuesta/\{id\_com\} & GET & Recuperación de respuesta asociada & 200 & 225 \\
+		POST /usuario/login & POST & Autenticación válida (JWT) & 200 & 180 \\
+		GET /usuario & GET & Acceso restringido (JWT) & 403 & 190 \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:resultados_api}
+\end{table}
 
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.8\textwidth]{banco_pruebas.png}
-%    \caption{Esquema del banco de pruebas con contador, ESP32-C3, %módulo SIM800L, broker MQTT y servidor backend.}
-%    \label{fig:banco-pruebas}
-%\end{figure}
+\subsection{Conclusiones}
 
-Los objetivos principales fueron:  
-\begin{itemize}
-    \item Validar la correcta recepción de tramas RS-232 desde el contador.
-    \item Evaluar el desempeño del firmware en el manejo de colas FIFO en memoria.
-    \item Verificar la transmisión y reintento de eventos a través del protocolo MQTT.
-    \item Confirmar la recepción de comandos desde el servidor y la emisión de respuestas de tipo \textit{acknowledge}.
-\end{itemize}
-
-Durante las pruebas se generaron tramas simuladas de detección y se forzaron desconexiones en el enlace GPRS. 
-Se verificó que el firmware almacenaba los eventos en cola y los publicaba correctamente al restablecerse la conexión. 
-También se probaron diferentes niveles de QoS en MQTT para medir la confiabilidad del envío.  
-
-%\begin{table}[H]
-%    \centering
-%    \caption[Resultados de pruebas MQTT]{Resultados obtenidos en %pruebas de MQTT bajo distintos niveles de QoS y condiciones de %conectividad.}
-%    \begin{tabular}{l c c c}
-%    \toprule
-%    \textbf{Escenario} & \textbf{QoS} & \textbf{Latencia media (ms)} %& \textbf{Pérdida de mensajes} \\
-%    \midrule
-%    Conectividad estable & 0 & 120 & 0.5\% \\
-%    Conectividad estable & 1 & 180 & 0.0\% \\
-%    Conectividad intermitente & 0 & 350 & 2.1\% \\
-%    Conectividad intermitente & 1 & 420 & 0.1\% \\
-%    Conectividad intermitente & 2 & 470 & 0.0\% \\
-%    \bottomrule
-%    \end{tabular}
-%    \label{tab:pruebas-mqtt}
-%\end{table}
-
-Los resultados mostraron que el sistema pudo mantener la integridad de los eventos y ejecutar comandos remotos de forma confiable, incluso bajo condiciones adversas.  
-
-\section{Pruebas de la API REST}
-\label{sec:pruebas-api}
-
-Las pruebas de la API REST se centraron en la validación de los endpoints implementados. 
-Se emplearon colecciones de \textit{Postman} que automatizaron las consultas, con aserciones sobre códigos de estado y estructura de respuestas.  
-
-%\begin{figure}[H]
-%    \centering
- %   \includegraphics[width=0.75\textwidth]{postman_tests.png}
- %   \caption{Colección de pruebas en Postman utilizada para validar %los endpoints REST.}
-%    \label{fig:postman}
-%\end{figure}
-
-\paragraph{Ejemplo de request y response para creación de dispositivo:}
-\begin{verbatim}
-POST /devices
-{
-  "nombre": "Nodo Ruta 9",
-  "ubicacion": "Peaje km 255",
-  "tipo": "contador"
-}
-
-Response 201:
-{
-  "message": "Dispositivo creado exitosamente",
-  "id": 5
-}
-\end{verbatim}
-
-Se verificaron:  
-\begin{itemize}
-    \item Operaciones CRUD sobre dispositivos y eventos.
-    \item Autenticación y autorización mediante tokens JWT.
-    \item Integración con el broker MQTT para el envío de comandos y registro de respuestas.
-    \item Manejo de errores ante parámetros inválidos o solicitudes no autorizadas.
-\end{itemize}
-
-%\begin{table}[H]
-%    \centering
-%    \caption[Resultados de API REST]{Resultados promedio de latencia % en API REST durante las pruebas.}
-%    \begin{tabular}{l c c}
-%    \toprule
-%    \textbf{Operación} & \textbf{Latencia media (ms)} & \textbf{Tasa %de error} \\
-%    \midrule
-%    Alta de dispositivo & 180 & 0.0\% \\
-%    Consulta de dispositivos & 150 & 0.0\% \\
-%    Creación de evento & 200 & 0.1\% \\
-%    Consulta de eventos por rango & 230 & 0.0\% \\
-%    Autenticación JWT & 170 & 0.0\% \\
-%    \bottomrule
-%    \end{tabular}
-%    \label{tab:pruebas-api}
-%\end{table}
-
-Los resultados confirmaron que la API respondió en tiempos adecuados, con latencias promedio menores a 200 ms en pruebas locales y 350 ms en escenarios con GPRS.  
+Los ensayos confirmaron que la API REST cumple los criterios de fiabilidad, seguridad y desempeño definidos en el diseño.  
+El uso de colecciones automatizadas permitió repetir las pruebas en distintos entornos y documentar los resultados con precisión.  
 
 \section{Pruebas de componentes}
-\label{sec:pruebas-componentes}
 
-Se realizaron pruebas unitarias e integración sobre cada módulo del sistema:  
+Las pruebas de componentes tuvieron como propósito verificar la integración entre los módulos del sistema (firmware, backend, broker MQTT, base de datos y frontend) y asegurar el correcto comportamiento de manera individual y conjunta.  
+
+A diferencia del banco de pruebas y de la validación de la API REST, esta etapa se centró en la integridad del flujo de datos completo, el manejo de errores y la coherencia operativa ante fallas o sobrecarga.
+
+\subsection{Enfoque general}
+
+El sistema se evaluó bajo un esquema progresivo:
+\begin{enumerate}
+    \item Pruebas unitarias: destinadas a validar la funcionalidad de cada componente de software.
+    \item Pruebas de integración: diseñadas para verificar la comunicación entre módulos y la consistencia de los datos.
+    \item Pruebas de tolerancia a fallos: enfocadas en la recuperación automática ante desconexiones, errores de red o reinicios.
+\end{enumerate}
+
+El entorno completo se desplegó en contenedores Docker independientes, lo que permitió reproducir escenarios de prueba con precisión y medir el impacto de fallas.
+
+\subsection{Resultados por componente}
 
 \begin{itemize}
-    \item \textbf{Firmware}: validación del parsing de tramas RS-232, manejo de colas FIFO y reconexión GPRS.
-    \item \textbf{API REST}: validación de controladores, middlewares y sanitización de datos.
-    \item \textbf{Interfaz web}: verificación de consultas REST, visualización en tiempo real y envío de comandos.
-    \item \textbf{Broker MQTT}: simulación de desconexiones para validar reintentos y niveles de QoS.
-    \item \textbf{Manejo de errores}: pruebas forzadas de pérdida de conectividad y respuestas inválidas.
+    \item Firmware (ESP32-C3): se validó el análisis de tramas RS-232, el almacenamiento temporal en colas FIFO y la publicación confiable de mensajes MQTT.  
+    \item Broker MQTT: se realizaron desconexiones simuladas. El sistema mantuvo la sesión y retransmitió los mensajes pendientes.  
+    \item Backend: se comprobó la correcta gestión de solicitudes REST y la sincronización con el broker MQTT.  
+    \item Frontend: se verificó la comunicación bidireccional con la API REST y la actualización en tiempo real de las mediciones.  
+    \item Manejo de errores: los registros de Winston y Morgan mostraron reconexiones exitosas sin pérdida de información.  
 \end{itemize}
 
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.7\textwidth]{tests_components.png}
-%    \caption{Diagrama del flujo de pruebas de integración de %componentes.}
-%    \label{fig:pruebas-componentes}
-%\end{figure}
+\subsection{Conclusiones}
+
+Las pruebas confirmaron la cohesión del sistema y su capacidad de recuperación ante fallas.  
+El uso de contenedores Docker facilitó la integración y la detección de incompatibilidades.  
+Los resultados validaron la solidez de la arquitectura distribuida y su adecuación a entornos con conectividad limitada.
+
 
 \section{Pruebas del frontend}
 \label{sec:pruebas-frontend}
 
-El frontend fue evaluado en términos de compatibilidad, rendimiento y usabilidad. 
-Se verificó el funcionamiento en navegadores modernos (Chrome, Firefox, Edge) 
-y en dispositivos móviles.  
+Las pruebas del frontend tuvieron como finalidad evaluar el correcto funcionamiento de la interfaz web desarrollada, garantizando su compatibilidad, usabilidad, rendimiento y capacidad de interacción con el backend del sistema.  
 
-Las métricas incluyeron:  
+\subsection{Objetivos}
+
+Los objetivos específicos de esta etapa fueron los siguientes:
 \begin{itemize}
-    \item Tiempo de carga inicial (medido con Lighthouse).
-    \item Latencia en consultas a la API.
-    \item Velocidad de actualización de gráficos en tiempo real.
+    \item Verificar la compatibilidad del frontend con los navegadores más utilizados (Chrome, Firefox) y con dispositivos móviles Android.
+    \item Evaluar el rendimiento general de la aplicación: tiempos de carga, latencia en consultas a la API y velocidad de actualización de los gráficos.
+    \item Analizar la usabilidad de la interfaz mediante pruebas con usuarios:  oportunidades de mejora en la disposición de elementos visuales y en los flujos de interacción.
+    \item Validar la correcta ejecución de comandos y confirmaciones visuales en tiempo real a través de la comunicación con el broker MQTT y la API REST.
+    \item Comprobar el manejo de errores de conexión y autenticación, asi se generen mensajes claros y retroalimentación inmediata al usuario.
 \end{itemize}
 
-%\begin{table}[H]
-%    \centering
-%    \caption[Pruebas de frontend]{Métricas de frontend en distintos navegadores.}
-%    \begin{tabular}{l c c c}
-%    \toprule
-%    \textbf{Navegador} & \textbf{Tiempo de carga (s)} & \textbf{FPS %gráficos} & \textbf{Compatibilidad} \\
-%    \midrule
-%    Chrome & 2.3 & 60 & Completa \\
-%    Firefox & 2.7 & 55 & Completa \\
-%    Edge & 2.5 & 58 & Completa \\
-%    Móvil (Android) & 3.8 & 48 & Parcial (menú) \\
-%    \bottomrule
-%    \end{tabular}
-%    \label{tab:pruebas-frontend}
-%\end{table}
+
+\subsection{Metodología}
+
+Las pruebas se realizaron sobre la versión estable del frontend, desarrollado con los frameworks Ionic y Angular, y desplegado en un entorno controlado junto al backend y el broker MQTT.  
+Se llevaron a cabo ensayos funcionales, de compatibilidad y de rendimiento, que combinó herramientas automáticas y observación directa de la interacción del usuario.
+
+
+\begin{itemize}
+\item Compatibilidad y visualización: se validó la correcta visualización de los componentes en distintas resoluciones y navegadores, utilizando \textit{Chrome DevTools} \cite{chromedevtools} y el modo responsivo de Ionic.  
+El diseño adaptativo permitió mantener la legibilidad de los gráficos y menús tanto en pantallas de escritorio como en dispositivos móviles.  
+Las pruebas demostraron una compatibilidad completa con los navegadores modernos, presentando solo ligeras diferencias en el renderizado de íconos SVG en Firefox.
+
+\item Rendimiento: el análisis de desempeño se realizó con \textit{Lighthouse} \cite{lighthouse} y el monitor de red de los navegadores.  
+El tiempo promedio de carga inicial fue de 2,3 segundos en Chrome y 2,7 segundos en Firefox.  
+En dispositivos móviles Android, el tiempo de carga fue de 3,8 segundos, debido a la menor capacidad de procesamiento.  
+La latencia promedio de las consultas REST se mantuvo por debajo de los 250 milisegundos en red local, que aumento a 600 milisegundos bajo simulación GPRS.  
+
+\item Usabilidad: se realizaron pruebas con un grupo reducido de usuarios familiarizados con sistemas de monitoreo vial, quienes interactuaron con la interfaz durante sesiones controladas.  
+Los resultados indicaron una alta comprensión del flujo de navegación y una percepción positiva de la organización visual.  
+Las  observaciones fueron incorporadas en una versión posterior mediante ajustes de color, iconografía y jerarquía visual.
+
+\item Comunicación y validación funcional: se comprobó que los comandos emitidos desde la interfaz se transmitieran correctamente al backend y se visualizaran sus estados en tiempo real.  
+Del mismo modo, los eventos de tránsito publicados por los dispositivos se reflejaron de forma inmediata en la aplicación, sin inconsistencias ni retrasos notables.  
+Las alertas visuales ante pérdida de conexión, errores de autenticación o respuestas HTTP inválidas funcionaron según lo esperado, mostrando mensajes informativos y acciones de recuperación.
+\end{itemize}
+
+
+\subsection{Resultados y observaciones}
+
+Los resultados globales de las pruebas de frontend se resumen en los siguientes puntos:
+\begin{itemize}
+    \item Compatibilidad completa con navegadores Chrome y Firefox, y compatibilidad  en móviles Android.
+    \item Tiempos de carga promedio inferiores a 3 s en escritorio y 4 s en dispositivos móviles.
+    \item Comunicación estable con la API REST y el broker MQTT, incluso ante reconexiones de red.
+    \item Interfaz intuitiva y valorada positivamente por los usuarios de prueba, con mejoras implementadas en la versión final.
+\end{itemize}
+
+En conjunto, las pruebas permitieron validar la madurez funcional de la interfaz web y su adecuación a las necesidades operativas de los usuarios finales.  
+
+
+
 
 \section{Prueba final de integración}
 \label{sec:prueba-integracion}
 
-La prueba final consistió en validar el flujo completo: desde la detección de un vehículo 
-en el contador hasta la visualización del evento en la interfaz web y la emisión de un comando remoto.  
+La prueba final de integración tuvo como objetivo validar el flujo completo del sistema bajo condiciones de operación equivalentes a las de un entorno real.  
+Esta etapa permitió comprobar la interoperabilidad entre todos los componentes involucrados: el nodo de campo, el firmware embebido, el módulo de comunicación GPRS, el broker MQTT, la API REST, la base de datos y la interfaz web.  
+
+El ensayo buscó garantizar que el sistema, en su conjunto, cumpliera con los requisitos de confiabilidad, sincronización y trazabilidad definidos en las fases de diseño y desarrollo.  
+
+\subsection{Metodología de la prueba}
+
+Para la validación end-to-end se configuró un entorno de ensayo en el que participaron todos los subsistemas desplegados simultáneamente:
+
+\begin{itemize}
+    \item \textbf{Nodo de campo:} compuesto por el microcontrolador ESP32-C3, el módulo GPRS SIM800L y la interfaz RS-232 hacia el contador de tránsito DTEC, encargado de generar detecciones simuladas.
+    \item \textbf{Broker MQTT:} instancia del servidor Eclipse Mosquitto, actuando como intermediario para la mensajería entre los nodos de campo y el backend.
+    \item \textbf{Backend:} implementado en Node.js/Express, con base de datos MySQL y ORM Sequelize, encargado de procesar los eventos, registrar los datos y gestionar los comandos remotos.
+    \item \textbf{Interfaz web (frontend):} desarrollada con Ionic y Angular, utilizada para visualizar en tiempo real las detecciones, el estado de los dispositivos y emitir comandos de control.
+\end{itemize}
+
+El flujo de integración se estructuró de la siguiente manera:
+
+\begin{enumerate}
+    \item El contador de tránsito DTEC generó una trama RS-232 que fue recibida por el nodo ESP32-C3.
+    \item El firmware procesó la trama, generó un evento y lo publicó mediante MQTT en el tópico \texttt{dispositivo/\{id\}/medicion}.
+    \item El backend, suscrito a dicho tópico, validó el mensaje, lo registró en la base de datos y notificó a la interfaz web a través de su API REST.
+    \item El frontend consultó la API y actualizó la vista en tiempo real con la nueva medición.
+    \item Desde la interfaz, se envió un comando de prueba al nodo, el cual fue publicado por el backend en el tópico \texttt{dispositivo/\{id\}/comando}.
+    \item El firmware recibió el comando, ejecutó la acción asociada y respondió mediante un mensaje en el tópico \texttt{dispositivo/\{id\}/respuesta}, que fue procesado nuevamente por el backend y mostrado al usuario.
+\end{enumerate}
+
+\subsection{Resultados obtenidos}
+
+Los resultados obtenidos en la prueba integral confirmaron el correcto funcionamiento de todo el sistema bajo condiciones reales de comunicación y sincronización de datos.  
+
+En particular, se observaron los siguientes aspectos destacados:
+
+\begin{itemize}
+    \item Interoperabilidad completa: todos los componentes del sistema hardware, middleware y software interactuaron sin incompatibilidades ni pérdidas de información.
+    \item Sincronización en tiempo real: la actualización de la interfaz web frente a la recepción de un nuevo evento.
+    
+    \item Confiabilidad del flujo de comandos: las órdenes enviadas desde el frontend fueron recibidas y ejecutadas correctamente por el nodo, con confirmaciones visibles en pantalla.
+    \item Tiempos de ida y vuelta (round-trip): entre 3 y 5 segundos en condiciones normales de red GPRS, y hasta 12 segundos bajo conectividad inestable, sin pérdida de comandos ni duplicación de respuestas.
+    \item Trazabilidad completa: cada evento quedó registrado en la base de datos con su respectivo timestamp e id de dispositivo.
+\end{itemize}
+
 
 %\begin{figure}[H]
 %    \centering
 %    \includegraphics[width=0.75\textwidth]{end_to_end.png}
-%    \caption{Flujo end-to-end desde el nodo de campo hasta la interfaz web.}
+%    \caption[Flujo end-to-end de integración]{Flujo completo desde la detección de tránsito en el nodo hasta la visualización y control remoto desde la interfaz web.}
 %    \label{fig:end-to-end}
 %\end{figure}
 
-Los tiempos de ida y vuelta de un comando (round-trip) estuvieron entre 3 y 5 segundos 
-en condiciones de red estables, aumentando a 12 segundos con conectividad intermitente.  
+\subsection{Conclusiones de la integración}
+
+La prueba end-to-end permitió validar la solidez de la arquitectura propuesta y su adecuación a escenarios reales de operación.  
+El flujo completo, desde la generación de un evento hasta su visualización en la web y el control remoto del nodo, se ejecutó de forma estable, con tiempos de respuesta consistentes y trazabilidad total.  
+
+Estos resultados confirman que la solución es técnicamente viable para su despliegue en entornos de campo, ofreciendo una integración transparente entre hardware embebido, servicios de red y aplicaciones web.  
+Además, la arquitectura modular basada en estándares abiertos garantiza la posibilidad de futuras expansiones y adaptaciones a nuevas tipologías de dispositivos o protocolos de comunicación.
+ 
 
 \section{Comparación con otras soluciones}
-\label{sec:comparacion}
+\label{sec:comparacion} Con el fin de evaluar el desempeño y pertinencia del sistema desarrollado frente a alternativas existentes, se realizó un análisis comparativo entre la solución propuesta y sistemas comerciales y académicos de gestión de dispositivos de campo y monitoreo vehicular.
 
-Finalmente, se realizó una comparación entre la solución desarrollada y otras alternativas 
-comerciales y académicas, considerando criterios como costo, flexibilidad, escalabilidad 
-y adecuación a entornos con conectividad limitada.  
+Se consideraron seis criterios principales: costo de implementación, flexibilidad tecnológica, escalabilidad, comportamiento ante conectividad intermitente, adecuación a entornos locales y disponibilidad de soporte técnico. Esto permitió situar la solución frente a plataformas consolidadas y proyectos académicos similares.
 
-%\begin{table}[H]
-%    \centering
-%    \begin{tabular}{l p{4cm} p{4cm} p{4cm}}
-%    \toprule
-%    \textbf{Criterio} & \textbf{Solución propuesta} & \textbf{Soluciones comerciales} & \textbf{Soluciones académicas} \\
-%    \midrule
-%    Costo de implementación & Bajo (hardware económico + software abierto) & Alto (licencias y servicios administrados) & Medio \\
-%    Flexibilidad & Alta (protocolos estándar, código abierto) & Baja (plataformas propietarias) & Media \\
-%    Escalabilidad & Alta (MQTT + API REST modular) & Alta & Media \\
-%    Operación con conectividad intermitente & Soportada (colas FIFO y reintentos) & Parcial & Poco explorada \\
-%    Adecuación a rutas argentinas & Específicamente adaptada & Genérica & Variable \\
-%    \bottomrule
-%    \end{tabular}
-%    \caption{Comparación de la solución propuesta con alternativas comerciales y académicas.}
-%    \label{tab:comparacion}
-%\end{table}
+Las soluciones comerciales ofrecen plataformas robustas con soporte integral, pero presentan altos costos y baja flexibilidad para integrar hardware heterogéneo o protocolos abiertos. Las propuestas académicas son más experimentales y abiertas tecnológicamente, aunque con limitaciones de madurez, soporte y adaptación a producción.
+
+La solución desarrollada combina bajo costo, independencia tecnológica y arquitectura modular basada en estándares abiertos (MQTT, REST, JSON), permitiendo rápida adaptación a entornos con conectividad variable, como rutas argentinas, sin depender de infraestructura propietaria ni servicios móviles externos.
+A continuación, se presenta la tabla de comparación de la solución propuesta frente a alternativas comerciales y académicas: 
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption[Comparación de la solución propuesta]{Comparación de la solución propuesta frente a alternativas comerciales y académicas.}
+    \begin{tabular}{l p{2.3cm} p{2cm} p{1.2cm}}    
+        \toprule
+        \textbf{Criterio} & \textbf{Propuesta} & \textbf{Comerciales} & \textbf{Académicas} \\
+        \midrule
+        Costo & Bajo (hardware económico + software abierto) & Alto (licencias y servicios) & Medio \\
+        Flexibilidad & Alta (protocolos estándar, modular) & Baja (propietaria) & Media \\
+        Escalabilidad & Alta (MQTT + API REST) & Alta & Media \\
+        Operación con conectividad intermitente & Totalmente soportada\\ (colas FIFO, reintentos) & Parcial & Poco explorada \\
+        Adecuación a rutas argentinas & Adaptada a entornos rurales y semiurbanos & Genérica & Variable \\
+        Soporte y documentación & Media (open source, docs técnicas) & Alta (soporte empresarial) & Baja \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:comparacion}
+\end{table}
+
+En síntesis, la solución desarrollada logra un equilibrio entre robustez, bajo costo y adaptabilidad, posicionándola como alternativa viable para proyectos de monitoreo vial en entornos con infraestructura limitada. Su orientación a estándares abiertos y su independencia de plataformas propietarias aseguran sostenibilidad y facilidad de futuras ampliaciones.
+
+
 
