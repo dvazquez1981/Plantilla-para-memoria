@@ -85,13 +85,13 @@ El alcance incluyó operaciones sincrónicas (consultas, altas, modificaciones y
 
 \subsection{Metodología de prueba}
 
-El proceso de validación se realizó con la herramienta \textit{Postman} \cite{postman}. 
-Se elaboraron colecciones de solicitudes y scripts de prueba en la pestaña \textit{Tests}, que verificaron los códigos de estado HTTP, la estructura de las respuestas y el contenido de los mensajes.  
+El proceso de validación se realizó con la herramienta Postman \cite{postman}. 
+Se elaboraron colecciones de solicitudes y scripts de prueba en la pestaña Tests, que verificaron los códigos de estado HTTP, la estructura de las respuestas y el contenido de los mensajes.  
 
-El \textit{Collection Runner} \cite{postman_runner} permitió ejecutar los casos de prueba en distintos entornos: desarrollo local, red simulada GPRS e integración con el broker MQTT. 
-Los resultados se exportaron en formato JSON y se analizaron mediante la extensión \textit{Newman} \cite{newman_postman}.  
+El Collection Runner \cite{postman_runner} permitió ejecutar los casos de prueba en distintos entornos: desarrollo local, red simulada GPRS e integración con el broker MQTT. 
+Los resultados se exportaron en formato JSON y se analizaron mediante la extensión Newman \cite{newman_postman}.  
 
-El middleware \textit{Morgan} registró las solicitudes HTTP, mientras que el sistema de logging \textit{Winston} almacenó eventos críticos del backend, como errores de conexión, tiempos de procesamiento y publicaciones MQTT.  
+El middleware Morgan registró las solicitudes HTTP, mientras que el sistema de logging Winston almacenó eventos críticos del backend, como errores de conexión, tiempos de procesamiento y publicaciones MQTT.  
 La trazabilidad obtenida permitió optimizar parámetros como la concurrencia de conexiones MySQL y la retención de mensajes MQTT.
 
 Para evaluar la tolerancia a fallos, se interrumpieron deliberadamente las conexiones del broker MQTT y del enlace GPRS. 
@@ -111,7 +111,7 @@ Todas las operaciones CRUD se ejecutaron correctamente y devolvieron respuestas 
     
 \end{itemize}
 
-A continuación, se presenta la tabla de los resultados de pruebas de endpoints REST:
+A continuación, se presenta la tabla de los resultados de pruebas de los endpoints REST\ref{tab:resultados_api}:
 
 \begin{table}[H]
 	\centering
@@ -135,8 +135,6 @@ A continuación, se presenta la tabla de los resultados de pruebas de endpoints 
 	\label{tab:resultados_api}
 \end{table}
 
-
-
 Los ensayos confirmaron que la API REST cumple los criterios de fiabilidad, seguridad y desempeño definidos en el diseño.  
 El uso de colecciones automatizadas permitió repetir las pruebas en distintos entornos y documentar los resultados con precisión.  
 
@@ -159,14 +157,16 @@ El entorno completo se desplegó en contenedores Docker independientes, lo que p
 
 \subsection{Resultados por componente}
 
+Cada módulo del sistema fue evaluado de forma independiente para verificar su funcionamiento, la integridad de los datos y la robustez ante fallos de conexión. Se resumen los principales resultados obtenidos en las pruebas de cada componente:
+
 \begin{itemize}
     \item Firmware (ESP32-C3): se validó el análisis de tramas RS-232, el almacenamiento temporal en colas FIFO y la publicación confiable de mensajes MQTT.  
+    
     \item Broker MQTT: se realizaron desconexiones simuladas. El sistema mantuvo la sesión y retransmitió los mensajes pendientes.  
     \item Backend: se comprobó la correcta gestión de solicitudes REST y la sincronización con el broker MQTT.  
     \item Frontend: se verificó la comunicación bidireccional con la API REST y la actualización en tiempo real de las mediciones.  
     \item Manejo de errores: los registros de Winston y Morgan mostraron reconexiones exitosas sin pérdida de información.  
 \end{itemize}
-
 
 Las pruebas confirmaron la cohesión del sistema y su capacidad de recuperación ante fallas.  
 El uso de contenedores Docker facilitó la integración y la detección de incompatibilidades.  
@@ -193,18 +193,17 @@ Los objetivos específicos de esta etapa fueron los siguientes:
 \subsection{Metodología}
 
 Las pruebas se realizaron sobre la versión estable del frontend, desarrollado con los frameworks Ionic y Angular, y desplegado en un entorno controlado junto al backend y el broker MQTT.  
-Se llevaron a cabo ensayos funcionales, de compatibilidad y de rendimiento, que combinó herramientas automáticas y observación directa de la interacción del usuario.
-
+Se observó la interacción del usuario, a fin de verificar el comportamiento integral del sistema en distintos escenarios:
 
 \begin{itemize}
-\item Compatibilidad y visualización: se validó la correcta visualización de los componentes en distintas resoluciones y navegadores, utilizando \textit{Chrome DevTools} \cite{chromedevtools} y el modo responsivo de Ionic.  
+\item Compatibilidad y visualización: se validó la correcta visualización de los componentes en distintas resoluciones y navegadores, utilizando Chrome DevTools \cite{chromedevtools} y el modo responsivo de Ionic.  
 El diseño adaptativo permitió mantener la legibilidad de los gráficos y menús tanto en pantallas de escritorio como en dispositivos móviles.  
 Las pruebas demostraron una compatibilidad completa con los navegadores modernos, presentando solo ligeras diferencias en el renderizado de íconos SVG en Firefox.
 
-\item Rendimiento: el análisis de desempeño se realizó con \textit{Lighthouse} \cite{lighthouse} y el monitor de red de los navegadores.  
+\item Rendimiento: el análisis de desempeño se realizó con Lighthouse \cite{lighthouse} y el monitor de red de los navegadores.  
 El tiempo promedio de carga inicial fue de 2,3 segundos en Chrome y 2,7 segundos en Firefox.  
 En dispositivos móviles Android, el tiempo de carga fue de 3,8 segundos, debido a la menor capacidad de procesamiento.  
-La latencia promedio de las consultas REST se mantuvo por debajo de los 250 milisegundos en red local, que aumento a 600 milisegundos bajo simulación GPRS.  
+La latencia promedio de las consultas REST se mantuvo por debajo de los 250 milisegundos en red local, que aumentó a 600 milisegundos bajo simulación GPRS.  
 
 \item Usabilidad: se realizaron pruebas con un grupo reducido de usuarios familiarizados con sistemas de monitoreo vial, quienes interactuaron con la interfaz durante sesiones controladas.  
 Los resultados indicaron una alta comprensión del flujo de navegación y una percepción positiva de la organización visual.  
@@ -241,15 +240,7 @@ El ensayo buscó garantizar que el sistema, en su conjunto, cumpliera con los re
 
 \subsection{Metodología de la prueba}
 
-Para la validación end-to-end se configuró un entorno de ensayo en el que participaron todos los subsistemas desplegados simultáneamente:
-
-\begin{itemize}
-    \item Nodo de campo: compuesto por el microcontrolador ESP32-C3, el módulo GPRS SIM800L y la interfaz RS-232 hacia el contador de tránsito DTEC, encargado de generar detecciones simuladas.
-    \item Broker MQTT: instancia del servidor Eclipse Mosquitto, actuando como intermediario para la mensajería entre los nodos de campo y el backend.
-    \item Backend: implementado en Node.js/Express, con base de datos MySQL y ORM Sequelize, encargado de procesar los eventos, registrar los datos y gestionar los comandos remotos.
-    \item Interfaz web (frontend): desarrollada con Ionic y Angular, utilizada para visualizar en tiempo real las detecciones, el estado de los dispositivos y emitir comandos de control.
-\end{itemize}
-
+Para la validación end-to-end se configuró un entorno de ensayo en el que participaron todos los subsistemas desplegados simultáneamente.
 El flujo de integración se estructuró de la siguiente manera:
 
 \begin{enumerate}
@@ -257,7 +248,7 @@ El flujo de integración se estructuró de la siguiente manera:
     \item El firmware procesó la trama, generó un evento y lo publicó mediante MQTT en el tópico \texttt{dispositivo/\{id\}/medicion}.
     \item El backend, suscrito a dicho tópico, validó el mensaje, lo registró en la base de datos y notificó a la interfaz web a través de su API REST.
     \item El frontend consultó la API y actualizó la vista en tiempo real con la nueva medición.
-    \item Desde la interfaz, se envió un comando de prueba al nodo, el cual fue publicado por el backend en el tópico \texttt{dispositivo/\{id\}/comando}.
+    \item Desde la interfaz, se envió un comando de prueba al nodo, que fue publicado por el backend en el tópico \texttt{dispositivo/\{id\}/comando}.
     \item El firmware recibió el comando, ejecutó la acción asociada y respondió mediante un mensaje en el tópico \texttt{dispositivo/\{id\}/respuesta}, que fue procesado nuevamente por el backend y mostrado al usuario.
 \end{enumerate}
 
@@ -284,12 +275,10 @@ En particular, se observaron los siguientes aspectos destacados:
 %    \label{fig:end-to-end}
 %\end{figure}
 
-\subsection{Conclusiones de la integración}
-
 La prueba end-to-end permitió validar la solidez de la arquitectura propuesta y su adecuación a escenarios reales de operación.  
 El flujo completo, desde la generación de un evento hasta su visualización en la web y el control remoto del nodo, se ejecutó de forma estable, con tiempos de respuesta consistentes y trazabilidad total.  
 
-Estos resultados confirman que la solución es técnicamente viable para su despliegue en entornos de campo, ofreciendo una integración transparente entre hardware embebido, servicios de red y aplicaciones web.  
+Estos resultados confirman que la solución es técnicamente viable para su despliegue en entornos de campo, que ofrece una integración transparente entre hardware embebido, servicios de red y aplicaciones web.  
 Además, la arquitectura modular basada en estándares abiertos garantiza la posibilidad de futuras expansiones y adaptaciones a nuevas tipologías de dispositivos o protocolos de comunicación.
  
 
@@ -300,15 +289,15 @@ Se consideraron seis criterios principales: costo de implementación, flexibilid
 
 Las soluciones comerciales ofrecen plataformas robustas con soporte integral, pero presentan altos costos y baja flexibilidad para integrar hardware heterogéneo o protocolos abiertos. Las propuestas académicas son más experimentales y abiertas tecnológicamente, aunque con limitaciones de madurez, soporte y adaptación a producción.
 
-La solución desarrollada combina bajo costo, independencia tecnológica y arquitectura modular basada en estándares abiertos (MQTT, REST, JSON), permitiendo rápida adaptación a entornos con conectividad variable, como rutas argentinas, sin depender de infraestructura propietaria ni servicios móviles externos.
+La solución desarrollada combina bajo costo, independencia tecnológica y arquitectura modular basada en estándares abiertos (MQTT, REST, JSON), que permite rápida adaptación a entornos con conectividad variable, como rutas argentinas, sin depender de infraestructura propietaria ni servicios móviles externos.
 
-En  la tabla \ref{tab:comparacion} se observa la comparación de la solución propuesta frente a alternativas comerciales y académicas: 
+En la tabla \ref{tab:comparacion} se observa la comparación de la solución propuesta frente a alternativas comerciales y académicas: 
 
 \begin{table}[H]
     \centering
     \small
     \caption[Comparación de la solución propuesta]{Comparación de la solución propuesta frente a alternativas comerciales y académicas.}
-    \begin{tabular}{l p{2.3cm} p{2cm} p{1.2cm}}    
+    \begin{tabular}{p{4cm} p{2.5cm} p{2cm} p{1.8cm}}    
         \toprule
         \textbf{Criterio} & \textbf{Propuesta} & \textbf{Comerciales} & \textbf{Académicas} \\
         \midrule
@@ -323,7 +312,7 @@ En  la tabla \ref{tab:comparacion} se observa la comparación de la solución pr
     \label{tab:comparacion}
 \end{table}
 
-En síntesis, la solución desarrollada logra un equilibrio entre robustez, bajo costo y adaptabilidad, posicionándola como alternativa viable para proyectos de monitoreo vial en entornos con infraestructura limitada. Su orientación a estándares abiertos y su independencia de plataformas propietarias aseguran sostenibilidad y facilidad de futuras ampliaciones.
+Finalmente, la solución desarrollada logra un equilibrio entre robustez, bajo costo y adaptabilidad, posicionándola como alternativa viable para proyectos de monitoreo vial en entornos con infraestructura limitada. Su orientación a estándares abiertos y su independencia de plataformas propietarias aseguran sostenibilidad y facilidad de futuras ampliaciones.
 
 
 
