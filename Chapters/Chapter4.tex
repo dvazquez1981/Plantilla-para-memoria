@@ -1,4 +1,4 @@
-\chapter{Ensayos y Resultados}
+\chapter{Ensayos y resultados}
 
 En este capítulo se presentan en detalle los ensayos realizados sobre el sistema desarrollado, con el propósito de validar su funcionamiento en condiciones representativas de uso real. 
 Los ensayos se organizaron en diferentes niveles: banco de pruebas en laboratorio, validación de la API REST, pruebas unitarias e integración de componentes, 
@@ -61,9 +61,6 @@ Los resultados experimentales demostraron que el sistema fue capaz de:
 \end{itemize}
 
 Los tiempos promedio de publicación por evento se mantuvieron entre 300 y 600 ms en escenarios con conexión estable, con demoras proporcionales durante los períodos de reconexión.
-
-En conclusión, el banco de pruebas permitió validar la arquitectura propuesta. 
-Los resultados confirmaron un comportamiento confiable frente a condiciones reales de operación y demostraron la efectividad de los mecanismos de encolado y retransmisión.
 
 
 \section{Pruebas de la API REST}
@@ -138,7 +135,7 @@ A continuación, se presenta la tabla de los resultados de pruebas de endpoints 
 	\label{tab:resultados_api}
 \end{table}
 
-\subsection{Conclusiones}
+
 
 Los ensayos confirmaron que la API REST cumple los criterios de fiabilidad, seguridad y desempeño definidos en el diseño.  
 El uso de colecciones automatizadas permitió repetir las pruebas en distintos entornos y documentar los resultados con precisión.  
@@ -170,7 +167,6 @@ El entorno completo se desplegó en contenedores Docker independientes, lo que p
     \item Manejo de errores: los registros de Winston y Morgan mostraron reconexiones exitosas sin pérdida de información.  
 \end{itemize}
 
-\subsection{Conclusiones}
 
 Las pruebas confirmaron la cohesión del sistema y su capacidad de recuperación ante fallas.  
 El uso de contenedores Docker facilitó la integración y la detección de incompatibilidades.  
@@ -305,7 +301,8 @@ Se consideraron seis criterios principales: costo de implementación, flexibilid
 Las soluciones comerciales ofrecen plataformas robustas con soporte integral, pero presentan altos costos y baja flexibilidad para integrar hardware heterogéneo o protocolos abiertos. Las propuestas académicas son más experimentales y abiertas tecnológicamente, aunque con limitaciones de madurez, soporte y adaptación a producción.
 
 La solución desarrollada combina bajo costo, independencia tecnológica y arquitectura modular basada en estándares abiertos (MQTT, REST, JSON), permitiendo rápida adaptación a entornos con conectividad variable, como rutas argentinas, sin depender de infraestructura propietaria ni servicios móviles externos.
-A continuación, se presenta la tabla de comparación de la solución propuesta frente a alternativas comerciales y académicas: 
+
+En  la tabla \ref{tab:comparacion} se observa la comparación de la solución propuesta frente a alternativas comerciales y académicas: 
 
 \begin{table}[H]
     \centering
@@ -318,8 +315,8 @@ A continuación, se presenta la tabla de comparación de la solución propuesta 
         Costo & Bajo (hardware económico + software abierto) & Alto (licencias y servicios) & Medio \\
         Flexibilidad & Alta (protocolos estándar, modular) & Baja (propietaria) & Media \\
         Escalabilidad & Alta (MQTT + API REST) & Alta & Media \\
-        Operación con conectividad intermitente & Totalmente soportada\\ (colas FIFO, reintentos) & Parcial & Poco explorada \\
-        Adecuación a rutas argentinas & Adaptada a entornos rurales y semiurbanos & Genérica & Variable \\
+        Conectividad intermitente & Totalmente soportada\\ (colas FIFO, reintentos) & Parcial & Poco explorada \\
+        Adecuación a rutas & Adaptada a entornos rurales y semiurbanos & Genérica & Variable \\
         Soporte y documentación & Media (open source, docs técnicas) & Alta (soporte empresarial) & Baja \\
         \bottomrule
     \end{tabular}

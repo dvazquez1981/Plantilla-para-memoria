@@ -9,18 +9,13 @@ En este capítulo se describe la arquitectura global del prototipo, se detalla c
 
 La arquitectura propuesta separa de forma explícita el dispositivo de campo (contador + ESP32-C3 + SIM800L), el transporte de mensajes (broker MQTT) y los servicios de aplicación (API REST, persistencia y frontend). Esta separación facilita la interoperabilidad y permite desplegar la solución de forma local, remota o híbrida según las políticas institucionales
 
-
-\subsection{Descripción ampliada de bloques y responsabilidades}
-
-El sistema se organiza en cinco bloques principales, cada uno con responsabilidades claramente definidas para garantizar un flujo de datos confiable, eficiente y seguro. Cada bloque cumple funciones específicas dentro del ciclo de captura, transmisión, procesamiento y visualización de los eventos, que asegura trazabilidad, persistencia y control de comandos remotos. Se describen los bloques y sus responsabilidades:
-
+El sistema se organiza en cinco bloques con funciones definidas que aseguran un flujo de datos confiable, eficiente y seguro durante la captura, transmisión, procesamiento y visualización de eventos, garantizando trazabilidad, persistencia y control remoto.
 
 \begin{itemize}
 
-  \item {Dispositivo de campo:} el nodo de campo integra el contador existente (salida RS-232), un microcontrolador ESP32-C3 y un módem GPRS SIM800L. El firmware, desarrollado sobre \texttt{ESP-IDF}, realiza las siguientes funciones: lectura continua de la trama serial, parsing tolerante a ruido, preprocesado (validación, normalización de campos y asignación de sello temporal UTC), encolamiento FIFO de eventos, gestión de reintentos y publicación MQTT cuando hay conectividad. Además, el nodo se suscribe a los tópicos de comandos y publica telemetría y acks. En el nodo se implementa persistencia mínima (registro de comandos pendientes y últimas N tramas) para recuperación tras reinicio.
+\item {Dispositivo de campo:} integra el contador (RS-232), un ESP32-C3 y un módem SIM800L. El firmware, basado en \texttt{ESP-IDF}, lee y parsea tramas, valida y normaliza campos, agrega sello UTC, encola eventos y publica por MQTT. Gestiona reintentos, comandos y telemetría, y mantiene una persistencia mínima (últimas tramas y comandos pendientes) para recuperación tras reinicio.
 
-  \item {Transporte (broker MQTT):} el broker actúa como bus de mensajes desacoplado. Se recomienda emplear Eclipse Mosquitto en la etapa inicial y evaluar brokers gestionados para despliegues a mayor escala. El broker gestiona autenticación por credenciales, control de tópicos y cifrado. Se emplean tópicos jerárquicos por dispositivo para facilitar filtrado y autorización: 
-
+\item {Transporte (broker MQTT):} funciona como bus de mensajes desacoplado. Se sugiere usar Eclipse Mosquitto en la etapa inicial y considerar brokers gestionados para escalar. Implementa autenticación, control de tópicos y cifrado. Se emplean tópicos jerárquicos por dispositivo para facilitar filtrado y autorización: 
 \begin{itemize}
   \item \texttt{dispositivo/\{id\}/medicion}
   \item \texttt{dispositivo/\{id\}/comando} 
@@ -37,7 +32,7 @@ El sistema se organiza en cinco bloques principales, cada uno con responsabilida
 \item API REST  ofrece servicios de consulta, gestión y comandos, manteniendo independencia del broker para permitir nuevos consumidores. Los datos se almacenan en MySQL con soporte para rangos temporales, alto rendimiento y auditoría de comandos.
  \end{itemize}
 
-\item Cliente/Visualización: La interfaz web, desarrollada en Ionic + Angular, consume la API REST para consultas históricas y eventos en tiempo real. Ofrece visualización de eventos, consultas filtradas, envío de comandos y un panel de telemetría para mantenimiento.
+\item Cliente/Visualización: la interfaz web, desarrollada en Ionic + Angular, consume la API REST para consultas históricas y eventos en tiempo real. Ofrece visualización de eventos, consultas filtradas, envío de comandos y un panel de telemetría para mantenimiento.
 \end{itemize}
 
 Se separó el broker de la aplicación, se usó MQTT por su eficiencia y se creó una API REST en Node.js para gestión y autenticación.
@@ -210,7 +205,9 @@ El backend es el núcleo lógico del sistema, encargado de integrar dispositivos
 
 El servicio se implementó en Node.js con Express, organizando la aplicación en controladores, rutas y middlewares, y usando Sequelize \cite{sequelize}, un ORM \cite{fowler2002patterns} que facilita los modelos y asegura independencia de la persistencia.
 
-La comunicación con los dispositivos se realiza mediante tópicos MQTT en Eclipse Mosquitto. Las mediciones se publican en \texttt{dispositivo/{id}/medicion} y el backend las valida y guarda en MySQL, mientras que los comandos y respuestas se gestionan en \texttt{dispositivo/{id}/comando} y \texttt{dispositivo/{id}/respuesta}. El despliegue usa Docker Compose \cite{docker_compose} para ejecutar backend, base de datos y broker \cite{mqttSpec} en contenedores, y el registro se maneja con Winston \cite{winston} y Morgan \cite{morgan} para trazabilidad completa.
+La comunicación con los dispositivos se realiza mediante tópicos MQTT en Eclipse Mosquitto.
+
+Las mediciones se publican en tópico \texttt{dispositivo/{id}/medicion}, mientras que el backend se encarga de validarlas y almacenarlas en MySQL. Por su parte, los comandos y respuestas se gestionan mediante los tópicos \texttt{dispositivo/{id}/comando} y \texttt{dispositivo/{id}/respuesta}, respectivamente. El despliegue del sistema se realiza con  Docker Compose \cite{docker_compose}, que permite ejecutar backend, base de datos y broker \cite{mqttSpec} en contenedores independientes. Además, el registro y la trazabilidad se gestionan con Winston \cite{winston} y Morgan \cite{morgan}, lo que garantiza un monitoreo completo del sistema
 
 En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de información del backend.
 
@@ -249,22 +246,21 @@ La lógica de negocio del backend se organiza en controladores, cada uno asociad
   \item UserController: implementa el ciclo de vida de usuarios y la autenticación mediante JWT\cite{jwtRFC7519}, así como la validación de permisos en cada endpoint.
 \end{itemize}
 
+
 En la figura \ref{fig:diagrama_controladores} se observa el diagrama con la disposición de los controladores y flujo de dependencias.
 
 \begin{figure}[H]
  
   \centering
-  \includegraphics[scale=0.118]{./Figures/diagDispoControlladores.png}
+  \includegraphics[scale=0.146]{./Figures/diagDispoControlladores.png}
   \captionof{figure}{Diagrama con la disposición de los controladores y flujo de dependencias.}
   \label{fig:diagrama_controladores}
   \end{figure}
 
-
-
 \subsection{Mapa de endpoints}
 
 El backend expone una serie de endpoints REST que conforman la interfaz principal de comunicación con los servicios de aplicación y los dispositivos de campo.  
-A continuación, se presenta la tabla general de los endpoints y controladores mas importantes para el flujo:
+En la tabla \ref{tab:endpoints} se presentan los endpoints generales.
 
 \begin{table}[H]
 	\centering
@@ -306,13 +302,12 @@ Además de la autenticación mediante JWT, todos los endpoints aplican validacio
 
 \section{Desarrollo del frontend}
 
-El frontend del sistema se diseñó como una \textit{Single Page Application} se desarrolla en Ionic con Angular y TypeScript.  
-El objetivo es proporcionar una interfaz moderna e intuitiva, accesible desde navegador, que permita al operador autenticarse, supervisar en tiempo real los eventos captados por los contadores de tránsito, consultar históricos almacenados en la base de datos y emitir comandos remotos hacia los nodos de campo.  
+El frontend, desarrollado como \textit{Single Page Application} en Ionic con Angular y TypeScript, ofrece una interfaz moderna y responsiva que permite autenticación, supervisión en tiempo real, consulta de históricos y envío de comandos a los nodos.
 
 \subsection{Arquitectura y tecnologías}
 
-El cliente web se estructura en componentes reutilizables de Ionic, lo que facilita la navegación y asegura un diseño responsivo tanto en entornos de escritorio como móviles.  
-La comunicación con el backend se realiza mediante peticiones HTTP a la API REST, y en casos donde se requiere actualización en tiempo real se emplea un canal de notificación basado en WebSocket.
+La aplicación se compone de módulos reutilizables de Ionic, optimizados para escritorio y móviles.
+La comunicación con el backend se realiza mediante API REST y, para actualizaciones en tiempo real, a través de WebSocket.
 
 
 \subsection{Funcionalidades principales}
@@ -324,9 +319,9 @@ El frontend integra las siguientes funciones clave:
     \item Detalle de dispositivo: despliega datos específicos de un contador y últimas tramas recibidas.
     \item Panel de mediciones: permite visualizar los eventos de tránsito procesados, con actualización dinámica cuando el dispositivo transmite nuevas tramas.
     \item Historial de eventos: consulta de registros almacenados en la base de datos, filtrados por dispositivo y rango temporal.
-    \item Envío de comandos: panel que permite emitir órdenes remotas hacia el nodo de campo, como reset del contador, modificación u obtención de parámetros. El sistema verifica el acuse de recibo de cada orden y muestra al usuario el resultado correspondiente (ok, failed, timeout o value).   
+  \item Envío de comandos: permite emitir órdenes remotas al nodo (reset, cambio u obtención de parámetros, etc.). El sistema verifica el acuse de recibo y muestra el resultado (ok, failed, timeout o value).   
 \end{itemize}
-\pagebreak
+
 En la figura \ref{fig:diagrama_front_pantallas} se observa la estructura de los componentes por pantalla.
 \begin{figure}[H]
  
@@ -340,23 +335,18 @@ En la figura \ref{fig:diagrama_front_pantallas} se observa la estructura de los 
 
 \subsection{Integración con el backend}
 
-Todas las operaciones del frontend se apoyan en los endpoints REST definidos en el backend (ver Sección~\ref{tab:endpoints}).  
-Cada petición incluye en sus cabeceras el token JWT obtenido en el login, lo que garantiza que solo usuarios autorizados puedan acceder a datos sensibles o emitir comandos.  
-El backend devuelve respuestas en formato JSON, que son interpretadas y representadas en la interfaz en tiempo real, lo que asegura consistencia entre la vista del operador y el estado real de los dispositivos.
+El frontend utiliza los endpoints REST del backend (ver Sección~\ref{tab:endpoints}), enviando en cada petición el token JWT obtenido en el login para asegurar el acceso autorizado. Las respuestas JSON se interpretan en tiempo real, manteniendo la interfaz sincronizada con el estado de los dispositivos.
 
-\pagebreak
+
 En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de comunicación con el backend.
 
 \begin{figure}[H]
  
   \centering
-  \includegraphics[width=1.1\linewidth]{./Figures/diagFlujoRestApi.png}
+  \includegraphics[width=1\linewidth]{./Figures/diagFlujoRestApi.png}
   \captionof{figure}{Diagrama de flujo de comunicación con el backend.}
   \label{fig:diagramaflujorestapi}
 \end{figure}
-
-
-\clearpage
 
 \section{Despliegue del sistema}
 
@@ -372,7 +362,7 @@ Para la orquestación se emplea Docker Compose, que permite instanciar todos los
 De esta forma, el sistema puede escalar, actualizarse y mantenerse de manera unificada, preservando la trazabilidad y la integridad de los datos.
 
 La integración continua (CI) automatiza la construcción, prueba y despliegue del sistema. 
-Cada actualización del repositorio genera nuevas imágenes Docker, ejecuta validaciones automáticas y despliega los servicios en el entorno \textit{on-premise}, garantizando coherencia entre versiones y reduciendo errores manuales.
+Cada actualización del repositorio genera nuevas imágenes Docker, ejecuta validaciones automáticas y despliega los servicios en el entorno \textit{on-premise}, que garantiza coherencia entre versiones y reduciendo errores manuales.
 
 \subsection{Monitoreo post-implantación}
 
@@ -387,7 +377,6 @@ Una vez desplegado el sistema, resulta fundamental contar con mecanismos de moni
     
     \item Respaldo y recuperación: la base de datos implementa backups automáticos y permite restauraciones parciales. Esto garantiza que el historial de eventos no se pierda ante fallas de hardware o corrupción de datos.
 \end{itemize}
-
 
 
 \section{Integración con la infraestructura existente}
