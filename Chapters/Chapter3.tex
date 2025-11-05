@@ -207,7 +207,7 @@ El servicio se implementó en Node.js con Express, organizando la aplicación en
 
 La comunicación con los dispositivos se realiza mediante tópicos MQTT en Eclipse Mosquitto.
 
-Las mediciones se publican en tópico \texttt{dispositivo/{id}/medicion}, mientras que el backend se encarga de validarlas y almacenarlas en MySQL. Por su parte, los comandos y respuestas se gestionan mediante los tópicos \texttt{dispositivo/{id}/comando} y \texttt{dispositivo/{id}/respuesta}, respectivamente. El despliegue del sistema se realiza con  Docker Compose \cite{docker_compose}, que permite ejecutar backend, base de datos y broker \cite{mqttSpec} en contenedores independientes. Además, el registro y la trazabilidad se gestionan con Winston \cite{winston} y Morgan \cite{morgan}, lo que garantiza un monitoreo completo del sistema
+Las mediciones se publican en tópico \texttt{dispositivo/{id}/medicion}, mientras que el backend se encarga de validarlas y almacenarlas en MySQL. Por su parte, los comandos y respuestas se gestionan mediante los tópicos \\ \texttt{dispositivo/{id}/comando} y \texttt{dispositivo/{id}/respuesta}, respectivamente. El despliegue del sistema se realiza con  Docker Compose \cite{docker_compose}, que permite ejecutar backend, base de datos y broker \cite{mqttSpec} en contenedores independientes. Además, el registro y la trazabilidad se gestionan con Winston \cite{winston} y Morgan \cite{morgan}, lo que garantiza un monitoreo completo del sistema
 
 En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de información del backend.
 

@@ -39,21 +39,21 @@
 \contentsline {subsection}{\numberline {4.1.1}Diseño del entorno de pruebas}{25}{subsection.4.1.1}%
 \contentsline {subsection}{\numberline {4.1.2}Metodología experimental}{26}{subsection.4.1.2}%
 \contentsline {subsection}{\numberline {4.1.3}Resultados y observaciones}{26}{subsection.4.1.3}%
-\contentsline {section}{\numberline {4.2}Pruebas de la API REST}{26}{section.4.2}%
+\contentsline {section}{\numberline {4.2}Pruebas de la API REST}{27}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Objetivos y alcance}{27}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}Metodología de prueba}{27}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Resultados obtenidos}{27}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.3}Resultados obtenidos}{28}{subsection.4.2.3}%
 \contentsline {section}{\numberline {4.3}Pruebas de componentes}{29}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Enfoque general}{29}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Resultados por componente}{29}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.2}Resultados por componente}{30}{subsection.4.3.2}%
 \contentsline {section}{\numberline {4.4}Pruebas del frontend}{30}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}Objetivos}{30}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Metodología}{30}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Resultados y observaciones}{31}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Prueba final de integración}{31}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Metodología de la prueba}{31}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Resultados obtenidos}{32}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Comparación con otras soluciones}{33}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Conclusiones}{35}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Conclusiones generales }{35}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Próximos pasos}{35}{section.5.2}%
+\contentsline {subsection}{\numberline {4.4.2}Metodología}{31}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Resultados y observaciones}{35}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Prueba final de integración}{36}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Metodología de la prueba}{36}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Resultados obtenidos}{37}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Comparación con otras soluciones}{38}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{41}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conclusiones generales }{41}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Próximos pasos}{41}{section.5.2}%

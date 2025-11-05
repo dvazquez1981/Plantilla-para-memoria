@@ -24,6 +24,15 @@ El banco se compuso de los siguientes elementos principales:
     \item Interfaz web de monitoreo: utilizada para visualizar en tiempo real los eventos recibidos y el estado de los dispositivos.
 \end{itemize}
 
+La figura \ref{fig:foto_banco1} se muestra el banco de pruebas utilizado.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/banco1.jpg}
+  \caption{Fotografía banco de pruebas.}
+  \label{fig:foto_banco1}
+\end{figure}
+
 El montaje permitió reproducir tres escenarios de prueba diferenciados:
 
 \begin{enumerate}
@@ -190,6 +199,8 @@ Los objetivos específicos de esta etapa fueron los siguientes:
 \end{itemize}
 
 
+
+
 \subsection{Metodología}
 
 Las pruebas se realizaron sobre la versión estable del frontend, desarrollado con los frameworks Ionic y Angular, y desplegado en un entorno controlado junto al backend y el broker MQTT.  
@@ -213,6 +224,87 @@ Las  observaciones fueron incorporadas en una versión posterior mediante ajuste
 Del mismo modo, los eventos de tránsito publicados por los dispositivos se reflejaron de forma inmediata en la aplicación, sin inconsistencias ni retrasos notables.  
 Las alertas visuales ante pérdida de conexión, errores de autenticación o respuestas HTTP inválidas funcionaron según lo esperado, mostrando mensajes informativos y acciones de recuperación.
 \end{itemize}
+
+A continuación, se presentan las distintas pantallas que conforman la aplicación:
+
+La figura \ref{fig:frontend_login} muestra la pantalla de inicio de sesión, donde el usuario debe ingresar sus credenciales para acceder al sistema.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{./Figures/frontend_login.png}  
+  \caption{Pantalla de inicio de sesión del frontend.}
+  \label{fig:frontend_login}
+\end{figure}
+
+Una vez autenticado, el usuario accede al panel principal mostrado en la figura \ref{fig:frontend_listado_dispositivos}, 
+donde se presenta el listado de dispositivos registrados junto con su estado de conexión y otras variables relevantes.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{./Figures/frontend_listado_dispositivos.png}
+  \caption{Panel principal con visualización del listado de dispositivos.}
+  \label{fig:frontend_listado_dispositivos}
+\end{figure}
+
+Al seleccionar un dispositivo del listado, el sistema despliega un panel detallado con la información específica de dicho equipo. 
+La figura \ref{fig:frontend_dispositivo_detalle1} ilustra la primera vista del panel, donde se muestran los datos generales de identificación, el ultimo comando enviado, su respuesta y la  ultima medición.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_1.png}
+  \caption{Panel de visualización del dispositivo: datos generales.}
+  \label{fig:frontend_dispositivo_detalle1}
+\end{figure}
+
+La Figura \ref{fig:frontend_dispositivo_detalle2} se muestra la preparación para la  ejecución de un comando.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_2.png}
+  \caption{Panel de visualización del dispositivo: preparación para la ejecución de un comando.}
+  \label{fig:frontend_dispositivo_detalle2}
+\end{figure}
+
+En la figura \ref{fig:frontend_dispositivo_detalle3} se habilita para la ejecución del comando.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_3.png}
+  \caption{Panel de visualización del dispositivo: ejecución de un comando.}
+  \label{fig:frontend_dispositivo_detalle3}
+\end{figure}
+
+La figura \ref{fig:frontend_dispositivo_detalle4} muestra el comando ejecutado y la respuesta pendiente.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_4.png}
+  \caption{Panel de visualización del dispositivo: comando ejecutado y la respuesta pendiente.}
+  \label{fig:frontend_dispositivo_detalle4}
+\end{figure}
+
+
+La figura \ref{fig:frontend_dispositivo_detalle5} se muestra la respuesta al comando.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_5.png}
+  \caption{Panel de visualización del dispositivo: comando ejecutado y sy respuesta.}
+  \label{fig:frontend_dispositivo_detalle5}
+\end{figure}
+
+
+Después, en la figura \ref{fig:frontend_mediciones_detalle} se presenta el historial de mediciones, con su paginación y su exportación a csv.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/frontend_mediciones_detalles.png}
+  \caption{Panel de visualización del historial de mediciones.}
+  \label{fig:frontend_mediciones_detalle}
+\end{figure}
+
+
+
 
 
 \subsection{Resultados y observaciones}
@@ -251,6 +343,15 @@ El flujo de integración se estructuró de la siguiente manera:
     \item Desde la interfaz, se envió un comando de prueba al nodo, que fue publicado por el backend en el tópico \texttt{dispositivo/\{id\}/comando}.
     \item El firmware recibió el comando, ejecutó la acción asociada y respondió mediante un mensaje en el tópico \texttt{dispositivo/\{id\}/respuesta}, que fue procesado nuevamente por el backend y mostrado al usuario.
 \end{enumerate}
+
+La figura \ref{fig:foto_integracion} se muestra la ejecución de las prueba de integración.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/integracion.png}
+  \caption{Fotografía pruebas finales de integración.}
+  \label{fig:foto_integracion}
+\end{figure}
 
 \subsection{Resultados obtenidos}
 

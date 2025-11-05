@@ -16,4 +16,14 @@
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Diagrama de estructura de los componentes por pantalla.\relax }}{22}{figure.caption.18}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Diagrama de flujo de comunicación con el backend.\relax }}{23}{figure.caption.19}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Fotografía banco de pruebas.\relax }}{26}{figure.caption.20}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Pantalla de inicio de sesión del frontend.\relax }}{32}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Panel principal con visualización del listado de dispositivos.\relax }}{32}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Panel de visualización del dispositivo: datos generales.\relax }}{33}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Panel de visualización del dispositivo: preparación para la ejecución de un comando.\relax }}{33}{figure.caption.25}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Panel de visualización del dispositivo: ejecución de un comando.\relax }}{34}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Panel de visualización del dispositivo: comando ejecutado y la respuesta pendiente.\relax }}{34}{figure.caption.27}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Panel de visualización del dispositivo: comando ejecutado y sy respuesta.\relax }}{35}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Panel de visualización del historial de mediciones.\relax }}{35}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Fotografía pruebas finales de integración.\relax }}{37}{figure.caption.30}%
 \addvspace {10\p@ }
