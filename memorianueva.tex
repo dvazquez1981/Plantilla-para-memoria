@@ -28,6 +28,26 @@
 \usepackage{pdflscape}
 \usepackage{placeins}
 \usepackage{float}
+\usepackage{hyperref}
+
+\usepackage{environ} % para capturar el contenido del entorno
+
+% --- entorno numerado para videos que incluye el cuerpo dentro del recuadro ---
+\newcounter{video}[chapter]
+\renewcommand{\thevideo}{\thechapter.\arabic{video}}
+
+\NewEnviron{video}[1][]{
+  \refstepcounter{video}%
+  \par\noindent
+  \begin{center}
+    \fbox{%
+      \parbox{0.8\linewidth}{%
+        \textbf{Video~\thevideo:} #1\\[6pt]%
+        \BODY
+      }%
+    }%
+  \end{center}
+}
 
 %\usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{bibliografia.bib}
