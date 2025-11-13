@@ -1,0 +1,5 @@
+[0] Config.pm:306> INFO - This is Biber 2.18
+[0] Config.pm:309> INFO - Logfile is 'Chapter4.blg'
+[99] biber:340> INFO - === mié nov 12, 2025, 21:19:30
+[191] Utils.pm:399> ERROR - Cannot find 'Chapter4.bcf'!
+[191] Biber.pm:135> INFO - ERRORS: 1

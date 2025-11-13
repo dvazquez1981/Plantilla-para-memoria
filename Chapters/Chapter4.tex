@@ -1,48 +1,35 @@
 \chapter{Ensayos y resultados}
-
 En este capítulo se presentan en detalle los ensayos realizados sobre el sistema desarrollado, con el propósito de validar su funcionamiento en condiciones representativas de uso real. 
 Los ensayos se organizaron en diferentes niveles: banco de pruebas en laboratorio, validación de la API REST, pruebas unitarias e integración de componentes, 
 pruebas del frontend, prueba final de integración end-to-end y una comparación con soluciones comerciales y académicas.  
-
-
 \section{Banco de pruebas}
-
 El banco de pruebas se diseñó con el propósito de reproducir las condiciones reales de operación del sistema de detección de tránsito. 
 De este modo, se garantizó la validez de los resultados dentro de un entorno controlado. 
 El montaje permitió evaluar la robustez del firmware, la estabilidad de las comunicaciones y la capacidad del backend para procesar eventos en distintos escenarios de conectividad.
-
 El objetivo principal consistió en analizar el comportamiento integral del sistema ante situaciones representativas de campo, que incluyeron la pérdida temporal del enlace GPRS, el almacenamiento local de eventos y la recuperación automática una vez restablecida la conexión.
-
 \subsection{Diseño del entorno de pruebas}
-
 El banco se compuso de los siguientes elementos principales:
-
 \begin{itemize}
     \item Contador de tránsito DTEC: configurado para generar tramas de detección simuladas con distintos intervalos de paso vehicular.
     \item Nodo de campo (ESP32-C3 + SIM800L): encargado de recibir las tramas RS-232, almacenarlas temporalmente y transmitirlas mediante MQTT al servidor central.
     \item Servidor de backend: implementado en Node.js/Express, con base de datos MySQL y broker Eclipse Mosquitto, desplegado mediante Docker Compose.
     \item Interfaz web de monitoreo: utilizada para visualizar en tiempo real los eventos recibidos y el estado de los dispositivos.
 \end{itemize}
-
 La figura \ref{fig:foto_banco1} se muestra el banco de pruebas utilizado.
-
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/banco2.jpg}
+  \includegraphics[width=0.9\linewidth]{./Figures/banco2.jpg}
   \caption{Fotografía banco de pruebas.}
   \label{fig:foto_banco1}
 \end{figure}
-
 El montaje permitió reproducir tres escenarios de prueba diferenciados:
-
 \begin{enumerate}
     \item Conectividad estable: transmisión continua sin pérdidas de enlace.
     \item Conectividad intermitente: cortes GPRS aleatorios con verificación de la persistencia de los datos en la cola interna del nodo.
     \item Modo desconectado prolongado: interrupción total de red durante intervalos extensos, lo que permitió evaluar la capacidad del firmware para conservar eventos en memoria y transmitirlos al restablecer la conexión.
 \end{enumerate}
-
 \subsection{Metodología experimental}
-
 Las pruebas se realizaron mediante la generación de tramas seriales controladas que representaban detecciones vehiculares. 
 Se empleó un módulo de simulación que envió secuencias de tramas RS-232 al ESP32-C3. 
 Durante cada ensayo se registraron los tiempos de procesamiento y la cantidad de eventos almacenados en la cola FIFO.
@@ -69,8 +56,25 @@ Los resultados experimentales demostraron que el sistema fue capaz de:
     \item Reanudar la transmisión después de cortes de red sin pérdida de información.
 \end{itemize}
 
-Los tiempos promedio de publicación por evento se mantuvieron entre 300 y 600 ms en escenarios con conexión estable, con demoras proporcionales durante los períodos de reconexión.
-
+En la figura~\ref{fig:phpmyadmin_medicion} se muestra la tabla \texttt{Medicion} en phpMyAdmin, con los registros almacenados en la base de datos MySQL. Cada uno es una detección vehicular procesada por el sistema, con su fecha, valor, carril y clasificación. Esto evidencia que el backend recibió y registró correctamente las mediciones enviadas por el nodo, incluso tras interrupciones de red.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{./Figures/phpmyadmin_medicion.png}
+  \caption{Registros de detecciones vehiculares almacenados en la base de datos MySQL.}
+  \label{fig:phpmyadmin_medicion}
+\end{figure}
+En la figura~\ref{fig:comando_respuesta} se presenta un ejemplo del intercambio de mensajes entre el servidor y el nodo de campo.
+En este caso, el backend ejecuta un comando remoto dirigido al dispositivo, publicado en el tópico MQTT \texttt{dispositivo/{id}/comando} y el nodo recibe dicho comando, lo procesa localmente y responde en el tópico
+\texttt{dispositivo/{id}/respuesta}.
+El mensaje de respuesta incluye el campo de cmdId y el valor asociado al comando ejecutado, lo que permite verificar el funcionamiento bidireccional del sistema.
+\vspace{-0.5em}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.60\linewidth]{./Figures/phpmyadmin_comando_respuesta.png}
+\caption{Intercambio de mensajes entre el backend y el nodo de campo mediante MQTT.}
+\label{fig:comando_respuesta}
+\end{figure}
 
 \section{Pruebas de la API REST}
 
@@ -120,8 +124,85 @@ Todas las operaciones CRUD se ejecutaron correctamente y devolvieron respuestas 
     
 \end{itemize}
 
-A continuación, se presenta la tabla \ref{tab:resultados_api} con los resultados de las  pruebas de los endpoints REST:
+A continuación, se presentan las pruebas realizadas en el backend, destinadas a verificar el correcto funcionamiento de los servicios implementados.
 
+\subsubsection{Medición}
+
+La entidad \texttt{Medicion} constituye el núcleo del sistema, ya que representa los datos enviados por el firmware al backend. 
+A continuación, se muestran las pruebas realizadas sobre el endpoint \texttt{POST /api/medicion}, donde se validó la correcta recepción y verificación de los campos obligatorios.
+
+En la figura~\ref{fig:postman_medicion_ok} se observa el envío correcto de los datos requeridos: fecha, valor, carril, clasificacionId y dispositivoId.  
+El backend almacena la medición y retorna una confirmación en formato JSON.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/backend_create_medicion.png}
+  \caption{Solicitud \texttt{POST /api/medicion} con todos los campos completos.}
+  \label{fig:postman_medicion_ok}
+\end{figure}
+
+
+En la figura~\ref{fig:postman_medicion_error} se muestra la respuesta ante una solicitud incompleta, donde falta al menos uno de los campos obligatorios.
+El sistema devuelve un mensaje en formato JSON indicando la causa del error.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/backend_create_medicion_error.png}
+  \caption{Solicitud \texttt{POST /api/medicion} con campos faltantes. }
+  \label{fig:postman_medicion_error}
+\end{figure}
+
+\subsubsection{Comando}
+La entidad \texttt{Comando} permite enviar instrucciones remotas a los nodos de campo a través del broker MQTT.  
+Las pruebas se realizaron sobre el endpoint \texttt{POST /api/comando}, verificando tanto la creación exitosa como la validación de datos.
+
+La figura~\ref{fig:postman_comando_ok} muestra una solicitud válida con los campos fecha, valor y dispositivoId, que genera un nuevo comando y lo envía al dispositivo indicado.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/backend_create_comando.png}
+  \caption{Solicitud \texttt{POST /api/comando} exitosa. }
+  \label{fig:postman_comando_ok}
+\end{figure}
+
+En la figura~\ref{fig:postman_comando_error} se observa la respuesta del sistema ante una solicitud con parámetros faltantes.  
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/backend_create_comando_error.png}
+  \caption{Solicitud \texttt{POST /api/comando} con error por datos incompletos.}
+  \label{fig:postman_comando_error}
+\end{figure}
+
+
+
+\subsubsection{Respuesta}
+
+La entidad \texttt{Respuesta} almacena los mensajes enviados por los nodos de campo en respuesta a los comandos recibidos.  
+Se evaluó el endpoint \texttt{POST /api/respuesta}, y se comprobó la asociación correcta con el comando original y el dispositivo.
+
+La figura~\ref{fig:postman_respuesta_ok} muestra un ejemplo de respuesta registrada exitosamente, con los campos fecha, cmdId, valor y 
+dispositivoId.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/backend_create_respuesta.png}
+  \caption{Solicitud \texttt{POST /api/respuesta} exitosa. 
+  }
+  \label{fig:postman_respuesta_ok}
+\end{figure}
+
+En la figura~\ref{fig:postman_respuesta_error} se observa la respuesta generada cuando alguno de los campos requeridos no fue proporcionado.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{./Figures/backend_create_respuesta_error.png}
+  \caption{Solicitud \texttt{POST /api/respuesta} con error de validación.}
+  \label{fig:postman_respuesta_error}
+\end{figure}
+
+A continuación, se presenta la tabla \ref{tab:resultados_api} con los resultados de las  pruebas de los endpoints REST:
+\vspace{-0.5em}
 \begin{table}[H]
 	\centering
 	\caption[Resultados de pruebas de endpoints REST]{Resultados de las pruebas realizadas sobre los principales endpoints de la API REST mediante Postman.}
@@ -143,6 +224,7 @@ A continuación, se presenta la tabla \ref{tab:resultados_api} con los resultado
 	\end{tabular}
 	\label{tab:resultados_api}
 \end{table}
+
 
 Los ensayos confirmaron que la API REST cumple los criterios de fiabilidad, seguridad y desempeño definidos en el diseño.  
 El uso de colecciones automatizadas permitió repetir las pruebas en distintos entornos y documentar los resultados con precisión.  
@@ -176,6 +258,16 @@ Cada módulo del sistema fue evaluado de forma independiente para verificar su f
     \item Frontend: se verificó la comunicación bidireccional con la API REST y la actualización en tiempo real de las mediciones.  
     \item Manejo de errores: los registros de Winston y Morgan mostraron reconexiones exitosas sin pérdida de información.  
 \end{itemize}
+
+En la figura~\ref{fig:esp32_backend_log} se puede observar el intercambio de mensajes entre el nodo de campo y el servidor. En la parte superior de la imagen se muestra la consola del ESP32-C3, donde el firmware registra el envío de una medición a través del módulo SIM800L utilizando el protocolo MQTT. En la parte inferior, se visualiza la consola del backend desarrollada en Node.js, que recibe y procesa el mensaje, verificando los datos de la medición antes de almacenarlos en la base de datos.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{./Figures/componente_1.png}
+  \caption{Interacción entre el nodo de campo (ESP32-C3 + SIM800L) y el backend.}
+  \label{fig:esp32_backend_log}
+\end{figure}
+
 
 Las pruebas confirmaron la cohesión del sistema y su capacidad de recuperación ante fallas.  
 El uso de contenedores Docker facilitó la integración y la detección de incompatibilidades.  
@@ -228,7 +320,7 @@ Las alertas visuales ante pérdida de conexión, errores de autenticación o res
 A continuación, se presentan las distintas pantallas que conforman la aplicación:
 
 La figura \ref{fig:frontend_login} muestra la pantalla de inicio de sesión, donde el usuario debe ingresar sus credenciales para acceder al sistema.
-
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\linewidth]{./Figures/frontend_login.png}  
@@ -237,8 +329,8 @@ La figura \ref{fig:frontend_login} muestra la pantalla de inicio de sesión, don
 \end{figure}
 
 Una vez autenticado, el usuario accede al panel principal mostrado en la figura \ref{fig:frontend_listado_dispositivos}, 
-donde se presenta el listado de dispositivos registrados junto con su estado de conexión y otras variables relevantes.
-
+donde se presenta el listado de dispositivos registrados junto con la ubicación y el tipo de contador.
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\linewidth]{./Figures/frontend_listado_dispositivos.png}
@@ -247,26 +339,26 @@ donde se presenta el listado de dispositivos registrados junto con su estado de 
 \end{figure}
 
 Al seleccionar un dispositivo del listado, el sistema despliega un panel detallado con la información específica de dicho equipo. 
-La figura \ref{fig:frontend_dispositivo_detalle1} ilustra la primera vista del panel, donde se muestran los datos generales de identificación, el ultimo comando enviado, su respuesta y la  ultima medición.
-
+La figura \ref{fig:frontend_dispositivo_detalle1} ilustra la primera vista del panel de dispositivo, donde se muestran los datos generales de identificación (nombre, ubicación y tipo), el último comando enviado, su respuesta, la  última medición registrada y un botón para visualizar las mediciones históricas.
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_1.png}
-  \caption{Panel de visualización del dispositivo: datos generales.}
+  \caption{Panel de visualización del dispositivo.}
   \label{fig:frontend_dispositivo_detalle1}
 \end{figure}
 
-La figura \ref{fig:frontend_dispositivo_detalle2} se muestra la preparación para la  ejecución de un comando.
-
+En la figura \ref{fig:frontend_dispositivo_detalle2} se muestra la creación de un comando asociado a un tipo de comando específico del contador. Al seleccionarse el tipo, el sistema habilita la opción para generar el nuevo comando.
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_2.png}
-  \caption{Panel de visualización del dispositivo: preparación para la ejecución de un comando.}
+  \caption{Panel de visualización del dispositivo: preparación para la ejecución de un comando y su ejecución.}
   \label{fig:frontend_dispositivo_detalle2}
 \end{figure}
 
-En la figura \ref{fig:frontend_dispositivo_detalle3} se habilita para la ejecución del comando.
-
+En la figura \ref{fig:frontend_dispositivo_detalle3} se muestra la habilitación y ejecución del comando. Además, es posible ingresar un valor asociado junto con la selección del tipo de comando.
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_3.png}
@@ -274,8 +366,8 @@ En la figura \ref{fig:frontend_dispositivo_detalle3} se habilita para la ejecuci
   \label{fig:frontend_dispositivo_detalle3}
 \end{figure}
 
-La figura \ref{fig:frontend_dispositivo_detalle4} muestra el comando ejecutado y la respuesta pendiente.
-
+La figura \ref{fig:frontend_dispositivo_detalle4} muestra el comando ejecutado con sus detalles y la respuesta en estado pendiente.
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_4.png}
@@ -284,26 +376,23 @@ La figura \ref{fig:frontend_dispositivo_detalle4} muestra el comando ejecutado y
 \end{figure}
 
 
-La figura \ref{fig:frontend_dispositivo_detalle5} se muestra la respuesta al comando.
-
+La figura \ref{fig:frontend_dispositivo_detalle5} se muestra la respuesta al comando, con los detalles que devuelve la misma.
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_5.png}
-  \caption{Panel de visualización del dispositivo: comando ejecutado y sy respuesta.}
+  \caption{Panel de visualización del dispositivo: comando ejecutado y su respuesta.}
   \label{fig:frontend_dispositivo_detalle5}
 \end{figure}
 
-
-Después, en la figura \ref{fig:frontend_mediciones_detalle} se presenta el historial de mediciones, con paginación y  exportación a csv.
-
+Luego, al presionar el botón Mediciones, se mostrará el historial correspondiente, como se observa en la figura \ref{fig:frontend_mediciones_detalle}. En esta vista se indica, para cada registro, el carril, la clasificación y el valor del volumen de los  vehículos.
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/frontend_mediciones_detalles.png}
+  \includegraphics[width=0.6\linewidth]{./Figures/frontend_mediciones_detalles.png}
   \caption{Panel de visualización del historial de mediciones.}
   \label{fig:frontend_mediciones_detalle}
 \end{figure}
-
-
 
 
 
@@ -344,23 +433,80 @@ El flujo de integración se estructuró de la siguiente manera:
     \item El firmware recibió el comando, ejecutó la acción asociada y respondió mediante un mensaje en el tópico \texttt{dispositivo/\{id\}/respuesta}, que fue procesado nuevamente por el backend y mostrado al usuario.
 \end{enumerate}
 
-La figura \ref{fig:foto_integracion} se muestra la ejecución de las prueba de integración.
+Se presentan los pasos realizados durante la prueba integral del sistema, cuyo objetivo es verificar la correcta interacción entre el dispositivo, el backend y la interfaz web en un escenario completo de funcionamiento.
 
+En la figura~\ref{fig:log_medicion} se muestra la captura del log del módulo ESP32-C3 junto con el log del backend, 
+durante la publicación y recepción de una medición. En la parte superior se observa el envío del mensaje MQTT 
+en el tópico \\  
+\texttt{dispositivo/1/medicion}, mientras que en la parte inferior el backend registra la recepción 
+del mensaje, su validación y almacenamiento en la base de datos.
+\vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/integracion.png}
-  \caption{Fotografía pruebas finales de integración.}
-  \label{fig:foto_integracion}
+  \includegraphics[width=0.8\linewidth]{./Figures/log_medicion.png}
+  \caption{Publicación de una medición por parte del módulo ESP32-C3 y recepción en el backend.}
+  \label{fig:log_medicion}
 \end{figure}
 
-En el video~\ref{vid:prueba_integral} se muestra la prueba completa del 
-funcionamiento del sistema, que verifica la integración de los distintos 
-componentes, la comunicación entre módulos y la operación general.
 
-\begin{video}[Prueba integral del sistema en funcionamiento.]
-\url{https://youtu.be/T4vcsNNGdc8?si=QBCrA6GHNZCkLFO9}
-\label{vid:prueba_integral}
-\end{video}
+En la figura~\ref{fig:interfaz_medicion} se visualiza la interfaz web luego de recibir la medición publicada. 
+La aplicación consulta la API REST del backend y actualiza en tiempo real la tabla de mediciones, 
+que muestra el nuevo registro con su fecha, valor, carril, clasificación y dispositivo asociado. 
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\linewidth]{./Figures/interfaz_medicion.png}
+  \caption{Visualización de la medición recibida en la interfaz web del sistema.}
+  \label{fig:interfaz_medicion}
+\end{figure}
+
+Después se validó la comunicación descendente del sistema, en la cual la interacción se inicia desde la interfaz web. 
+El objetivo fue comprobar que los comandos generados por el usuario fueran correctamente transmitidos al backend, publicados en el tópico MQTT correspondiente y finalmente recibidos y ejecutados por el nodo de campo ESP32-C3.
+
+En la figura~\ref{fig:interfaz_comando} se muestra la interfaz del sistema desde la cual se ha emitido un comando hacia el dispositivo. 
+El usuario seleccionó el tipo de comando a enviar y su valor (si es necesario) y el backend recibió esta solicitud mediante la API REST y la publica en el tópico \texttt{dispositivo/1/comando}, que queda a la espera de la respuesta del dispositivo.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{./Figures/interfaz_comando.png}
+  \caption{Generación de un comando desde la interfaz web.}
+  \label{fig:interfaz_comando}
+\end{figure}
+
+
+En la figura~\ref{fig:log_comando} se muestra parte de la traza del proceso de ejecución del comando, donde
+la consola del módulo ESP32-C3 registra la recepción del comando.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{./Figures/log_comando.png}
+  \caption{Visualización consola del módulo ESP32-C3 que registra la recepción del comando.}
+  \label{fig:log_comando}
+\end{figure}
+
+En la figura~\ref{fig:log_respuesta_backend} se visualiza la ejecución del flujo de respuesta entre el nodo y el backend. 
+En la consola superior se observa el log del ESP32-C3, que publica la respuesta con el resultado del procesamiento interno del contador. Esta respuesta es publicada por el firmware en el tópico 
+\texttt{dispositivo/1/respuesta}, incluyendo los campos fecha, cmdId, valor y dispositivoId.  
+En la consola inferior se aprecia el registro del backend, el cual recibe el mensaje desde el broker MQTT, valida su estructura y almacena la información en la base de datos MySQL.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\linewidth]{./Figures/log_respuesta_esp32_backend.png}
+  \caption{Intercambio de mensajes entre el ESP32-C3 y el backend durante la recepción y procesamiento de una respuesta.}
+  \label{fig:log_respuesta_backend}
+\end{figure}
+
+Finalmente, en la Figura~\ref{fig:interfaz_respuesta} se muestra la visualización del resultado en la interfaz web. Una vez almacenada la respuesta, la aplicación cliente consulta el endpoint correspondiente de la API REST y actualiza la vista 
+con la información más reciente del dispositivo.  
+De esta manera, el usuario puede verificar en tiempo real que el comando fue recibido y ejecutado correctamente, 
+completando el ciclo de comunicación bidireccional del sistema.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{./Figures/interfaz_respuesta.png}
+  \caption{Visualización de la respuesta del dispositivo en la interfaz web tras el procesamiento exitoso en el backend.}
+  \label{fig:interfaz_respuesta}
+\end{figure}
 
 
 \subsection{Resultados obtenidos}
@@ -423,7 +569,7 @@ En la tabla \ref{tab:comparacion} se observa la comparación de la solución pro
     \label{tab:comparacion}
 \end{table}
 
-Finalmente, la solución desarrollada logra un equilibrio entre robustez, bajo costo y adaptabilidad, posicionándola como alternativa viable para proyectos de monitoreo vial en entornos con infraestructura limitada. Su orientación a estándares abiertos y su independencia de plataformas propietarias aseguran sostenibilidad y facilidad de futuras ampliaciones.
+Finalmente, la solución desarrollada logra un equilibrio entre robustez, bajo costo y adaptabilidad, que la posiciona como alternativa viable para proyectos de monitoreo vial en entornos con infraestructura limitada. Su orientación a estándares abiertos y su independencia de plataformas propietarias aseguran sostenibilidad y facilidad de futuras ampliaciones.
 
 
 
