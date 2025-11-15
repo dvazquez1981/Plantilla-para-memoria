@@ -20,7 +20,7 @@ La figura \ref{fig:foto_banco1} se muestra el banco de pruebas utilizado.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\linewidth]{./Figures/banco2.jpg}
-  \caption{Fotografía banco de pruebas.}
+  \caption{Fotografía del banco de pruebas.}
   \label{fig:foto_banco1}
 \end{figure}
 El montaje permitió reproducir tres escenarios de prueba diferenciados:
@@ -65,13 +65,14 @@ En la figura~\ref{fig:phpmyadmin_medicion} se muestra la tabla \texttt{Medicion}
   \label{fig:phpmyadmin_medicion}
 \end{figure}
 En la figura~\ref{fig:comando_respuesta} se presenta un ejemplo del intercambio de mensajes entre el servidor y el nodo de campo.
-En este caso, el backend ejecuta un comando remoto dirigido al dispositivo, publicado en el tópico MQTT \texttt{dispositivo/{id}/comando} y el nodo recibe dicho comando, lo procesa localmente y responde en el tópico
-\texttt{dispositivo/{id}/respuesta}.
+
+En este caso, el backend envía un comando remoto al dispositivo mediante una publicación en el tópico MQTT \texttt{\seqsplit{dispositivo/{id}/comando}}. El nodo recibe ese comando, lo procesa localmente y responde a través del \texttt{\seqsplit{dispositivo/{id}/respuesta}}.
+
 El mensaje de respuesta incluye el campo de cmdId y el valor asociado al comando ejecutado, lo que permite verificar el funcionamiento bidireccional del sistema.
 \vspace{-0.5em}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.60\linewidth]{./Figures/phpmyadmin_comando_respuesta.png}
+\includegraphics[width=0.85\linewidth]{./Figures/phpmyadmin_comando_respuesta.png}
 \caption{Intercambio de mensajes entre el backend y el nodo de campo mediante MQTT.}
 \label{fig:comando_respuesta}
 \end{figure}
@@ -154,7 +155,7 @@ El sistema devuelve un mensaje en formato JSON indicando la causa del error.
 
 \subsubsection{Comando}
 La entidad \texttt{Comando} permite enviar instrucciones remotas a los nodos de campo a través del broker MQTT.  
-Las pruebas se realizaron sobre el endpoint \texttt{POST /api/comando}, verificando tanto la creación exitosa como la validación de datos.
+Las pruebas se realizaron sobre el endpoint \texttt{POST /api/comando}, que verifica tanto la creación exitosa como la validación de datos.
 
 La figura~\ref{fig:postman_comando_ok} muestra una solicitud válida con los campos fecha, valor y dispositivoId, que genera un nuevo comando y lo envía al dispositivo indicado.
 \vspace{-0.5em}
@@ -165,7 +166,7 @@ La figura~\ref{fig:postman_comando_ok} muestra una solicitud válida con los cam
   \label{fig:postman_comando_ok}
 \end{figure}
 
-En la figura~\ref{fig:postman_comando_error} se observa la respuesta del sistema ante una solicitud con parámetros faltantes.  
+En la figura~\ref{fig:postman_comando_error} se observa una solicitud con parámetros faltantes.  
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
@@ -277,7 +278,7 @@ Los resultados validaron la solidez de la arquitectura distribuida y su adecuaci
 \section{Pruebas del frontend}
 \label{sec:pruebas-frontend}
 
-Las pruebas del frontend tuvieron como finalidad evaluar el correcto funcionamiento de la interfaz web desarrollada, garantizando su compatibilidad, usabilidad, rendimiento y capacidad de interacción con el backend del sistema.  
+Las pruebas del frontend tuvieron como finalidad evaluar el correcto funcionamiento de la interfaz web desarrollada, que garantiza su compatibilidad, usabilidad, rendimiento y capacidad de interacción con el backend del sistema.  
 
 \subsection{Objetivos}
 
@@ -287,7 +288,7 @@ Los objetivos específicos de esta etapa fueron los siguientes:
     \item Evaluar el rendimiento general de la aplicación: tiempos de carga, latencia en consultas a la API y velocidad de actualización de los gráficos.
     \item Analizar la usabilidad de la interfaz mediante pruebas con usuarios:  oportunidades de mejora en la disposición de elementos visuales y en los flujos de interacción.
     \item Validar la correcta ejecución de comandos y confirmaciones visuales en tiempo real a través de la comunicación con el broker MQTT y la API REST.
-    \item Comprobar el manejo de errores de conexión y autenticación, asi se generen mensajes claros y retroalimentación inmediata al usuario.
+    \item Comprobar que la API maneja correctamente los errores de conexión y de autenticación, devolviendo mensajes claros y proporcionando retroalimentación inmediata al cliente.
 \end{itemize}
 
 
