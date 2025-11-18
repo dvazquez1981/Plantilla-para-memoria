@@ -1,0 +1,903 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global}
+  \entry{asiain2021lora}{article}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{1}{}{%
+      {{hash=AJ}{%
+         family={Asiain},
+         familyi={A\bibinitperiod},
+         given={Juan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AJ+1}
+    \strng{fullhash}{AJ+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.3390/s21020338
+    \endverb
+    \field{number}{2}
+    \field{pages}{338}
+    \field{title}{LoRa-Based Traffic Flow Detection for Smart-Road}
+    \verb{url}
+    \verb https://www.mdpi.com/1424-8220/21/2/338
+    \endverb
+    \field{volume}{21}
+    \field{journaltitle}{Sensors}
+    \field{year}{2021}
+  \endentry
+
+  \entry{micko2023iot}{article}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{1}{}{%
+      {{hash=MJ}{%
+         family={Micko},
+         familyi={M\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MJ+1}
+    \strng{fullhash}{MJ+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.3390/s23094469
+    \endverb
+    \field{number}{9}
+    \field{pages}{4469}
+    \field{title}{Review of IoT Sensor Systems Used for Monitoring the Road
+  Infrastructure}
+    \verb{url}
+    \verb https://www.mdpi.com/1424-8220/23/9/4469
+    \endverb
+    \field{volume}{23}
+    \field{journaltitle}{Sensors}
+    \field{year}{2023}
+  \endentry
+
+  \entry{peruzzi2022lorawan}{article}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{1}{}{%
+      {{hash=PG}{%
+         family={Peruzzi},
+         familyi={P\bibinitperiod},
+         given={Gianluca},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PG+1}
+    \strng{fullhash}{PG+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.3390/app12031497
+    \endverb
+    \field{number}{3}
+    \field{pages}{1497}
+    \field{title}{Combining LoRaWAN and NB-IoT for Edge-to-Cloud Low-Power
+  Connectivity}
+    \verb{url}
+    \verb https://www.mdpi.com/2076-3417/12/3/1497
+    \endverb
+    \field{volume}{12}
+    \field{journaltitle}{Applied Sciences}
+    \field{year}{2022}
+  \endentry
+
+  \entry{miovision}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{Miovision}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M2}
+    \strng{fullhash}{M2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://miovision.com/trafficlink/}}
+    \field{note}{Soluciones comerciales}
+    \field{title}{TrafficLink / Managed Connectivity}
+    \field{year}{2023}
+  \endentry
+
+  \entry{sensys}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=S}{%
+         family={{Sensys Networks}},
+         familyi={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{S1}
+    \strng{fullhash}{S1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://sensysnetworks.com/}}
+    \field{title}{Documentación técnica y productos}
+    \field{year}{2023}
+  \endentry
+
+  \entry{metrocount}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=M}{%
+         family={{MetroCount}},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{M1}
+    \strng{fullhash}{M1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.metrocount.com/}}
+    \field{title}{Contadores y guías técnicas}
+    \field{year}{2023}
+  \endentry
+
+  \entry{exemys}{online}{}
+    \field{labeltitlesource}{title}
+    \field{note}{Accedido: 16-Sep-2025}
+    \field{title}{Exemys Managed Connectivity}
+    \verb{url}
+    \verb https://www.exemys.com/site/index.shtml
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{digiRemoteManager}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=ID}{%
+         family={International},
+         familyi={I\bibinitperiod},
+         given={Digi},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ID1}
+    \strng{fullhash}{ID1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://www.digi.com/products/iot-software-services/digi-remote-manager}}
+    \field{note}{Accedido: 11 de septiembre de 2025}
+    \field{title}{Digi Remote Manager: IoT Device Monitoring and Management
+  Solution}
+    \field{year}{2025}
+  \endentry
+
+  \entry{monitoringVehicles2023}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=SAA}{%
+         family={Sukmandhani},
+         familyi={S\bibinitperiod},
+         given={A.\bibnamedelima A.},
+         giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=ZM}{%
+         family={Zarlis},
+         familyi={Z\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=N}{%
+         family={Nurudin},
+         familyi={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SAAZMN1}
+    \strng{fullhash}{SAAZMN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{BINUS Conference Proceedings}
+    \field{note}{Accedido: 11 de septiembre de 2025}
+    \field{title}{Monitoring Applications for Vehicle based on Internet of
+  Things (IoT) using the MQTT Protocol}
+    \verb{url}
+    \verb https://research.binus.ac.id/publication/C1B25545-66F9-49C3-B873-D6C5
+    \verb 37EA23B3/monitoring-applications-for-vehicle-based-on-internet-of-thi
+    \verb ngs-iot-using-the-mqtt-protocol/
+    \endverb
+    \field{year}{2023}
+  \endentry
+
+  \entry{iotSmartTraffic2021}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=BS}{%
+         family={Bharath},
+         familyi={B\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=KC}{%
+         family={Khusi},
+         familyi={K\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BSKC1}
+    \strng{fullhash}{BSKC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{booktitle}{2nd Global Conference for Advancement in Technology
+  (GCAT)}
+    \verb{doi}
+    \verb 10.1109/GCAT52182.2021.9587636
+    \endverb
+    \field{note}{Accedido: 11 de septiembre de 2025}
+    \field{title}{IoT Based Smart Traffic System Using MQTT Protocol: Node-Red
+  Framework}
+    \field{year}{2021}
+  \endentry
+
+  \entry{iopMQTTSystem2023}{article}{}
+    \name{author}{1}{}{%
+      {{hash=NZ}{%
+         family={Niu},
+         familyi={N\bibinitperiod},
+         given={Zuoling},
+         giveni={Z\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IOP Publishing}%
+    }
+    \strng{namehash}{NZ1}
+    \strng{fullhash}{NZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Accedido: 11 de septiembre de 2025}
+    \field{title}{Research and Implementation of Internet of Things
+  Communication System Based on MQTT Protocol}
+    \field{volume}{012019}
+    \field{journaltitle}{Journal of Physics: Conference Series}
+    \field{year}{2023}
+  \endentry
+
+  \entry{openRemoteSolution}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=O}{%
+         family={OpenRemote},
+         familyi={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{O1}
+    \strng{fullhash}{O1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://openremote.io/}}
+    \field{note}{Accedido: 11 de septiembre de 2025}
+    \field{title}{OpenRemote: 100\% Open Source IoT Device Management Platform}
+    \field{year}{2025}
+  \endentry
+
+  \entry{esp32c3}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=E}{%
+         family={{Espressif Systems}},
+         familyi={E\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Espressif Systems}%
+    }
+    \strng{namehash}{E1}
+    \strng{fullhash}{E1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Accedido: 23-Sep-2025}
+    \field{title}{ESP32-C3 Series Datasheet}
+    \verb{url}
+    \verb https://www.espressif.com/sites/default/files/documentation/esp32-c3_
+    \verb datasheet_en.pdf
+    \endverb
+    \field{year}{2021}
+  \endentry
+
+  \entry{analogRS232}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=DA}{%
+         family={Devices},
+         familyi={D\bibinitperiod},
+         given={Analog},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DA1}
+    \strng{fullhash}{DA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://www.analog.com/en/resources/technical-articles/fundamentals-of-rs232-serial-communications.html}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{Fundamentals of RS-232 Serial Communications}
+    \field{year}{2020}
+  \endentry
+
+  \entry{tiRS232}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=IT}{%
+         family={Instruments},
+         familyi={I\bibinitperiod},
+         given={Texas},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{IT1}
+    \strng{fullhash}{IT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.ti.com/lit/SLLA607}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{RS-232 Glossary and Selection Guide}
+    \field{year}{2016}
+  \endentry
+
+  \entry{comerTCPIP}{book}{}
+    \name{author}{1}{}{%
+      {{hash=CDE}{%
+         family={Comer},
+         familyi={C\bibinitperiod},
+         given={Douglas\bibnamedelima E.},
+         giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Pearson}%
+    }
+    \strng{namehash}{CDE1}
+    \strng{fullhash}{CDE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{edition}{6th}
+    \field{isbn}{9780136085300}
+    \field{title}{Internetworking with TCP/IP: Principles, Protocols, and
+  Architecture}
+    \field{year}{2014}
+  \endentry
+
+  \entry{mqttSpec}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=O}{%
+         family={OASIS},
+         familyi={O\bibinitperiod},
+      }}%
+      {{hash=M}{%
+         family={MQTT.org},
+         familyi={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OM1}
+    \strng{fullhash}{OM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://mqtt.org/mqtt-specification/}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{MQTT Version 5.0 Specification}
+    \field{year}{2019}
+  \endentry
+
+  \entry{ibmRest}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=I}{%
+         family={IBM},
+         familyi={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{I1}
+    \strng{fullhash}{I1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.ibm.com/think/topics/rest-apis}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{What Is a REST API (RESTful API)?}
+    \field{year}{2021}
+  \endentry
+
+  \entry{microsoftApiDesign}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=CMAA}{%
+         family={Center},
+         familyi={C\bibinitperiod},
+         given={Microsoft Azure\bibnamedelima Architecture},
+         giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim
+  A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CMAA1}
+    \strng{fullhash}{CMAA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design}}
+    \field{note}{Accedido: 11-Sep-2025}
+    \field{title}{Web API Design Best Practices}
+    \field{year}{2022}
+  \endentry
+
+  \entry{max232}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=IT}{%
+         family={Instruments},
+         familyi={I\bibinitperiod},
+         given={Texas},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{IT1}
+    \strng{fullhash}{IT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Datasheet}
+    \field{title}{MAX232: Dual EIA-232 Driver/Receiver}
+    \verb{url}
+    \verb https://www.ti.com/lit/ds/symlink/max232.pdf
+    \endverb
+    \list{institution}{1}{%
+      {Texas Instruments}%
+    }
+    \field{year}{2016}
+  \endentry
+
+  \entry{esp32c3IDF}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=SE}{%
+         family={Systems},
+         familyi={S\bibinitperiod},
+         given={Espressif},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SE1}
+    \strng{fullhash}{SE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+  \field{howpublished}{\url{https://docs.espressif.com/projects/esp-idf/en/stable/esp32c3/index.html}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{ESP-IDF Programming Guide for ESP32-C3}
+    \field{year}{2024}
+  \endentry
+
+  \entry{sim800l_datasheet}{manual}{}
+    \list{organization}{1}{%
+      {SIMCom Wireless Solutions}%
+    }
+    \field{labeltitlesource}{title}
+    \field{note}{Disponible en:
+  \url{https://simcom.ee/documents/SIM800L/SIM800L_Hardware_Design_V1.01.pdf}}
+    \field{title}{SIM800L GSM/GPRS Module Datasheet}
+    \field{year}{2019}
+  \endentry
+
+  \entry{mosquitto}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FE}{%
+         family={Foundation},
+         familyi={F\bibinitperiod},
+         given={Eclipse},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FE1}
+    \strng{fullhash}{FE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://mosquitto.org/}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{Eclipse Mosquitto: An Open Source MQTT Broker}
+    \field{year}{2025}
+  \endentry
+
+  \entry{nodejs}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FO}{%
+         family={Foundation},
+         familyi={F\bibinitperiod},
+         given={OpenJS},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FO1}
+    \strng{fullhash}{FO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://nodejs.org/}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{Node.js JavaScript Runtime}
+    \field{year}{2025}
+  \endentry
+
+  \entry{expressjs}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FE}{%
+         family={Foundation},
+         familyi={F\bibinitperiod},
+         given={Express.js},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FE2}
+    \strng{fullhash}{FE2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://expressjs.com/}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{Express: Fast, unopinionated, minimalist web framework for
+  Node.js}
+    \field{year}{2025}
+  \endentry
+
+  \entry{mysql}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=CO}{%
+         family={Corporation},
+         familyi={C\bibinitperiod},
+         given={Oracle},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CO1}
+    \strng{fullhash}{CO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.mysql.com/}}
+    \field{note}{Consultado el 11 de septiembre de 2025}
+    \field{title}{MySQL: The World's Most Popular Open Source Database}
+    \field{year}{2025}
+  \endentry
+
+  \entry{sequelize}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://sequelize.org/}}
+    \field{note}{Accedido: 2025-09-25}
+    \field{title}{Sequelize}
+    \field{year}{2025}
+  \endentry
+
+  \entry{winston}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://github.com/winstonjs/winston}}
+    \field{note}{Accedido: 2025-09-25}
+    \field{title}{Winston - A logger for just about everything}
+    \field{year}{2025}
+  \endentry
+
+  \entry{morgan}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://github.com/expressjs/morgan}}
+    \field{note}{Accedido: 2025-09-25}
+    \field{title}{Morgan - HTTP request logger middleware for Node.js}
+    \field{year}{2025}
+  \endentry
+
+  \entry{ionic}{online}{}
+    \name{author}{1}{}{%
+      {{hash=I}{%
+         family={{Ionic Team}},
+         familyi={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{I2}
+    \strng{fullhash}{I2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Último acceso: 19 de septiembre de 2025}
+    \field{title}{Ionic Framework - Cross-platform mobile apps with web
+  technologies}
+    \verb{url}
+    \verb https://ionicframework.com/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{angular}{online}{}
+    \name{author}{1}{}{%
+      {{hash=A}{%
+         family={{Angular Team}},
+         familyi={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{A1}
+    \strng{fullhash}{A1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Último acceso: 19 de septiembre de 2025}
+    \field{title}{Angular - One framework. Mobile & desktop}
+    \verb{url}
+    \verb https://angular.io/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{docker_compose}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=D}{%
+         family={{Docker Documentation}},
+         familyi={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{D1}
+    \strng{fullhash}{D1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://docs.docker.com/compose/intro/}}
+    \field{note}{Accedido: 02-10-2025}
+    \field{title}{Docker Compose: Define and run multi-container applications}
+    \field{year}{2025}
+  \endentry
+
+  \entry{espidf}{online}{}
+    \name{author}{1}{}{%
+      {{hash=E}{%
+         family={{Espressif Systems}},
+         familyi={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{E1}
+    \strng{fullhash}{E1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Último acceso: 19 de septiembre de 2025}
+    \field{title}{ESP-IDF Programming Guide}
+    \verb{url}
+    \verb https://docs.espressif.com/projects/esp-idf/en/latest/esp32/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{github}{online}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={{GitHub, Inc.}},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G1}
+    \strng{fullhash}{G1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Último acceso: 19 de septiembre de 2025}
+    \field{title}{GitHub: Where the world builds software}
+    \verb{url}
+    \verb https://github.com/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{fowler2002patterns}{book}{}
+    \name{author}{1}{}{%
+      {{hash=FM}{%
+         family={Fowler},
+         familyi={F\bibinitperiod},
+         given={Martin},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Addison-Wesley Professional}%
+    }
+    \strng{namehash}{FM1}
+    \strng{fullhash}{FM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{isbn}{978-0321127426}
+    \field{note}{Capítulo 11: Object-Relational Behavioral Patterns}
+    \field{title}{Patterns of Enterprise Application Architecture}
+    \field{year}{2002}
+  \endentry
+
+  \entry{jwtRFC7519}{misc}{}
+    \name{author}{3}{}{%
+      {{hash=JM}{%
+         family={Jones},
+         familyi={J\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BJ}{%
+         family={Bradley},
+         familyi={B\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SN}{%
+         family={Sakimura},
+         familyi={S\bibinitperiod},
+         given={N.},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JMBJSN1}
+    \strng{fullhash}{JMBJSN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{RFC 7519}
+    \field{note}{Internet Engineering Task Force (IETF)}
+    \field{title}{JSON Web Token (JWT)}
+    \verb{url}
+    \verb https://datatracker.ietf.org/doc/html/rfc7519
+    \endverb
+    \field{year}{2015}
+  \endentry
+
+  \entry{phpmyadmin}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=p}{%
+         family={{phpMyAdmin}},
+         familyi={p\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{p1}
+    \strng{fullhash}{p1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.phpmyadmin.net/}}
+    \field{note}{Herramienta web para la administración de bases de datos
+  MySQL}
+    \field{title}{phpMyAdmin: Free software tool for MySQL database
+  administration}
+    \field{year}{2025}
+  \endentry
+
+  \entry{postman}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=P}{%
+         family={{Postman, Inc.}},
+         familyi={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{P1}
+    \strng{fullhash}{P1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Herramienta para pruebas y automatización de APIs REST.}
+    \field{title}{Postman API Platform}
+    \verb{url}
+    \verb https://www.postman.com/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{postman_runner}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=P}{%
+         family={{Postman, Inc.}},
+         familyi={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{P1}
+    \strng{fullhash}{P1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Herramienta de Postman para ejecutar pruebas automatizadas de
+  colecciones de API.}
+    \field{title}{Postman Collection Runner and Newman CLI}
+    \verb{url}
+    \verb https://learning.postman.com/docs/collections/running-collections/int
+    \verb ro-to-collection-runs/
+    \endverb
+    \field{year}{2025}
+  \endentry
+
+  \entry{newman_postman}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=PI}{%
+         family={Postman},
+         familyi={P\bibinitperiod},
+         given={Inc.},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PI1}
+    \strng{fullhash}{PI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{howpublished}{\url{https://www.npmjs.com/package/newman}}
+    \field{note}{Último acceso: 31 de octubre de 2025}
+    \field{title}{Newman: Command-line Collection Runner for Postman}
+    \field{year}{2025}
+  \endentry
+
+  \entry{chromedevtools}{online}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={{Google Developers}},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G2}
+    \strng{fullhash}{G2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Accedido: octubre 2025}
+    \field{title}{Chrome DevTools}
+    \verb{url}
+    \verb https://developer.chrome.com/docs/devtools/
+    \endverb
+    \field{year}{2024}
+  \endentry
+
+  \entry{lighthouse}{online}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={{Google Developers}},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G2}
+    \strng{fullhash}{G2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Accedido: octubre 2025}
+    \field{title}{Google Lighthouse}
+    \verb{url}
+    \verb https://developer.chrome.com/docs/lighthouse/
+    \endverb
+    \field{year}{2024}
+  \endentry
+
+  \entry{fhwa2022tmg}{report}{}
+    \name{author}{1}{}{%
+      {{hash=F}{%
+         family={{FHWA}},
+         familyi={F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{F1}
+    \strng{fullhash}{F1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Traffic Monitoring Guide}
+    \verb{url}
+    \verb https://www.fhwa.dot.gov/policyinformation/tmguide/2022_TMG_Final_Rep
+    \verb ort.pdf
+    \endverb
+    \list{institution}{1}{%
+      {Federal Highway Administration}%
+    }
+    \field{type}{techreport}
+    \field{year}{2022}
+  \endentry
+
+  \entry{fhwa2006detector}{report}{}
+    \name{author}{1}{}{%
+      {{hash=F}{%
+         family={{FHWA}},
+         familyi={F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{F1}
+    \strng{fullhash}{F1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Traffic Detector Handbook, 3rd Edition}
+    \verb{url}
+    \verb https://www.fhwa.dot.gov/publications/research/operations/its/06108/0
+    \verb 6108.pdf
+    \endverb
+    \list{institution}{1}{%
+      {Federal Highway Administration}%
+    }
+    \field{type}{techreport}
+    \field{year}{2006}
+  \endentry
+\enddatalist
+\endinput

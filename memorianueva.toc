@@ -8,14 +8,14 @@
 \contentsline {subsection}{\numberline {1.1.4}Diseño conceptual}{2}{subsection.1.1.4}%
 \contentsline {section}{\numberline {1.2}Objetivos}{2}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Objetivo general}{2}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Objetivos específicos}{3}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.2}Objetivos específicos}{2}{subsection.1.2.2}%
 \contentsline {section}{\numberline {1.3}Estado del arte y propuesta de valor}{3}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Alcance}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Alcance}{3}{section.1.4}%
 \contentsline {chapter}{\numberline {2}Introducción específica}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Protocolos y comunicación}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Componentes de hardware utilizados}{6}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Tecnologías de software aplicadas}{8}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Software de control de versiones}{10}{section.2.4}%
+\contentsline {section}{\numberline {2.4}Software de control de versiones}{9}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Diseño e implementación}{11}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Arquitectura del sistema}{11}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Flujo de datos}{12}{subsection.3.1.1}%
@@ -30,33 +30,37 @@
 \contentsline {subsection}{\numberline {3.4.1}Arquitectura y tecnologías}{20}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Funcionalidades principales}{20}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Integración con el backend}{21}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Despliegue del sistema}{21}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Entorno productivo e integración continua}{22}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Monitoreo post-implantación}{23}{subsection.3.5.2}%
-\contentsline {section}{\numberline {3.6}Integración con la infraestructura existente}{24}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Ensayos y resultados}{27}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Banco de pruebas}{27}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Diseño del entorno de pruebas}{27}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Metodología experimental}{28}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Resultados y observaciones}{29}{subsection.4.1.3}%
-\contentsline {section}{\numberline {4.2}Pruebas de la API REST}{30}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Objetivos y alcance}{30}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Metodología de prueba}{30}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Resultados obtenidos}{31}{subsection.4.2.3}%
-\contentsline {subsubsection}{Medición}{31}{section*.24}%
-\contentsline {subsubsection}{Comando}{32}{section*.27}%
-\contentsline {subsubsection}{Respuesta}{33}{section*.30}%
-\contentsline {section}{\numberline {4.3}Pruebas de componentes}{35}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Enfoque general}{35}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Resultados por componente}{35}{subsection.4.3.2}%
-\contentsline {section}{\numberline {4.4}Pruebas del frontend}{36}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Objetivos}{36}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Metodología}{37}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Resultados y observaciones}{41}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Prueba final de integración}{42}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Metodología de la prueba}{42}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Resultados obtenidos}{47}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Comparación con otras soluciones}{48}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Conclusiones}{51}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Resultados y metas}{51}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Trabajo futuro}{52}{section.5.2}%
+\contentsline {section}{\numberline {3.5}Desarrollo del firmware}{21}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Arquitectura general}{22}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Flujo de trabajo del firmware}{22}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Despliegue del sistema}{24}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Entorno productivo e integración continua}{24}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Monitoreo post-implantación}{26}{subsection.3.6.2}%
+\contentsline {section}{\numberline {3.7}Integración con la infraestructura existente}{27}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Ensayos y resultados}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Banco de pruebas}{29}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Diseño del entorno de pruebas}{29}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Metodología experimental}{30}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Resultados y observaciones}{31}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Pruebas de la API REST}{32}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Objetivos y alcance}{32}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Metodología de prueba}{32}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Resultados obtenidos}{33}{subsection.4.2.3}%
+\contentsline {subsubsection}{Medición}{33}{section*.25}%
+\contentsline {subsubsection}{Comando}{34}{section*.28}%
+\contentsline {subsubsection}{Respuesta}{35}{section*.31}%
+\contentsline {section}{\numberline {4.3}Pruebas de componentes}{37}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Enfoque general}{37}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Resultados por componente}{37}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Pruebas del frontend}{38}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Objetivos}{38}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Metodología}{39}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Resultados y observaciones}{43}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Prueba final de integración}{44}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Metodología de la prueba}{44}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Resultados obtenidos}{49}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Comparación con otras soluciones}{50}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{53}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Resultados y metas}{53}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Trabajo futuro}{54}{section.5.2}%
+\contentsline {chapter}{Bibliografía}{55}{appendix*.52}%

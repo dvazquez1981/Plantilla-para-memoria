@@ -167,9 +167,9 @@ se deben considerar dos aspectos fundamentales:
 \begin{itemize}
 \item Fuente de alimentación: se implementó un sistema de energía basado en una batería interna recargable, específicamente dimensionada para cubrir los picos de consumo del módulo SIM800L durante las transmisiones de datos. La autonomía del sistema está garantizada mediante un panel solar que mantiene la carga de la batería de forma continua.
 
-Para estabilizar la entrega de energía se incorporó un módulo regulador de tensión que garantiza el nivel adecuado de voltaje para el módem. El circuito se complementó con capacitores dimensionados para absorber los picos de tensión del SIM800L, evitando caídas de voltaje que puedan reiniciar el sistema.
+Para estabilizar la entrega de energía se incorporó un módulo regulador de tensión que garantiza el nivel adecuado de voltaje para el módem. El circuito se complementó con capacitores dimensionados para absorber los picos de tensión del SIM800L, que evita caídas de voltaje que puedan reiniciar el sistema.
 
-La figura \ref{fig:diag_conexiones} se presenta el diagrama de conexión entre los módulos del sistema, detallando las líneas de comunicación serie RS232, la interfaz UART entre el microcontrolador y el módem GSM, así como la distribución de la alimentación eléctrica y los circuitos de estabilización de potencia.
+La figura \ref{fig:diag_conexiones} se presenta el diagrama de conexión entre los módulos del sistema, que detalla las líneas de comunicación serie RS232, la interfaz UART entre el microcontrolador y el módem GSM, así como la distribución de la alimentación eléctrica y los circuitos de estabilización de potencia.
 \vspace{-0.5em}
 \begin{figure}[H]
   \raggedleft
@@ -319,7 +319,7 @@ En la figura \ref{fig:diagrama_front_pantallas} se observa la estructura de los 
 
 \subsection{Integración con el backend}
 
-El frontend utiliza los endpoints REST del backend (ver Sección~\ref{tab:endpoints}), enviando en cada petición el token JWT obtenido en el login para asegurar el acceso autorizado. Las respuestas JSON se interpretan en tiempo real, manteniendo la interfaz sincronizada con el estado de los dispositivos.
+El frontend utiliza los endpoints REST del backend (ver Sección~\ref{tab:endpoints}), enviando en cada petición el token JWT obtenido en el login para asegurar el acceso autorizado. Las respuestas JSON se interpretan en tiempo real, y mantiene la interfaz sincronizada con el estado de los dispositivos.
 En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de comunicación con el backend.
 \vspace{-0.5em}
 \begin{figure}[H]
@@ -331,6 +331,68 @@ En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de c
 \end{figure}
 
 En conjunto, esta integración asegura que el frontend pueda operar de manera consistente con el estado real del sistema, sin contradicciones ni demoras que afecten la experiencia del usuario. El resultado se manifiesta en una interfaz clara, estable y alineada con los procesos que el backend ejecuta en segundo plano. Esta arquitectura brinda una plataforma sólida para la incorporación de nuevas funcionalidades, ya que cada módulo se apoya en una comunicación estructurada, verificable y estandarizada.
+
+
+
+\section{Desarrollo del firmware}
+
+El firmware del nodo constituye uno de los componentes centrales del sistema, ya que actúa como intermediario entre el contador de tránsito y los servicios remotos. El desarrollo se realizó en C utilizando el framework ESP-IDF, con FreeRTOS como sistema operativo de tiempo real.
+
+\subsection{Arquitectura general}
+
+El firmware se estructuró en módulos funcionales independientes, lo que permitió separar responsabilidades y simplificar el mantenimiento. Los módulos principales son:
+
+\begin{itemize}
+    \item Gestión de UART: administra las dos interfaces seriales del dispositivo: una para el módem SIM800L y otra para el contador de tránsito DTEC. Incluye inicialización dinámica, control de errores y asignación de buffers independientes.
+
+  \item Procesamiento de tramas RS-232: encapsula el parseo de los mensajes emitidos y recibidos por el contador. Valida la estructura JSON, extrae los campos relevantes y construye los objetos internos que se incorporan a la cola de datos. Además, aplica el mismo procedimiento a los comandos que ingresan por la interfaz serial.
+
+
+    \item Cola FIFO de eventos: implementa un buffer circular basado en FreeRTOS para asegurar que todas las detecciones permanezcan disponibles aun durante períodos sin conectividad GPRS. La cola evita la pérdida de información.
+
+    \item Manejo de estados y reconexiones: define una máquina de estados que administra el ciclo GPRS, TCP y MQTT. El firmware detecta automáticamente cortes de red, reinicia el proceso cuando es necesario y reanuda operaciones sin intervención externa.
+
+    \item Biblioteca SIM800L: se desarrolló una biblioteca específica para encapsular el control del módem. La biblioteca abstrae el envío de comandos AT, verifica respuestas (\texttt{\seqsplit{OK}}, \texttt{\seqsplit{ERROR}}, \texttt{\seqsplit{CONNECT OK}}), administra configuraciones de APN y construye las tramas necesarias para publicar, suscribirse y mantener viva la sesión MQTT.
+
+    \item Módulo MQTT embebido: implementa la construcción manual de paquetes MQTT, incluyendo mensajes \texttt{\seqsplit{CONNECT}}, \texttt{\seqsplit{PUBLISH}}, \texttt{\seqsplit{SUBSCRIBE}}, \texttt{\seqsplit{PINGREQ}} y el procesamiento de respuestas como \texttt{\seqsplit{CONNACK}}, \texttt{\seqsplit{SUBACK}} y \texttt{\seqsplit{PINGRESP}}. Este módulo opera sobre TCP crudo, debido a que el SIM800L no ofrece una pila MQTT integrada.
+
+    \item Módulo de seguridad: incorpora cifrado AES-128 en modo ECB con codificación Base64, aplicable a tramas de transitos, comandos y respuestas.
+\end{itemize}
+
+\subsection{Flujo de trabajo del firmware}
+
+El comportamiento del firmware adopta un flujo compuesto por etapas consecutivas:
+
+\begin{enumerate}
+    \item Inicialización del hardware: UART, colas, semáforos y estructuras internas.
+    \item Verificación del módulo SIM800L y registro en la red celular.
+    \item Establecimiento de la conexión GPRS y obtención de dirección IP.
+    \item Apertura de un socket TCP hacia el broker MQTT.
+    \item Envío del mensaje \texttt{\seqsplit{CONNECT}}  y espera de \texttt{\seqsplit{CONNACK}}.
+    \item Suscripción al tópico de comandos.
+    \item Entrada al ciclo operativo:
+    \begin{itemize}
+        \item Lectura de tramas RS-232 del contador.
+        \item Almacenamiento en la cola FIFO.
+        \item Extracción y publicación en el tópico correspondiente.
+        \item Procesamiento de comandos recibidos.
+        \item Reenvío de respuestas.
+        \item Envío periódico de \texttt{\seqsplit{CPINGREQ}} para conservar la sesión.
+    \end{itemize}
+    \item Reinicio automático del ciclo en caso de pérdida de enlace o ausencia de \texttt{\seqsplit{PINGRESP}} .
+\end{enumerate}
+En la figura \ref{fig:flujo_firmware} se presenta el diagrama correspondiente al flujo de trabajo del firmware.
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.77\linewidth]{./Figures/diagFlujoEsp32C3.png}
+  \captionof{figure}{Flujo de trabajo del firmware del ESP32-C3.}
+  \label{fig:flujo_firmware}
+\end{figure}
+
+
+
+
 
 \section{Despliegue del sistema}
 
