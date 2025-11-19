@@ -11,12 +11,12 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Diagrama de secuencia del flujo de datos.\relax }}{13}{figure.caption.12}%
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Diagrama de conexión entre los módulos del sistema.\relax }}{15}{figure.caption.13}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Fotografia contador de tránsito DTEC instalado en campo \footnotemark .\relax }}{16}{figure.caption.14}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagrama de flujo de información del Backend.\relax }}{17}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagrama de flujo de información del backend.\relax }}{17}{figure.caption.15}%
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Diagrama con la disposición de los controladores y flujo de dependencias.\relax }}{18}{figure.caption.16}%
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Diagrama de estructura de los componentes por pantalla.\relax }}{20}{figure.caption.18}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Diagrama de flujo de comunicación con el backend.\relax }}{21}{figure.caption.19}%
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Flujo de trabajo del firmware del ESP32-C3.\relax }}{23}{figure.caption.20}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Arquitectura de despliegue del sistema en entorno cloud on-premise\relax }}{25}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Arquitectura de despliegue del sistema en entorno cloud on-premise.\relax }}{25}{figure.caption.21}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Fotografía del banco de pruebas.\relax }}{30}{figure.caption.22}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Registros de detecciones vehiculares almacenados en la base de datos MySQL.\relax }}{31}{figure.caption.23}%
@@ -31,15 +31,16 @@
 \contentsline {figure}{\numberline {4.11}{\ignorespaces Pantalla de inicio de sesión del frontend.\relax }}{40}{figure.caption.36}%
 \contentsline {figure}{\numberline {4.12}{\ignorespaces Panel principal con visualización del listado de dispositivos.\relax }}{40}{figure.caption.37}%
 \contentsline {figure}{\numberline {4.13}{\ignorespaces Panel de visualización del dispositivo.\relax }}{41}{figure.caption.38}%
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Panel de visualización del dispositivo: preparación para la ejecución de un comando y su ejecución.\relax }}{42}{figure.caption.39}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Panel de visualización del dispositivo: preparación para la ejecución de un comando y su ejecución.\relax }}{41}{figure.caption.39}%
 \contentsline {figure}{\numberline {4.15}{\ignorespaces Panel de visualización del dispositivo: ejecución de un comando.\relax }}{42}{figure.caption.40}%
 \contentsline {figure}{\numberline {4.16}{\ignorespaces Panel de visualización del dispositivo: comando ejecutado y la respuesta pendiente.\relax }}{42}{figure.caption.41}%
 \contentsline {figure}{\numberline {4.17}{\ignorespaces Panel de visualización del dispositivo: comando ejecutado y su respuesta.\relax }}{42}{figure.caption.42}%
 \contentsline {figure}{\numberline {4.18}{\ignorespaces Panel de visualización del historial de mediciones.\relax }}{43}{figure.caption.43}%
-\contentsline {figure}{\numberline {4.19}{\ignorespaces Publicación de una medición por parte del módulo ESP32-C3 y recepción en el backend.\relax }}{45}{figure.caption.44}%
-\contentsline {figure}{\numberline {4.20}{\ignorespaces Visualización de la medición recibida en la interfaz web del sistema.\relax }}{46}{figure.caption.45}%
-\contentsline {figure}{\numberline {4.21}{\ignorespaces Generación de un comando desde la interfaz web.\relax }}{46}{figure.caption.46}%
-\contentsline {figure}{\numberline {4.22}{\ignorespaces Visualización consola del módulo ESP32-C3 que registra la recepción del comando.\relax }}{47}{figure.caption.47}%
-\contentsline {figure}{\numberline {4.23}{\ignorespaces Intercambio de mensajes entre el ESP32-C3 y el backend durante la recepción y procesamiento de una respuesta.\relax }}{48}{figure.caption.48}%
-\contentsline {figure}{\numberline {4.24}{\ignorespaces Visualización de la respuesta del dispositivo en la interfaz web tras el procesamiento exitoso en el backend.\relax }}{49}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Publicación de una medición por parte del módulo ESP32-C3 y recepción en el backend.\relax }}{44}{figure.caption.44}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Visualización de la medición recibida en la interfaz web del sistema.\relax }}{45}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Generación de un comando desde la interfaz web.\relax }}{45}{figure.caption.46}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Visualización consola del módulo ESP32-C3 que registra la recepción del comando.\relax }}{46}{figure.caption.47}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Flujo de respuesta desde el nodo.\relax }}{46}{figure.caption.48}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Flujo de recepción de la respuesta en el backend.\relax }}{47}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Visualización de la respuesta del dispositivo en la interfaz web tras el procesamiento exitoso en el backend.\relax }}{47}{figure.caption.50}%
 \addvspace {10\p@ }

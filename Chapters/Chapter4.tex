@@ -113,8 +113,7 @@ Los mensajes en cola se reenviaron al restablecer la red sin generar duplicacion
 
 \subsection{Resultados obtenidos}
 
-Las pruebas confirmaron la estabilidad y solidez de la API REST.  
-Todas las operaciones CRUD se ejecutaron correctamente y devolvieron respuestas en formato JSON con los códigos HTTP apropiados.  
+Las pruebas confirmaron la estabilidad y solidez de la API REST. Todas las operaciones CRUD se ejecutaron correctamente y devolvieron respuestas en formato JSON con los códigos HTTP correspondientes, lo que permite destacar lo siguiente: 
 
 \begin{itemize}
     \item Autenticación: las solicitudes sin token o con credenciales inválidas fueron rechazadas con los códigos 401 y 403.  
@@ -278,7 +277,7 @@ Los resultados validaron la solidez de la arquitectura distribuida y su adecuaci
 \section{Pruebas del frontend}
 \label{sec:pruebas-frontend}
 
-Las pruebas del frontend tuvieron como finalidad evaluar el correcto funcionamiento de la interfaz web desarrollada, que garantiza su compatibilidad, usabilidad, rendimiento y capacidad de interacción con el backend del sistema.  
+Las pruebas del frontend tuvieron como finalidad evaluar el correcto funcionamiento de la interfaz web desarrollada, garantizar su compatibilidad, usabilidad, rendimiento y capacidad de interacción con el backend del sistema.  
 
 \subsection{Objetivos}
 
@@ -344,16 +343,15 @@ La figura \ref{fig:frontend_dispositivo_detalle1} ilustra la primera vista del p
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_1.png}
+  \includegraphics[width=0.9\linewidth]{./Figures/frontend_dispositivo_detalles_1.png}
   \caption{Panel de visualización del dispositivo.}
   \label{fig:frontend_dispositivo_detalle1}
 \end{figure}
-
 En la figura \ref{fig:frontend_dispositivo_detalle2} se muestra la creación de un comando asociado a un tipo de comando específico del contador. Al seleccionarse el tipo, el sistema habilita la opción para generar el nuevo comando.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_2.png}
+  \includegraphics[width=0.9\linewidth]{./Figures/frontend_dispositivo_detalles_2.png}
   \caption{Panel de visualización del dispositivo: preparación para la ejecución de un comando y su ejecución.}
   \label{fig:frontend_dispositivo_detalle2}
 \end{figure}
@@ -371,7 +369,7 @@ La figura \ref{fig:frontend_dispositivo_detalle4} muestra el comando ejecutado c
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_4.png}
+  \includegraphics[width=1.4\linewidth]{./Figures/frontend_dispositivo_detalles_4.png}
   \caption{Panel de visualización del dispositivo: comando ejecutado y la respuesta pendiente.}
   \label{fig:frontend_dispositivo_detalle4}
 \end{figure}
@@ -381,7 +379,7 @@ La figura \ref{fig:frontend_dispositivo_detalle5} se muestra la respuesta al com
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/frontend_dispositivo_detalles_5.png}
+  \includegraphics[width=1.9\linewidth]{./Figures/frontend_dispositivo_detalles_5.png}
   \caption{Panel de visualización del dispositivo: comando ejecutado y su respuesta.}
   \label{fig:frontend_dispositivo_detalle5}
 \end{figure}
@@ -390,12 +388,10 @@ Luego, al presionar el botón Mediciones, se mostrará el historial correspondie
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\linewidth]{./Figures/frontend_mediciones_detalles.png}
+  \includegraphics[width=0.55\linewidth]{./Figures/frontend_mediciones_detalles.png}
   \caption{Panel de visualización del historial de mediciones.}
   \label{fig:frontend_mediciones_detalle}
 \end{figure}
-
-
 
 \subsection{Resultados y observaciones}
 
@@ -409,9 +405,6 @@ Los resultados globales de las pruebas de frontend se resumen en los siguientes 
 
 En conjunto, las pruebas permitieron validar la madurez funcional de la interfaz web y su adecuación a las necesidades operativas de los usuarios finales.  
 
-
-
-
 \section{Prueba final de integración}
 \label{sec:prueba-integracion}
 
@@ -421,42 +414,33 @@ Esta etapa permitió comprobar la interoperabilidad entre todos los componentes 
 El ensayo buscó garantizar que el sistema, en su conjunto, cumpliera con los requisitos de confiabilidad, sincronización y trazabilidad definidos en las fases de diseño y desarrollo.  
 
 \subsection{Metodología de la prueba}
-
-Para la validación end-to-end se configuró un entorno de ensayo en el que participaron todos los subsistemas desplegados simultáneamente.
-El flujo de integración se estructuró de la siguiente manera:
+Para la validación end-to-end se habilitó un entorno de prueba con todos los subsistemas en operación simultánea. El flujo general fue el siguiente:
 
 \begin{enumerate}
-    \item El contador de tránsito DTEC generó una trama RS-232 que fue recibida por el nodo ESP32-C3.
-    \item El firmware procesó la trama, generó un evento y lo publicó mediante MQTT en el tópico \texttt{dispositivo/\{id\}/medicion}.
-    \item El backend, suscrito a dicho tópico, validó el mensaje, lo registró en la base de datos y notificó a la interfaz web a través de su API REST.
-    \item El frontend consultó la API y actualizó la vista en tiempo real con la nueva medición.
-    \item Desde la interfaz, se envió un comando de prueba al nodo, que fue publicado por el backend en el tópico \texttt{dispositivo/\{id\}/comando}.
-    \item El firmware recibió el comando, ejecutó la acción asociada y respondió mediante un mensaje en el tópico \texttt{dispositivo/\{id\}/respuesta}, que fue procesado nuevamente por el backend y mostrado al usuario.
+    \item El contador DTEC emitió una trama RS-232 recibida por el nodo ESP32-C3.
+    \item El firmware procesó la trama, generó el evento y lo publicó por MQTT en \texttt{dispositivo/\{id\}/medicion}.
+    \item El backend validó el mensaje, lo almacenó en la base de datos y notificó a la interfaz web mediante su API REST.
+    \item El frontend consultó la API REST y actualizó la visualización con la nueva medición.
+    \item Desde la interfaz se envió un comando de prueba que el backend publicó en \texttt{dispositivo/\{id\}/comando}.
+    \item El firmware recibió el comando, ejecutó la acción, respondió en \texttt{\seqsplit{dispositivo/\{id\}/respuesta}} y se registro en el backend.
 \end{enumerate}
 
-Se presentan los pasos realizados durante la prueba integral del sistema, cuyo objetivo es verificar la correcta interacción entre el dispositivo, el backend y la interfaz web en un escenario completo de funcionamiento.
+En la figura~\ref{fig:log_medicion} se muestra el proceso completo de medición: en la parte superior aparece la publicación del mensaje MQTT en \texttt{\seqsplit{dispositivo/1/medicion}} y, en la inferior, el registro del backend con su recepción, validación y almacenamiento.
 
-En la figura~\ref{fig:log_medicion} se muestra la captura del log del módulo ESP32-C3 junto con el log del backend, 
-durante la publicación y recepción de una medición. En la parte superior se observa el envío del mensaje MQTT 
-en el tópico \\  
-\texttt{dispositivo/1/medicion}, mientras que en la parte inferior el backend registra la recepción 
-del mensaje, su validación y almacenamiento en la base de datos.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\linewidth]{./Figures/log_medicion.png}
+  \includegraphics[width=0.9\linewidth]{./Figures/log_medicion.png}
   \caption{Publicación de una medición por parte del módulo ESP32-C3 y recepción en el backend.}
   \label{fig:log_medicion}
 \end{figure}
 
 
 En la figura~\ref{fig:interfaz_medicion} se visualiza la interfaz web luego de recibir la medición publicada. 
-La aplicación consulta la API REST del backend y actualiza en tiempo real la tabla de mediciones, 
-que muestra el nuevo registro con su fecha, valor, carril, clasificación y dispositivo asociado. 
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.4\linewidth]{./Figures/interfaz_medicion.png}
+  \includegraphics[width=0.55\linewidth]{./Figures/interfaz_medicion.png}
   \caption{Visualización de la medición recibida en la interfaz web del sistema.}
   \label{fig:interfaz_medicion}
 \end{figure}
@@ -485,26 +469,37 @@ la consola del módulo ESP32-C3 registra la recepción del comando.
   \label{fig:log_comando}
 \end{figure}
 
-En la figura~\ref{fig:log_respuesta_backend} se visualiza la ejecución del flujo de respuesta entre el nodo y el backend. 
-En la consola superior se observa el log del ESP32-C3, que publica la respuesta con el resultado del procesamiento interno del contador. Esta respuesta es publicada por el firmware en el tópico 
-\texttt{dispositivo/1/respuesta}, incluyendo los campos fecha, cmdId, valor y dispositivoId.  
-En la consola inferior se aprecia el registro del backend, el cual recibe el mensaje desde el broker MQTT, valida su estructura y almacena la información en la base de datos MySQL.
+En la figura~\ref{fig:log_respuesta_backend1} se visualiza la ejecución del flujo de respuesta desde el nodo. En la consola se observa el log del ESP32-C3, el cual envía la respuesta con el resultado del proceso interno del contador. El firmware publica esta información en el tópico \texttt{dispositivo/1/respuesta}, con los campos fecha, cmdId, valor y dispositivoId.
+
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.95\linewidth]{./Figures/log_respuesta_esp32_backend.png}
-  \caption{Intercambio de mensajes entre el ESP32-C3 y el backend durante la recepción y procesamiento de una respuesta.}
-  \label{fig:log_respuesta_backend}
+  \includegraphics[width=0.95\linewidth]{./Figures/log_respuesta_esp32_backend1.png}
+  \caption{Flujo de respuesta desde el nodo.}
+  \label{fig:log_respuesta_backend1}
 \end{figure}
 
-Finalmente, en la Figura~\ref{fig:interfaz_respuesta} se muestra la visualización del resultado en la interfaz web. Una vez almacenada la respuesta, la aplicación cliente consulta el endpoint correspondiente de la API REST y actualiza la vista 
+
+En la figura~\ref{fig:log_respuesta_backend2} se muestra el registro correspondiente en el backend. El sistema recibe el mensaje desde el broker MQTT, valida su estructura y almacena los datos en la base de datos MySQL.
+
+
+
+\vspace{-0.5em}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{./Figures/log_respuesta_esp32_backend2.png}
+  \caption{Flujo de recepción de la respuesta en el backend.}
+  \label{fig:log_respuesta_backend2}
+\end{figure}
+
+Finalmente, en la figura~\ref{fig:interfaz_respuesta} se muestra la visualización del resultado en la interfaz web. Una vez almacenada la respuesta, la aplicación cliente consulta el endpoint correspondiente de la API REST y actualiza la vista 
 con la información más reciente del dispositivo.  
 De esta manera, el usuario puede verificar en tiempo real que el comando fue recibido y ejecutado correctamente, 
 completando el ciclo de comunicación bidireccional del sistema.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\linewidth]{./Figures/interfaz_respuesta.png}
+  \includegraphics[width=0.85\linewidth]{./Figures/interfaz_respuesta.png}
   \caption{Visualización de la respuesta del dispositivo en la interfaz web tras el procesamiento exitoso en el backend.}
   \label{fig:interfaz_respuesta}
 \end{figure}
