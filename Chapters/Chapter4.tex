@@ -64,15 +64,11 @@ En la figura~\ref{fig:phpmyadmin_medicion} se muestra la tabla \texttt{Medicion}
   \caption{Registros de detecciones vehiculares almacenados en la base de datos MySQL.}
   \label{fig:phpmyadmin_medicion}
 \end{figure}
-En la figura~\ref{fig:comando_respuesta} se presenta un ejemplo del intercambio de mensajes entre el servidor y el nodo de campo.
-
-En este caso, el backend envía un comando remoto al dispositivo mediante una publicación en el tópico MQTT \texttt{\seqsplit{dispositivo/{id}/comando}}. El nodo recibe ese comando, lo procesa localmente y responde a través del \texttt{\seqsplit{dispositivo/{id}/respuesta}}.
-
-El mensaje de respuesta incluye el campo de cmdId y el valor asociado al comando ejecutado, lo que permite verificar el funcionamiento bidireccional del sistema.
+En la figura~\ref{fig:comando_respuesta} se muestra un intercambio entre el servidor y el nodo. El backend envía un comando al dispositivo en \texttt{\seqsplit{dispositivo/{id}/comando}} y el nodo responde en \texttt{\seqsplit{dispositivo/{id}/respuesta}} con el cmdId y el valor asociado, validando la comunicación bidireccional.
 \vspace{-0.5em}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\linewidth]{./Figures/phpmyadmin_comando_respuesta.png}
+\includegraphics[width=0.80\linewidth]{./Figures/phpmyadmin_comando_respuesta.png}
 \caption{Intercambio de mensajes entre el backend y el nodo de campo mediante MQTT.}
 \label{fig:comando_respuesta}
 \end{figure}
@@ -201,8 +197,8 @@ En la figura~\ref{fig:postman_respuesta_error} se observa la respuesta generada 
   \label{fig:postman_respuesta_error}
 \end{figure}
 
-A continuación, se presenta la tabla \ref{tab:resultados_api} con los resultados de las  pruebas de los endpoints REST:
-\vspace{-0.5em}
+A continuación, se presenta la tabla \ref{tab:resultados_api} con los resultados de las pruebas de los endpoints REST, donde se registraron las respuestas del sistema, los códigos HTTP obtenidos y el tiempo medio de procesamiento para cada operación:
+\vspace{-\baselineskip}
 \begin{table}[H]
 	\centering
 	\caption[Resultados de pruebas de endpoints REST]{Resultados de las pruebas realizadas sobre los principales endpoints de la API REST mediante Postman.}
@@ -248,16 +244,20 @@ El entorno completo se desplegó en contenedores Docker independientes, lo que p
 
 \subsection{Resultados por componente}
 
-Cada módulo del sistema fue evaluado de forma independiente para verificar su funcionamiento, la integridad de los datos y la robustez ante fallos de conexión. Se resumen los principales resultados obtenidos en las pruebas de cada componente:
+Cada módulo del sistema fue evaluado de forma independiente para verificar su funcionamiento, la integridad de los datos y la robustez ante fallos de conexión. Este proceso permitió analizar el comportamiento de cada componente en situaciones reales de operación, asegurando una arquitectura estable y confiable en todas las etapas del flujo de información. Se resumen los principales resultados obtenidos en las pruebas de cada componente:
 
 \begin{itemize}
-    \item Firmware (ESP32-C3): se validó el análisis de tramas RS-232, el almacenamiento temporal en colas FIFO y la publicación confiable de mensajes MQTT.  
+    \item Firmware (ESP32-C3): se validó el análisis correcto de tramas RS-232, el almacenamiento temporal en colas FIFO y la publicación confiable de mensajes MQTT hacia el broker. Estas pruebas confirmaron que el dispositivo interpreta adecuadamente los datos recibidos y mantiene la consistencia de los paquetes aun en escenarios de mayor carga de transmisión.  
     
-    \item Broker MQTT: se realizaron desconexiones simuladas. El sistema mantuvo la sesión y retransmitió los mensajes pendientes.  
-    \item Backend: se comprobó la correcta gestión de solicitudes REST y la sincronización con el broker MQTT.  
-    \item Frontend: se verificó la comunicación bidireccional con la API REST y la actualización en tiempo real de las mediciones.  
-    \item Manejo de errores: los registros de Winston y Morgan mostraron reconexiones exitosas sin pérdida de información.  
+    \item Broker MQTT: se ejecutaron desconexiones simuladas para medir la tolerancia a fallos. El sistema mantuvo la sesión activa y transmitió los mensajes pendientes una vez restablecida la conexión, lo que aseguró continuidad del servicio sin pérdida de información.  
+    
+    \item Backend: se comprobó la correcta gestión de solicitudes REST, el procesamiento adecuado de cada operación y la sincronización efectiva con el broker MQTT para el envío y recepción de comandos y respuestas.  
+    
+    \item Frontend: se verificó la comunicación bidireccional con la API REST, la presentación inmediata de la información obtenida y la visualización en el panel del estado actualizado de dispositivos y mediciones.  
+    
+    \item Manejo de errores: los registros obtenidos mediante Winston y Morgan reflejaron reconexiones exitosas ante cortes de red y operaciones sin pérdida de datos, lo que confirmó un sistema con mecanismos sólidos de recuperación frente a situaciones adversas.  
 \end{itemize}
+
 
 En la figura~\ref{fig:esp32_backend_log} se puede observar el intercambio de mensajes entre el nodo de campo y el servidor. En la parte superior de la imagen se muestra la consola del ESP32-C3, donde el firmware registra el envío de una medición a través del módulo SIM800L utilizando el protocolo MQTT. En la parte inferior, se visualiza la consola del backend desarrollada en Node.js, que recibe y procesa el mensaje, verificando los datos de la medición antes de almacenarlos en la base de datos.
 \vspace{-0.5em}
@@ -337,9 +337,7 @@ donde se presenta el listado de dispositivos registrados junto con la ubicación
   \caption{Panel principal con visualización del listado de dispositivos.}
   \label{fig:frontend_listado_dispositivos}
 \end{figure}
-
-Al seleccionar un dispositivo del listado, el sistema despliega un panel detallado con la información específica de dicho equipo. 
-La figura \ref{fig:frontend_dispositivo_detalle1} ilustra la primera vista del panel de dispositivo, donde se muestran los datos generales de identificación (nombre, ubicación y tipo), el último comando enviado, su respuesta, la  última medición registrada y un botón para visualizar las mediciones históricas.
+Al seleccionar un dispositivo del listado, el sistema despliega un panel detallado con la información específica de dicho equipo. La figura \ref{fig:frontend_dispositivo_detalle1} ilustra la primera vista del panel de dispositivo, donde se presenta la información general de identificación del equipo (nombre, ubicación y tipo), el último comando enviado y su correspondiente respuesta, la última medición registrada y un botón que permite acceder a la visualización de las mediciones históricas. Esta interfaz facilita el análisis del estado del dispositivo y el acceso rápido a los datos relevantes sin necesidad de recorrer menús adicionales.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
@@ -503,7 +501,6 @@ completando el ciclo de comunicación bidireccional del sistema.
   \caption{Visualización de la respuesta del dispositivo en la interfaz web tras el procesamiento exitoso en el backend.}
   \label{fig:interfaz_respuesta}
 \end{figure}
-
 
 \subsection{Resultados obtenidos}
 

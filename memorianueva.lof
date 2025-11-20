@@ -20,13 +20,13 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Fotografía del banco de pruebas.\relax }}{30}{figure.caption.22}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Registros de detecciones vehiculares almacenados en la base de datos MySQL.\relax }}{31}{figure.caption.23}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Intercambio de mensajes entre el backend y el nodo de campo mediante MQTT.\relax }}{32}{figure.caption.24}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Solicitud \texttt {POST /api/medicion} con todos los campos completos.\relax }}{34}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Intercambio de mensajes entre el backend y el nodo de campo mediante MQTT.\relax }}{31}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Solicitud \texttt {POST /api/medicion} con todos los campos completos.\relax }}{33}{figure.caption.26}%
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Solicitud \texttt {POST /api/medicion} con campos faltantes. \relax }}{34}{figure.caption.27}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Solicitud \texttt {POST /api/comando} exitosa. \relax }}{35}{figure.caption.29}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Solicitud \texttt {POST /api/comando} con error por datos incompletos.\relax }}{35}{figure.caption.30}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Solicitud \texttt {POST /api/comando} exitosa. \relax }}{34}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Solicitud \texttt {POST /api/comando} con error por datos incompletos.\relax }}{34}{figure.caption.30}%
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Solicitud \texttt {POST /api/respuesta} exitosa. \relax }}{35}{figure.caption.32}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Solicitud \texttt {POST /api/respuesta} con error de validación.\relax }}{36}{figure.caption.33}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Solicitud \texttt {POST /api/respuesta} con error de validación.\relax }}{35}{figure.caption.33}%
 \contentsline {figure}{\numberline {4.10}{\ignorespaces Interacción entre el nodo de campo (ESP32-C3 + SIM800L) y el backend.\relax }}{38}{figure.caption.35}%
 \contentsline {figure}{\numberline {4.11}{\ignorespaces Pantalla de inicio de sesión del frontend.\relax }}{40}{figure.caption.36}%
 \contentsline {figure}{\numberline {4.12}{\ignorespaces Panel principal con visualización del listado de dispositivos.\relax }}{40}{figure.caption.37}%
