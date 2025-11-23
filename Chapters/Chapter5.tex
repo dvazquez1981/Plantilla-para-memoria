@@ -4,8 +4,8 @@
 En este capítulo se presentan las conclusiones generales del trabajo, junto con una reflexión sobre los resultados alcanzados y las posibles líneas de desarrollo futuro.  
 
 %----------------------------------------------------------------------------------------
-\section{Resultados y metas}
-\label{sec:resultados_metas}
+\section{Conclusiones generales}
+\label{sec:conclusiones_generales}
 
 El sistema desarrollado permitió cumplir los objetivos propuestos, logra una solución integral para la detección y transmisión de eventos de tránsito en entornos con conectividad limitada.  
 La arquitectura implementada demostró ser eficiente, modular y adaptable a distintos escenarios de despliegue, que mantiene la integridad de los datos y la estabilidad del flujo de comunicación entre nodos de campo, servidor y cliente web.
@@ -13,12 +13,12 @@ La arquitectura implementada demostró ser eficiente, modular y adaptable a dist
 A continuación, se sintetizan los principales resultados y aportes del trabajo:
 
 \begin{itemize}
-  \item Se logró diseñar e implementar un sistema distribuido basado en protocolos abiertos (MQTT, REST y JSON), capaz de operar de forma confiable ante conectividad intermitente.  
+  \item Se logró diseñar e implementar un sistema distribuido basado en protocolos abiertos (MQTT, REST y  \texttt{JSON}), capaz de operar de forma confiable ante conectividad intermitente.  
 
   \item El firmware embebido en el ESP32-C3 validó su capacidad para procesar tramas RS-232, almacenar eventos temporalmente y asegurar su retransmisión una vez restablecida la conexión.  
 
   \item Se desarrolló una biblioteca específica para el manejo del módulo SIM800L, que permite ejecutar comandos AT y establecer la comunicación con el broker MQTT y que garantiza la publicación y suscripción de mensajes bajo condiciones variables de red.  
-  \item El backend, desarrollado en Node.js con Express y MySQL, garantizó la persistencia de los datos, la trazabilidad de los eventos y la autenticación segura mediante tokens JWT.  
+  \item El backend, desarrollado en Node.js con Express y MySQL, garantizó la persistencia de los datos, la trazabilidad de los eventos y la autenticación segura mediante tokens  \texttt{JWT}.  
   
   \item El broker MQTT (Eclipse Mosquitto) permitió la comunicación asincrónica y la publicación confiable de mensajes entre dispositivos y servidor, con soporte para retención de mensajes.  
   

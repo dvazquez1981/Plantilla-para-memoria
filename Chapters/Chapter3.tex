@@ -43,7 +43,7 @@ La figura \ref{fig:diag_arquitectura} muestra el diagrama de arquitectura del si
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.45\linewidth]{./Figures/diagArq.png}
+  \includegraphics[width=0.43\linewidth]{./Figures/diagArq.png}
   \caption{Diagrama de arquitectura del sistema y el flujo de datos.}
   \label{fig:diag_arquitectura}
 \end{figure}
@@ -74,7 +74,6 @@ El flujo de datos del sistema describe cómo se captura, procesa y comunica la i
 
   \item Actualización en backend y UI: el suscriptor MQTT del backend recibe el ack, actualiza la tabla \texttt{respuesta} (campo \texttt{valor}, \texttt{ack\_ts}) y notifica a la UI para que el operador vea el resultado.
 \end{itemize}
-\vspace{-0.5em}
 La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de datos.
 
 \begin{figure}[H]
@@ -187,7 +186,7 @@ En la figura \ref{fig:foto_gabinete} se observa el contador de tránsito instala
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\linewidth]{./Figures/fotoGabinete.jpeg}
-  \caption{Fotografia contador de tránsito DTEC instalado en campo \protect\footnotemark.}
+  \caption{Fotografía contador de tránsito DTEC instalado en campo \protect\footnotemark.}
   \label{fig:foto_gabinete}
 \end{figure}
 \end{itemize}
@@ -216,9 +215,9 @@ El sistema cuenta con varias funcionalidades esenciales que permiten gestionar d
 \begin{itemize}
     \item Gestión de dispositivos: alta, baja, modificación y consulta.
     \item Gestión de eventos: almacenamiento de detecciones y consultas filtradas por dispositivo o rango temporal.
-    \item Gestión de comandos: emisión de órdenes a un dispositivo, persistencia de la orden con identificador único (cmd\_id) y actualización según respuesta.
+    \item Gestión de comandos: emisión de órdenes a un dispositivo, persistencia de la orden con identificador único \texttt{cmd\_id} y actualización según respuesta.
     \item Estado de dispositivos: consulta de parámetros como nivel de batería, temperatura o conectividad.
-    \item Autenticación y autorización: control de acceso mediante tokens JWT.
+    \item Autenticación y autorización: control de acceso mediante tokens \texttt{JWT}.
 \end{itemize}
 
 \subsection{Organización en controladores}
@@ -226,12 +225,12 @@ El sistema cuenta con varias funcionalidades esenciales que permiten gestionar d
 La lógica de negocio del backend se organiza en controladores, cada uno asociado a un recurso del sistema, lo que favorece la separación de responsabilidades, el mantenimiento y la escalabilidad. Los principales controladores son:
 
 \begin{itemize}
-  \item DispositivoController: gestiona las operaciones CRUD sobre los dispositivos de campo, además de registrar los eventos recibidos vía MQTT y asociarlos a un dispositivo específico.
-  \item MedicionController: encapsula la lógica de ingesta de eventos de tránsito, validación de payloads y persistencia en la base de datos.
-  \item ComandoController: administra la emisión y seguimiento de comandos remotos, generando un \texttt{cmd\_id} único.
+  \item \texttt{DispositivoController}: gestiona las operaciones CRUD sobre los dispositivos de campo, además de registrar los eventos recibidos vía MQTT y asociarlos a un dispositivo específico.
+  \item \texttt{MedicionController}: encapsula la lógica de ingesta de eventos de tránsito, validación de payloads y persistencia en la base de datos.
+  \item \texttt{ComandoController}: administra la emisión y seguimiento de comandos remotos, generando un \texttt{cmd\_id} único.
   
-  \item RespuestaController: centraliza la recepción de estados y telemetría (batería, conectividad), en respuesta al comando que se envía, esto garantiza que la base de datos refleje la situación en tiempo real.
-  \item UserController: implementa el ciclo de vida de usuarios y la autenticación mediante JWT \cite{jwtRFC7519}, así como la validación de permisos en cada endpoint.
+  \item \texttt{RespuestaController}: centraliza la recepción de estados y telemetría (batería, conectividad), en respuesta al comando que se envía, esto garantiza que la base de datos refleje la situación en tiempo real.
+  \item \texttt{UserController}: implementa el ciclo de vida de usuarios y la autenticación mediante  \texttt{JWT} \cite{jwtRFC7519}, así como la validación de permisos en cada endpoint.
 \end{itemize}
 
 
@@ -256,25 +255,25 @@ En la tabla \ref{tab:endpoints} se presentan los endpoints generales.
 		\toprule
 		\textbf{Endpoint} & \textbf{Controlador} & \textbf{Descripción} \\
 		\midrule
-		GET /dispositivo & DispositivoController & Lista todos los dispositivos registrados \\
-		GET /dispositivo/\{id\} & DispositivoController & Devuelve información de un dispositivo específico \\
-		POST /dispositivo & DispositivoController & Alta de un nuevo dispositivo \\
-		PATCH /dispositivo/\{id\} & DispositivoController & Actualización de atributos de un dispositivo \\
-		DELETE /dispositivo/\{id\} & DispositivoController & Eliminación de un dispositivo \\
+		GET /dispositivo & DispositivoController & Lista todos los dispositivos registrados. \\
+		GET /dispositivo/\{id\} & DispositivoController & Devuelve información de un dispositivo específico. \\
+		POST /dispositivo & DispositivoController & Alta de un nuevo dispositivo. \\
+		PATCH /dispositivo/\{id\} & DispositivoController & Actualización de atributos de un dispositivo. \\
+		DELETE /dispositivo/\{id\} & DispositivoController & Eliminación de un dispositivo. \\
 		\addlinespace
-		POST /medicion & MedicionController & Crea  mediciones de un dispositivo \\
-		GET /medicion/dispositivo/\{id\} & MedicionController & Consultar mediciones por dispositivo \\
-		GET /medicion/range & MedicionController & Consultar mediciones por rango temporal \\
+		POST /medicion & MedicionController & Crea  mediciones de un dispositivo. \\
+		GET /medicion/dispositivo/\{id\} & MedicionController & Consultar mediciones por dispositivo. \\
+		GET /medicion/range & MedicionController & Consultar mediciones por rango temporal. \\
 		\addlinespace
-		POST /comando & ComandoController & Crear un comando remoto y publicarlo en MQTT \\
-		GET /comando/\{id\} & ComandoController & Consultar un comando  \\
+		POST /comando & ComandoController & Crear un comando remoto y publicarlo en MQTT. \\
+		GET /comando/\{id\} & ComandoController & Consultar un comando.  \\
 		\addlinespace
-		GET /respuesta/\{id\} & RespuestaController & Consultar respuesta de un comando \\
+		GET /respuesta/\{id\} & RespuestaController & Consultar respuesta de un comando. \\
 		\addlinespace
-		POST /usuario/login & UserController & Autenticación de usuario, devuelve token JWT \\
-		POST /usuario & UserController & Alta de usuario \\
-		GET /usuario & UserController & Listar usuarios registrados \\
-		DELETE /usuario/\{id\} & UserController & Eliminar usuario \\
+		POST /usuario/login & UserController & Autenticación de usuario, devuelve token JWT. \\
+		POST /usuario & UserController & Alta de usuario. \\
+		GET /usuario & UserController & Listar usuarios registrados. \\
+		DELETE /usuario/\{id\} & UserController & Eliminar usuario. \\
 		\bottomrule
 		\hline
 	\end{tabular}
@@ -284,7 +283,7 @@ En la tabla \ref{tab:endpoints} se presentan los endpoints generales.
 
 \subsection{Seguridad y extensibilidad}
 
-Además de la autenticación mediante JWT, todos los endpoints aplican validaciones y sanitización de parámetros de entrada y salida. El sistema de logging, implementado con Winston y Morgan, garantiza trazabilidad de las operaciones tanto en la capa HTTP como en la mensajería MQTT. La arquitectura modular basada en controladores permite extender el backend con nuevos recursos o funcionalidades sin afectar la lógica ya implementada.
+Además de la autenticación mediante \texttt{JWT} , todos los endpoints aplican validaciones y sanitización de parámetros de entrada y salida. El sistema de logging, implementado con Winston y Morgan, garantiza trazabilidad de las operaciones tanto en la capa HTTP como en la mensajería MQTT. La arquitectura modular basada en controladores permite extender el backend con nuevos recursos o funcionalidades sin afectar la lógica ya implementada.
 
 
 \section{Desarrollo del frontend}
@@ -301,7 +300,7 @@ La comunicación con el backend se realiza mediante API REST y, para actualizaci
 
 El frontend integra las siguientes funciones clave:
 \begin{itemize}
-    \item Login de usuario: ingreso con credenciales, validación contra la API y obtención de un token JWT.
+    \item Login de usuario: ingreso con credenciales, validación contra la API y obtención de un token \texttt{JWT}.
     \item Listado de dispositivos: muestra todos los contadores registrados, junto con información de ubicación y estado básico.
     \item Detalle de dispositivo: despliega datos específicos de un contador y últimas tramas recibidas.
     \item Panel de mediciones: permite visualizar los eventos de tránsito procesados, con actualización dinámica cuando el dispositivo transmite nuevas tramas.
@@ -319,7 +318,7 @@ En la figura \ref{fig:diagrama_front_pantallas} se observa la estructura de los 
 
 \subsection{Integración con el backend}
 
-El frontend utiliza los endpoints REST del backend (ver Sección~\ref{tab:endpoints}), enviando en cada petición el token JWT obtenido en el login para asegurar el acceso autorizado. Las respuestas JSON se interpretan en tiempo real, y mantiene la interfaz sincronizada con el estado de los dispositivos.
+El frontend utiliza los endpoints REST del backend (ver Sección~\ref{tab:endpoints}), enviando en cada petición el token \texttt{JWT}  obtenido en el login para asegurar el acceso autorizado. Las respuestas \texttt{JSON} se interpretan en tiempo real, y mantiene la interfaz sincronizada con el estado de los dispositivos.
 En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de comunicación con el backend.
 \vspace{-0.5em}
 \begin{figure}[H]
@@ -330,7 +329,7 @@ En la figura \ref{fig:diagramaflujorestapi} se observa el diagrama de flujo de c
   \label{fig:diagramaflujorestapi}
 \end{figure}
 
-En conjunto, esta integración asegura que el frontend pueda operar de manera consistente con el estado real del sistema, sin contradicciones ni demoras que afecten la experiencia del usuario. El resultado se manifiesta en una interfaz clara, estable y alineada con los procesos que el backend ejecuta en segundo plano. Esta arquitectura brinda una plataforma sólida para la incorporación de nuevas funcionalidades, ya que cada módulo se apoya en una comunicación estructurada, verificable y estandarizada.
+La integración asegura que el frontend pueda operar de manera consistente con el estado real del sistema, sin contradicciones ni demoras que afecten la experiencia del usuario. El resultado se manifiesta en una interfaz clara, estable y alineada con los procesos que el backend ejecuta en segundo plano. Esta arquitectura brinda una plataforma sólida para la incorporación de nuevas funcionalidades, ya que cada módulo se apoya en una comunicación estructurada, verificable y estandarizada.
 
 
 
@@ -345,7 +344,7 @@ El firmware se estructuró en módulos funcionales independientes, lo que permit
 \begin{itemize}
     \item Gestión de UART: administra las dos interfaces seriales del dispositivo: una para el módem SIM800L y otra para el contador de tránsito DTEC. Incluye inicialización dinámica, control de errores y asignación de buffers independientes.
 
-  \item Procesamiento de tramas RS-232: encapsula el parseo de los mensajes emitidos y recibidos por el contador. Valida la estructura JSON, extrae los campos relevantes y construye los objetos internos que se incorporan a la cola de datos. Además, aplica el mismo procedimiento a los comandos que ingresan por la interfaz serial.
+  \item Procesamiento de tramas RS-232: encapsula el parseo de los mensajes emitidos y recibidos por el contador. Valida la estructura \texttt{JSON} , extrae los campos relevantes y construye los objetos internos que se incorporan a la cola de datos. Además, aplica el mismo procedimiento a los comandos que ingresan por la interfaz serial.
 
 
     \item Cola FIFO de eventos: implementa un buffer circular basado en FreeRTOS para asegurar que todas las detecciones permanezcan disponibles aun durante períodos sin conectividad GPRS. La cola evita la pérdida de información.
@@ -356,7 +355,7 @@ El firmware se estructuró en módulos funcionales independientes, lo que permit
 
     \item Módulo MQTT embebido: implementa la construcción manual de paquetes MQTT, incluyendo mensajes \texttt{\seqsplit{CONNECT}}, \texttt{\seqsplit{PUBLISH}}, \texttt{\seqsplit{SUBSCRIBE}}, \texttt{\seqsplit{PINGREQ}} y el procesamiento de respuestas como \texttt{\seqsplit{CONNACK}}, \texttt{\seqsplit{SUBACK}} y \texttt{\seqsplit{PINGRESP}}. Este módulo opera sobre TCP crudo, debido a que el SIM800L no ofrece una pila MQTT integrada.
 
-    \item Módulo de seguridad: incorpora cifrado AES-128 en modo ECB con codificación Base64, aplicable a tramas de transitos, comandos y respuestas.
+    \item Módulo de seguridad: incorpora cifrado AES-128 en modo ECB con codificación \texttt{Base64}, aplicable a tramas de tránsitos, comandos y respuestas.
 \end{itemize}
 
 \subsection{Flujo de trabajo del firmware}
@@ -433,12 +432,12 @@ Una vez que el sistema se encuentra en funcionamiento dentro del entorno real, l
 
     \item Alertas y métricas: la plataforma Grafana reúne indicadores provenientes del sistema operativo, de los contenedores y del broker MQTT. Entre los valores más relevantes se encuentran la utilización de CPU, el consumo de memoria, la ocupación del disco y la disponibilidad de los servicios. El panel también muestra información vinculada al tráfico MQTT, como la cantidad de mensajes publicados, la frecuencia de publicaciones, los tiempos de respuesta y las posibles pérdidas durante la transmisión. Estas métricas permiten evaluar la carga del sistema y anticipar situaciones de saturación o degradación antes de que afecten a los usuarios finales.
 
-    \item Supervisión de dispositivos: la API REST del sistema expone endpoints específicos que informan el estado de los dispositivos instalados en campo. El frontend transforma estos datos en un panel claro y accesible que actúa como tablero de salud. Gracias a esta visualización, el personal técnico identifica dispositivos inactivos, comportamientos inusuales o desvíos respecto del funcionamiento esperado, lo cual agiliza las tareas de mantenimiento.
+    \item Supervisión de dispositivos: la API REST del sistema expone endpoints específicos que informan el estado de los dispositivos instalados en campo. El frontend transforma estos datos en un panel claro y accesible que actúa como tablero de salud. Gracias a esta visualización, el personal técnico identifica dispositivos inactivos, comportamientos inusuales o desvíos respecto del funcionamiento esperado, lo que agiliza las tareas de mantenimiento.
 
     \item Respaldo y recuperación: la base de datos incorpora un mecanismo automático de generación de copias de seguridad. Estas copias se producen con una periodicidad definida y permiten restaurar la información en caso de fallas de hardware, corrupción de datos o errores durante una actualización. El sistema admite restauraciones parciales, lo que evita la necesidad de reemplazar toda la base ante inconsistencias en un conjunto acotado de tablas o registros. Esta capacidad resulta crucial, ya que los eventos registrados poseen valor operativo y legal, y su pérdida comprometería el análisis histórico del sistema.
 \end{itemize}
 
-En conjunto, todos estos mecanismos establecen un entorno de operación confiable y permiten una supervisión continua del sistema después de su implantación. El monitoreo no solo detecta fallas, sino que también proporciona información objetiva para evaluar el rendimiento, planificar optimizaciones y respaldar decisiones técnicas relacionadas con la evolución. Esta etapa garantiza la continuidad del servicio y crea una base sólida para escalar la solución cuando el número de dispositivos o el volumen de datos aumente en el futuro.
+Todos estos mecanismos establecen un entorno de operación confiable y permiten una supervisión continua del sistema después de su implantación. El monitoreo no solo detecta fallas, sino que también proporciona información objetiva para evaluar el rendimiento, planificar optimizaciones y respaldar decisiones técnicas relacionadas con la evolución. Esta etapa garantiza la continuidad del servicio y crea una base sólida para escalar la solución cuando el número de dispositivos o el volumen de datos aumente en el futuro.
 
 
 \section{Integración con la infraestructura existente}
@@ -455,7 +454,7 @@ En este marco, los nodos de campo cumplen un doble rol. Por un lado, operan como
 
 Esta dualidad fortalece la flexibilidad de la plataforma y la convierte en una herramienta adaptable a diversas políticas de gestión vial. El sistema admite cambios en las reglas de operación, ampliación de funcionalidad o incorporación de nuevas métricas sin reemplazar el hardware instalado. Además, el diseño modular facilita la adopción de tecnologías futuras (sensores adicionales, nuevos protocolos de comunicación o módulos de análisis predictivo) sin comprometer la estabilidad del sistema base.
 
-En conjunto, la integración con la infraestructura existente demuestra que el proyecto respeta las limitaciones del equipamiento ya desplegado, ofrece mejoras operativas sin requerir intervenciones invasivas y habilita una expansión progresiva hacia sistemas de monitoreo más completos. La compatibilidad con los dispositivos actuales y la capacidad de adaptación a futuras necesidades posicionan al sistema como una solución sostenible y alineada con los requerimientos reales del sector vial.
+La integración con la infraestructura existente demuestra que el proyecto respeta las limitaciones del equipamiento ya desplegado, ofrece mejoras operativas sin requerir intervenciones invasivas y habilita una expansión progresiva hacia sistemas de monitoreo más completos. La compatibilidad con los dispositivos actuales y la capacidad de adaptación a futuras necesidades posicionan al sistema como una solución sostenible y alineada con los requerimientos reales del sector vial.
 
 
 

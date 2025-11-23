@@ -99,7 +99,7 @@ El proceso de validación se realizó con la herramienta Postman \cite{postman}.
 Se elaboraron colecciones de solicitudes y scripts de prueba en la pestaña Tests, que verificaron los códigos de estado HTTP, la estructura de las respuestas y el contenido de los mensajes.  
 
 El Collection Runner \cite{postman_runner} permitió ejecutar los casos de prueba en distintos entornos: desarrollo local, red simulada GPRS e integración con el broker MQTT. 
-Los resultados se exportaron en formato JSON y se analizaron mediante la extensión Newman \cite{newman_postman}.  
+Los resultados se exportaron en formato \texttt{JSON} y se analizaron mediante la extensión Newman \cite{newman_postman}.  
 
 El middleware Morgan registró las solicitudes HTTP, mientras que el sistema de logging Winston almacenó eventos críticos del backend, como errores de conexión, tiempos de procesamiento y publicaciones MQTT.  
 La trazabilidad obtenida permitió optimizar parámetros como la concurrencia de conexiones MySQL y la retención de mensajes MQTT.
@@ -128,7 +128,7 @@ La entidad \texttt{Medicion} constituye el núcleo del sistema, ya que represent
 A continuación, se muestran las pruebas realizadas sobre el endpoint \texttt{POST /api/medicion}, donde se validó la correcta recepción y verificación de los campos obligatorios.
 
 En la figura~\ref{fig:postman_medicion_ok} se observa el envío correcto de los datos requeridos: fecha, valor, carril, clasificacionId y dispositivoId.  
-El backend almacena la medición y retorna una confirmación en formato JSON.
+El backend almacena la medición y retorna una confirmación en formato \texttt{JSON}.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
@@ -139,7 +139,7 @@ El backend almacena la medición y retorna una confirmación en formato JSON.
 
 
 En la figura~\ref{fig:postman_medicion_error} se muestra la respuesta ante una solicitud incompleta, donde falta al menos uno de los campos obligatorios.
-El sistema devuelve un mensaje en formato JSON indicando la causa del error.
+El sistema devuelve un mensaje en formato \texttt{JSON} indicando la causa del error.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
@@ -177,8 +177,7 @@ En la figura~\ref{fig:postman_comando_error} se observa una solicitud con parám
 La entidad \texttt{Respuesta} almacena los mensajes enviados por los nodos de campo en respuesta a los comandos recibidos.  
 Se evaluó el endpoint \texttt{POST /api/respuesta}, y se comprobó la asociación correcta con el comando original y el dispositivo.
 
-La figura~\ref{fig:postman_respuesta_ok} muestra un ejemplo de respuesta registrada exitosamente, con los campos fecha, cmdId, valor y 
-dispositivoId.
+La figura~\ref{fig:postman_respuesta_ok} muestra un ejemplo de respuesta registrada exitosamente, con los campos \texttt{fecha},\texttt{cmdId}, \texttt{valor} y \texttt{dispositivoId}.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
@@ -206,16 +205,16 @@ A continuación, se presenta la tabla \ref{tab:resultados_api} con los resultado
 		\toprule
 		\textbf{Endpoint} & \textbf{Tipo} & \textbf{Resultado} & \textbf{Código HTTP} & \textbf{Tiempo medio (ms)} \\
 		\midrule
-		GET /dispositivo & GET & Consulta correcta de todos los dispositivos & 200 & 215 \\
-		GET /dispositivo/\{id\} & GET & Recuperación exitosa de un dispositivo específico & 200 & 225 \\
+		GET /dispositivo & GET & Consulta correcta de todos los dispositivos. & 200 & 215 \\
+		GET /dispositivo/\{id\} & GET & Recuperación exitosa de un dispositivo específico. & 200 & 225 \\
 		POST /dispositivo & POST & Alta de nuevo dispositivo & 201 & 245 \\
-		GET /medicion/dispositivo/\{id\} & GET & Consulta de mediciones por dispositivo & 200 & 230 \\
-		POST /comando & POST & Publicación de comando en MQTT & 201 & 310 \\
-		GET /comando/\{id\} & GET & Consulta de estado de comando & 200 & 520 \\
-		POST /respuesta & POST & Registro de respuesta & 201 & 245 \\
-		GET /respuesta/\{id\_com\} & GET & Recuperación de respuesta asociada & 200 & 225 \\
-		POST /usuario/login & POST & Autenticación válida (JWT) & 200 & 180 \\
-		GET /usuario & GET & Acceso restringido (JWT) & 403 & 190 \\
+		GET /medicion/dispositivo/\{id\} & GET & Consulta de mediciones por dispositivo. & 200 & 230 \\
+		POST /comando & POST & Publicación de comando en MQTT. & 201 & 310 \\
+		GET /comando/\{id\} & GET & Consulta de estado de comando. & 200 & 520 \\
+		POST /respuesta & POST & Registro de respuesta. & 201 & 245 \\
+		GET /respuesta/\{id\_com\} & GET & Recuperación de respuesta asociada. & 200 & 225 \\
+		POST /usuario/login & POST & Autenticación válida (JWT). & 200 & 180 \\
+		GET /usuario & GET & Acceso restringido (JWT). & 403 & 190 \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:resultados_api}
@@ -301,7 +300,7 @@ Se observó la interacción del usuario, a fin de verificar el comportamiento in
 \begin{itemize}
 \item Compatibilidad y visualización: se validó la correcta visualización de los componentes en distintas resoluciones y navegadores, utilizando Chrome DevTools \cite{chromedevtools} y el modo responsivo de Ionic.  
 El diseño adaptativo permitió mantener la legibilidad de los gráficos y menús tanto en pantallas de escritorio como en dispositivos móviles.  
-Las pruebas demostraron una compatibilidad completa con los navegadores modernos, presentando solo ligeras diferencias en el renderizado de íconos SVG en Firefox.
+Las pruebas demostraron una compatibilidad completa con los navegadores modernos, presentando solo ligeras diferencias en el renderizado de íconos \texttt{SVG} en Firefox.
 
 \item Rendimiento: el análisis de desempeño se realizó con Lighthouse \cite{lighthouse} y el monitor de red de los navegadores.  
 El tiempo promedio de carga inicial fue de 2,3 segundos en Chrome y 2,7 segundos en Firefox.  
@@ -373,7 +372,7 @@ La figura \ref{fig:frontend_dispositivo_detalle4} muestra el comando ejecutado c
 \end{figure}
 
 
-La figura \ref{fig:frontend_dispositivo_detalle5} se muestra la respuesta al comando, con los detalles que devuelve la misma.
+La figura \ref{fig:frontend_dispositivo_detalle5} se muestra la respuesta al comando, con los detalles que devuelve esta.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
@@ -382,7 +381,7 @@ La figura \ref{fig:frontend_dispositivo_detalle5} se muestra la respuesta al com
   \label{fig:frontend_dispositivo_detalle5}
 \end{figure}
 
-Luego, al presionar el botón Mediciones, se mostrará el historial correspondiente, como se observa en la figura \ref{fig:frontend_mediciones_detalle}. En esta vista se indica, para cada registro, el carril, la clasificación y el valor del volumen de los  vehículos.
+Luego, al presionar el botón \texttt{Mediciones}, se mostrará el historial correspondiente, como se observa en la figura \ref{fig:frontend_mediciones_detalle}. En esta vista se indica, para cada registro, el carril, la clasificación y el valor del volumen de los  vehículos.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
@@ -401,7 +400,7 @@ Los resultados globales de las pruebas de frontend se resumen en los siguientes 
     \item Interfaz intuitiva y valorada positivamente por los usuarios de prueba, con mejoras implementadas en la versión final.
 \end{itemize}
 
-En conjunto, las pruebas permitieron validar la madurez funcional de la interfaz web y su adecuación a las necesidades operativas de los usuarios finales.  
+Las pruebas permitieron validar la madurez funcional de la interfaz web y su adecuación a las necesidades operativas de los usuarios finales.  
 
 \section{Prueba final de integración}
 \label{sec:prueba-integracion}
@@ -467,7 +466,7 @@ la consola del módulo ESP32-C3 registra la recepción del comando.
   \label{fig:log_comando}
 \end{figure}
 
-En la figura~\ref{fig:log_respuesta_backend1} se visualiza la ejecución del flujo de respuesta desde el nodo. En la consola se observa el log del ESP32-C3, el cual envía la respuesta con el resultado del proceso interno del contador. El firmware publica esta información en el tópico \texttt{dispositivo/1/respuesta}, con los campos fecha, cmdId, valor y dispositivoId.
+En la figura~\ref{fig:log_respuesta_backend1} se visualiza la ejecución del flujo de respuesta desde el nodo. En la consola se observa el log del ESP32-C3, que envía la respuesta con el resultado del proceso interno del contador. El firmware publica esta información en el tópico \texttt{dispositivo/1/respuesta}, con los campos \texttt{fecha}, \texttt{cmdId}, \texttt{valor} y \texttt{dispositivoId}.
 
 \vspace{-0.5em}
 \begin{figure}[H]
@@ -539,7 +538,7 @@ Se consideraron seis criterios principales: costo de implementación, flexibilid
 
 Las soluciones comerciales ofrecen plataformas robustas con soporte integral, pero presentan altos costos y baja flexibilidad para integrar hardware heterogéneo o protocolos abiertos. Las propuestas académicas son más experimentales y abiertas tecnológicamente, aunque con limitaciones de madurez, soporte y adaptación a producción.
 
-La solución desarrollada combina bajo costo, independencia tecnológica y arquitectura modular basada en estándares abiertos (MQTT, REST, JSON), que permite rápida adaptación a entornos con conectividad variable, como rutas argentinas, sin depender de infraestructura propietaria ni servicios móviles externos.
+La solución desarrollada combina bajo costo, independencia tecnológica y arquitectura modular basada en estándares abiertos (MQTT, REST,  \texttt{JSON}), que permite rápida adaptación a entornos con conectividad variable, como rutas argentinas, sin depender de infraestructura propietaria ni servicios móviles externos.
 
 En la tabla \ref{tab:comparacion} se observa la comparación de la solución propuesta frente a alternativas comerciales y académicas: 
 

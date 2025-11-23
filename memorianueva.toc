@@ -61,5 +61,5 @@
 \contentsline {subsection}{\numberline {4.5.2}Resultados obtenidos}{47}{subsection.4.5.2}%
 \contentsline {section}{\numberline {4.6}Comparación con otras soluciones}{48}{section.4.6}%
 \contentsline {chapter}{\numberline {5}Conclusiones}{51}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Resultados y metas}{51}{section.5.1}%
+\contentsline {section}{\numberline {5.1}Conclusiones generales}{51}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Trabajo futuro}{52}{section.5.2}%
