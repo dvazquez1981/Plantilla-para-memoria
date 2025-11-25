@@ -78,7 +78,7 @@ La figura \ref{fig:diag_secuencia} muestra el diagrama de secuencia del flujo de
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\linewidth]{./Figures/diagSecuencia.png}
+  \includegraphics[width=0.9\linewidth]{./Figures/diagSecuencia.png}
   \caption{Diagrama de secuencia del flujo de datos.}
   \label{fig:diag_secuencia}
 \end{figure}
@@ -168,28 +168,35 @@ se deben considerar dos aspectos fundamentales:
 
 Para estabilizar la entrega de energía se incorporó un módulo regulador de tensión que garantiza el nivel adecuado de voltaje para el módem. El circuito se complementó con capacitores dimensionados para absorber los picos de tensión del SIM800L, que evita caídas de voltaje que puedan reiniciar el sistema.
 
+
+\item Carcasa y gabinete: tanto el contador como el módulo de comunicación remota (ESP32-C3 y SIM800L) cuentan con su propia carcasa de protección y, adicionalmente, ambos se alojan en un gabinete metálico estandarizado ya existente en la infraestructura vial, diseñado para resistir humedad, polvo y vibraciones. Esta solución aprovecha la protección ambiental, disipación térmica y blindaje electromagnético del gabinete original, que garantiza la confiabilidad del sistema en condiciones de intemperie.
+
+\end{itemize}
+
+
+
 La figura \ref{fig:diag_conexiones} se presenta el diagrama de conexión entre los módulos del sistema, que detalla las líneas de comunicación serie RS232, la interfaz UART entre el microcontrolador y el módem GSM, así como la distribución de la alimentación eléctrica y los circuitos de estabilización de potencia.
 \vspace{-0.5em}
 \begin{figure}[H]
   \raggedleft
-  \includegraphics[width=0.85\linewidth]{./Figures/diagConexion.png}
+  \includegraphics[width=1\linewidth]{./Figures/diagConexion.png}
   \caption{Diagrama de conexión entre los módulos del sistema.}
   \label{fig:diag_conexiones}
 \end{figure}
 
-
-
-\item Carcasa y gabinete: tanto el contador como el módulo de comunicación remota (ESP32-C3 y SIM800L) cuentan con su propia carcasa de protección y, adicionalmente, ambos se alojan en un gabinete metálico estandarizado ya existente en la infraestructura vial, diseñado para resistir humedad, polvo y vibraciones. Esta solución aprovecha la protección ambiental, disipación térmica y blindaje electromagnético del gabinete original, que garantiza la confiabilidad del sistema en condiciones de intemperie.
-
-En la figura \ref{fig:foto_gabinete} se observa el contador de tránsito instalado en campo, junto con su gabinete de protección y la batería interna que asegura autonomía energética. El conjunto se encuentra montado al costado de la ruta, en condiciones reales de operación, lo que permite apreciar el encapsulado diseñado para resistir las exigencias ambientales del entorno vial.
+En la figura \ref{fig:foto_gabinete} se observa el contador de tránsito instalado en campo, junto con su gabinete de protección y la batería interna que asegura autonomía energética. El conjunto está montado al costado de la ruta, en condiciones reales de operación, lo que permite apreciar el encapsulado diseñado para resistir las exigencias ambientales del entorno vial.
+La instalación forma parte de la infraestructura existente y se integra sin modificar la estructura original. 
+El gabinete metálico proporciona aislamiento frente a humedad, polvo y vibraciones propios del entorno carretero. Además, ofrece blindaje electromagnético que reduce interferencias y garantiza el funcionamiento estable del sistema.
+La batería interna mantiene el suministro de energía durante períodos sin radiación solar o interrupciones en la carga, lo que asegura continuidad operativa y confiabilidad en mediciones prolongadas en intemperie.
 \vspace{-0.5em}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{./Figures/fotoGabinete.jpeg}
+  \includegraphics[width=0.90\linewidth]{./Figures/fotoGabinete.jpeg}
   \caption{Fotografía contador de tránsito DTEC instalado en campo \protect\footnotemark.}
   \label{fig:foto_gabinete}
 \end{figure}
-\end{itemize}
+
+
 \footnotetext{Imagen tomada de \url{http://transito.vialidad.gob.ar/}}
 \end{itemize}
 \section{Desarrollo del backend}
@@ -200,6 +207,8 @@ El backend es el núcleo lógico del sistema, encargado de integrar dispositivos
 El servicio se implementó en Node.js con Express, organizando la aplicación en controladores, rutas y middlewares, y usando Sequelize \cite{sequelize}, un ORM \cite{fowler2002patterns} que facilita los modelos y asegura independencia de la persistencia.
 La comunicación con los dispositivos se realiza mediante tópicos MQTT en Eclipse Mosquitto. Las mediciones se publican en el tópico  \texttt{\seqsplit{dispositivo/{id}/medicion}}, mientras que el backend se encarga de validarlas y almacenarlas en MySQL. Por su parte, los comandos y respuestas se gestionan mediante los tópicos 
 \texttt{\seqsplit{dispositivo/{id}/comando}} y \texttt{\seqsplit{dispositivo/{id}/respuesta}}, respectivamente. El despliegue del sistema se realiza con Docker Compose \cite{docker_compose}, que permite ejecutar el backend, base de datos y el broker \cite{mqttSpec} en contenedores independientes. Además, el registro y la trazabilidad se gestionan con Winston \cite{winston} y Morgan \cite{morgan}, lo que garantiza un monitoreo completo del sistema.
+\vspace{1em}
+
 En la figura \ref{fig:diagrama_backend} se observa el diagrama de flujo de información del backend.
 \vspace{-0.5em}
 \begin{figure}[H]
