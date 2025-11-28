@@ -50,7 +50,7 @@
 \contentsline {subsubsection}{Comando}{34}{section*.28}%
 \contentsline {subsubsection}{Respuesta}{35}{section*.31}%
 \contentsline {section}{\numberline {4.3}Pruebas de componentes}{36}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Enfoque general}{36}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.1}Enfoque general}{37}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}Resultados por componente}{37}{subsection.4.3.2}%
 \contentsline {section}{\numberline {4.4}Pruebas del frontend}{38}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}Objetivos}{38}{subsection.4.4.1}%
